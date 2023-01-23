@@ -31,4 +31,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'ChangeToYourProjectName'
+rootProject.name = 'Create Mechanical Spawner'

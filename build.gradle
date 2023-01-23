@@ -6,8 +6,9 @@ plugins {
 }
 
 version = mod_version
-group = 'com.example.examplemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "examplemod-${artifact_minecraft_version}"
+group = "com.${author}.${modid}"
+version = "${minecraft_version}-${mod_version}"
+archivesBaseName = modid
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -37,7 +38,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
 
-            arg '-mixin.config=examplemod.mixins.json'
+            arg '-mixin.config=create_mechanical_spawner.mixins.json'
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -52,10 +53,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'create_mechanical_spawner'
 
             mods {
-                examplemod {
+                create_mechanical_spawner {
                     source sourceSets.main
                 }
             }
@@ -64,17 +65,17 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-            arg '-mixin.config=examplemod.mixins.json'
+            arg '-mixin.config=create_mechanical_spawner.mixins.json'
 
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'create_mechanical_spawner'
 
             mods {
-                examplemod {
+                create_mechanical_spawner {
                     source sourceSets.main
                 }
             }
@@ -88,10 +89,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'create_mechanical_spawner', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                create_mechanical_spawner {
                     source sourceSets.main
                 }
             }
@@ -126,6 +127,26 @@ repositories {
         //location of the maven for curios api
         url = "https://maven.theillusivec4.top/"
     }
+
+    maven {
+        url "https://maven.saps.dev/minecraft"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.ftb.mods"
+        }
+    }
+    maven {
+        url "https://maven.architectury.dev/"
+        content {
+            includeGroup "dev.architectury"
+        }
+    }
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -152,6 +173,12 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_minecraft_version}-${curios_version}:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_minecraft_version}-${curios_version}")
 
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+
+    runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_id}")
+
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
@@ -162,8 +189,8 @@ dependencies {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 mixin {
-    add sourceSets.main, 'examplemod.refmap.json'
-    config 'examplemod.mixins.json'
+    add sourceSets.main, 'create_mechanical_spawner.refmap.json'
+    config 'create_mechanical_spawner.mixins.json'
 
     debug.verbose = true
     debug.export = true
@@ -174,14 +201,14 @@ mixin {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "examplemod",
-                "Specification-Vendor"    : "examplemodsareus",
+                "Specification-Title"     : modid,
+                "Specification-Vendor"    : author,
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "examplemodsareus",
+                "Implementation-Version"  : project.version,
+                "Implementation-Vendor"   : author,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'MixinConfigs': 'examplemod.mixins.json'
+                "MixinConfigs"            : "${modid}.mixins.json"
         ])
     }
 }

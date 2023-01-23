@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "create_mechanical_spawner:block/mechanical_spawner/block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "create_mechanical_spawner:block/mechanical_spawner/block"
+    },
+    "facing=south": {
+      "model": "create_mechanical_spawner:block/mechanical_spawner/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "create_mechanical_spawner:block/mechanical_spawner/block",
+      "y": 270
+    }
+  }
+}

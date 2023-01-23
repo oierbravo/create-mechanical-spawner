@@ -1,9 +1,9 @@
 {
   "required": true,
   "priority": 1100,
-  "package": "com.example.examplemod.mixin",
+  "package": "com.oierbravo.mechanical_spawner.mixin",
   "compatibilityLevel": "JAVA_16",
-  "refmap": "examplemod.refmap.json",
+  "refmap": "create_mechanical_spawner.refmap.json",
   "mixins": [],
   "client": [],
   "injectors": {
