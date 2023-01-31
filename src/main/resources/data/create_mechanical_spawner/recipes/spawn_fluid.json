@@ -1,0 +1,9 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "fluid": "create_mechanical_spawner:spawn_fluid",
+    "amount": 1000
+  },
+  "processingTime": 10000
+
+}

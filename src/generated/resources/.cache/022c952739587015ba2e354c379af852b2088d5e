@@ -1,7 +1,10 @@
-// 1.19.2	2023-01-22T23:37:38.428672173	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.2	2023-01-30T15:53:13.818943655	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 ad5230ce799bd957f80fa6705b30b3211536d2e5 assets/create_mechanical_spawner/blockstates/mechanical_spawner.json
-7ecefce6a4525602647d02a1627557e212de633b assets/create_mechanical_spawner/lang/en_ud.json
-05fbb79397c4dbadd1a9b96d7de62d5c93e00d7f assets/create_mechanical_spawner/lang/en_us.json
+b8fe08acd8f680bfc4e3168233295bc96356854c assets/create_mechanical_spawner/blockstates/spawn_fluid.json
+e36ece51a0481a4821877ef00ff18afbbeb7d5aa assets/create_mechanical_spawner/lang/en_ud.json
+a715b8a1c8b0ae4f9fdf002c91a33a4066b8b3bc assets/create_mechanical_spawner/lang/en_us.json
+ceba618a4ff2d157c540681fde274c6973c00050 assets/create_mechanical_spawner/models/block/spawn_fluid.json
 8aec9510b97fb676be82f65267403e56e29aa398 assets/create_mechanical_spawner/models/item/mechanical_spawner.json
+4bb06830ed92cb286d4789094205db6bb8f6a66d assets/create_mechanical_spawner/models/item/spawn_fluid_bucket.json
 7461f632f7c43cb80620ee399723864e93b2b9c6 data/create_mechanical_spawner/loot_tables/blocks/mechanical_spawner.json
 657f841afeb514fba42e0942740e4a2acee61ccf data/minecraft/tags/blocks/mineable/pickaxe.json

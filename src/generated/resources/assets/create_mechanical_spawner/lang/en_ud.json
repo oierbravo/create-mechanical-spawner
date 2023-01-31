@@ -1,3 +1,6 @@
 {
-  "block.create_mechanical_spawner.mechanical_spawner": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW"
+  "block.create_mechanical_spawner.mechanical_spawner": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW",
+  "block.create_mechanical_spawner.spawn_fluid": "pınןℲ uʍɐdS",
+  "fluid.create_mechanical_spawner.spawn_fluid": "pınןɟ uʍɐdS",
+  "item.create_mechanical_spawner.spawn_fluid_bucket": "ʇǝʞɔnᗺ pınןℲ uʍɐdS"
 }

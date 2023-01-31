@@ -2,6 +2,8 @@ package com.oierbravo.create_mechanical_spawner;
 
 import com.mojang.logging.LogUtils;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
+import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
+import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
 import com.oierbravo.create_mechanical_spawner.registrate.ModTiles;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -32,6 +34,8 @@ public class CreateMechanicalSpawner
         ModBlocks.register();
         //ModItems.register();
         ModTiles.register();
+        ModRecipes.register(modEventBus);
+        ModFluids.register();
     }
 
     public static CreateRegistrate registrate() {

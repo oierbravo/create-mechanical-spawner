@@ -1,0 +1,9 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "fluid": "minecraft:water",
+    "amount": 10
+  },
+  "mob": "minecraft:skeleton",
+  "processingTime": 10000
+}

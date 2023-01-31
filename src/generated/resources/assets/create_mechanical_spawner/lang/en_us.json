@@ -1,3 +1,6 @@
 {
-  "block.create_mechanical_spawner.mechanical_spawner": "Mechanical Spawner"
+  "block.create_mechanical_spawner.mechanical_spawner": "Mechanical Spawner",
+  "block.create_mechanical_spawner.spawn_fluid": "Spawn Fluid",
+  "fluid.create_mechanical_spawner.spawn_fluid": "Spawn fluid",
+  "item.create_mechanical_spawner.spawn_fluid_bucket": "Spawn Fluid Bucket"
 }
