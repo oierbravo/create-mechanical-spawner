@@ -2,6 +2,7 @@ package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlock;
+import com.oierbravo.create_mechanical_spawner.content.components.SpawnerConfig;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.AllSections;
 import com.simibubi.create.foundation.block.BlockStressDefaults;
@@ -30,7 +31,8 @@ public class ModBlocks {
             .properties(p -> p.color(MaterialColor.METAL))
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            .transform(BlockStressDefaults.setImpact(4.0))
+            //.transform(BlockStressDefaults.setImpact(4.0))
+            .transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
             .item()
             .transform(customItemModel())
             .register();

@@ -49,7 +49,7 @@ public class SpawnerBlock extends HorizontalKineticBlock implements ITE<SpawnerT
 
     @Override
     public SpeedLevel getMinimumRequiredSpeedLevel() {
-        return SpeedLevel.FAST;
+        return SpeedLevel.of(SpawnerConfig.SPAWNER_MINIMUM_SPEED.get().floatValue());
     }
 
     @Override

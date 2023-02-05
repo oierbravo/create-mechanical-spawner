@@ -1,6 +1,7 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
+import com.oierbravo.create_mechanical_spawner.registrate.ModConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
@@ -55,7 +56,6 @@ public class SpawnerTile extends KineticTileEntity {
     }
     @Override
     public void addBehaviours(List<TileEntityBehaviour> behaviours) {
-        //int max = AllConfigs.SERVER.kinetics.maxChassisRange.get();
         int max = 4;
         range = new BulkScrollValueBehaviour(Lang.translateDirect("generic.range"), this, new CenteredSideValueBoxTransform(),
                 te -> ((SpawnerTile) te).collectSpawnGroup());
@@ -68,8 +68,6 @@ public class SpawnerTile extends KineticTileEntity {
         behaviours.add(range);
     }
     public static int FLUID_CAPACITY = 2000;
-    public int FLUID_AMOUNT_NEEDED = 1000;
-    public ResourceLocation FLUID = new ResourceLocation("minecraft/lava");
 
     protected SmartFluidTank createFluidTank() {
         return new SmartFluidTank(getCapacityMultiplier(), this::onFluidStackChanged);
@@ -82,11 +80,9 @@ public class SpawnerTile extends KineticTileEntity {
             setChanged();
             sendData();
         }
-
-
     }
     public static int getCapacityMultiplier() {
-        return FLUID_CAPACITY;
+        return SpawnerConfig.SPAWNER_LIQUID_CAPACITY.get();
     }
 
     @Override

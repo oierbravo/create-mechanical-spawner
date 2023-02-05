@@ -1,10 +1,7 @@
 package com.oierbravo.create_mechanical_spawner;
 
 import com.mojang.logging.LogUtils;
-import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
-import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
-import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
-import com.oierbravo.create_mechanical_spawner.registrate.ModTiles;
+import com.oierbravo.create_mechanical_spawner.registrate.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
@@ -30,6 +27,7 @@ public class CreateMechanicalSpawner
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
+        ModConfigs.register();
 
         ModBlocks.register();
         //ModItems.register();
