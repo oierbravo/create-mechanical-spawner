@@ -1,6 +1,8 @@
 {
   "block.create_mechanical_spawner.mechanical_spawner": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW",
   "block.create_mechanical_spawner.spawn_fluid": "pınןℲ uʍɐdS",
+  "create.recipe.spawner": "ǝdıɔǝɹ ɹǝuʍɐdS",
   "fluid.create_mechanical_spawner.spawn_fluid": "pınןɟ uʍɐdS",
-  "item.create_mechanical_spawner.spawn_fluid_bucket": "ʇǝʞɔnᗺ pınןℲ uʍɐdS"
+  "item.create_mechanical_spawner.spawn_fluid_bucket": "ʇǝʞɔnᗺ pınןℲ uʍɐdS",
+  "itemGroup.create_mechanical_spawner:main": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW ǝʇɐǝɹƆ"
 }

@@ -18,9 +18,8 @@ import static com.simibubi.create.Create.REGISTRATE;
 
 public class ModFluids {
     public static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate()
-            .creativeModeTab(() -> Create.BASE_CREATIVE_TAB);
+            .creativeModeTab(() -> ModGroup.MAIN);
 
-   // FluidEntry<SpawnFluid> =CreateRegistrate.defaultFluidType()
    static ResourceLocation spawnFlowingRL = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_flow");
    static ResourceLocation spawnStillRL = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_still");
 

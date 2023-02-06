@@ -9,12 +9,13 @@ This mod it's meant to be used in modpacks.
 ## Features
 - Spawn liquid
 - Biome dependant random generation
+- Configurable stress
+- Configurable minimum speed
+- Configurable fluid capacity
 
 ## Pending features
 - Spawn liquid recipe.
 - Spawner block recipe.
-- Configurable stress
-- Configurable minimum speed
 - Configurable Mob Deny List
 - Specific liquid for each Mob
 - JEI integration

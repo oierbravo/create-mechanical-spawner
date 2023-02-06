@@ -86,9 +86,12 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
         return fluidIngredient.getRequiredAmount();
     }
 
+    public FluidIngredient getFluidIngredient() { return fluidIngredient; }
+
     public EntityType<?> getMob() {
         return mob.getMob();
     }
+
 
     public static class Type implements RecipeType<SpawnerRecipe> {
         private Type() { }

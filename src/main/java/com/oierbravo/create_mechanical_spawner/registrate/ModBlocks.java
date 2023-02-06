@@ -19,7 +19,7 @@ public class ModBlocks {
 
 
     private static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate()
-            .creativeModeTab(() -> Create.BASE_CREATIVE_TAB);
+            .creativeModeTab(() -> ModGroup.MAIN);
 
 
     public static void register() {
@@ -31,7 +31,6 @@ public class ModBlocks {
             .properties(p -> p.color(MaterialColor.METAL))
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            //.transform(BlockStressDefaults.setImpact(4.0))
             .transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
             .item()
             .transform(customItemModel())

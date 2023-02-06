@@ -28,14 +28,20 @@ public class CreateMechanicalSpawner
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         ModConfigs.register();
-
+        new ModGroup("main");
         ModBlocks.register();
         //ModItems.register();
         ModTiles.register();
         ModRecipes.register(modEventBus);
         ModFluids.register();
-    }
+        generateLangEntries();
 
+    }
+    private void generateLangEntries(){
+        registrate().addRawLang("create.recipe.spawner", "Spawner recipe");
+        //registrate().addRawLang("create_mechanical_spawner.recipe.spawner", "Spawner recipe");
+        registrate().addRawLang("itemGroup.create_mechanical_spawner:main", DISPLAY_NAME);
+    }
     public static CreateRegistrate registrate() {
         return registrate.get();
     }

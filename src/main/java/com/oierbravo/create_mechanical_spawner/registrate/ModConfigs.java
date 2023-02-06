@@ -37,6 +37,7 @@ public class ModConfigs {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_BUILDER.build());
 
     }
+    //from: https://github.com/mrh0/createaddition/blob/1.19.2/src/main/java/com/mrh0/createaddition/config/Config.java
     public static void loadConfig(ForgeConfigSpec spec, java.nio.file.Path path) {
         final CommentedFileConfig configData = CommentedFileConfig.builder(path)
                 .sync()

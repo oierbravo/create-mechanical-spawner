@@ -1,0 +1,32 @@
+{
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": false,
+  "key": {
+    "I": {
+      "item": "minecraft:iron_bars"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "B": {
+      "item": "create:brass_ingot"
+    },
+    "S": {
+      "item": "create:brass_sheet"
+    },
+    "H": {
+      "item": "create:shaft"
+    }
+  },
+  "pattern": [
+    "BSSSB",
+    "BIIIB",
+    "BIEIB",
+    "BIIIB",
+    "BSHSB"
+  ],
+  "result": {
+    "count": 1,
+    "item": "create_mechanical_spawner:mechanical_spawner"
+  }
+}
