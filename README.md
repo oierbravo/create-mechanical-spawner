@@ -12,13 +12,13 @@ This mod it's meant to be used in modpacks.
 - Configurable stress
 - Configurable minimum speed
 - Configurable fluid capacity
-
-## Pending features
 - Spawn liquid recipe.
 - Spawner block recipe.
+- JEI integration
+
+## Pending features
 - Configurable Mob Deny List
 - Specific liquid for each Mob
-- JEI integration
 - KubeJS integration
 - Ponder scene
 - Nicer model?
