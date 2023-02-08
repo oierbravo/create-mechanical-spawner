@@ -15,19 +15,21 @@ This mod it's meant to be used in modpacks.
 - Spawn liquid recipe.
 - Spawner block recipe.
 - JEI integration
+- KubeJS integration
 
 ## Pending features
 - Configurable Mob Deny List
 - Specific liquid for each Mob
-- KubeJS integration
 - Ponder scene
 - Nicer model?
 
 ## Spawn recipes
 - `fluid` required.
+- `mob` required. `"random"` or any entity like `"minecraft:skeleton"`
 - `processingTime` optional. Defaults: 200
-- `mob` optional. Defaults: biome dependant.
-  Random generation (already in the mod)
+- 
+
+### Random generation (already in the mod)
 ```
 {
   "type": "create_mechanical_spawner:spawner",
@@ -35,6 +37,7 @@ This mod it's meant to be used in modpacks.
     "fluid": "create_mechanical_spawner:spawn_fluid",
     "amount": 1000
   },
+  "mob": "random",
   "processingTime": 10000
 }
 ```
@@ -53,5 +56,5 @@ Specific Mob example
 
 **Thanks to the Creators of Create.**
 
-Code inspiration from the [Create](https://www.curseforge.com/minecraft/mc-mods/create "Create") mod itself.
+Code inspiration from the [Create](https://www.curseforge.com/minecraft/mc-mods/create "Create") mod itself & [Mrbysco](https://www.curseforge.com/members/mrbysco) 
 
