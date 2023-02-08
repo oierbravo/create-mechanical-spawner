@@ -112,8 +112,8 @@ public class SpawnerTile extends KineticTileEntity {
         assert level != null;
         if (lastRecipe == null || !lastRecipe.matches(recipeWrapper, level)) {
 
-            //Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner( fluidTank.getFluid(), level);
-            Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner( recipeWrapper, level);
+            Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner( fluidTank.getFluid(), level);
+            //Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner( recipeWrapper, level);
             if (recipe.isEmpty()) {
                 timer = 100;
                 totalTime = 100;
@@ -150,8 +150,8 @@ public class SpawnerTile extends KineticTileEntity {
         SpawnerRecipe.SpawnerRecipeWrapper recipeWrapper =  new SpawnerRecipe.SpawnerRecipeWrapper(fluidTank.getFluid());
 
         if (lastRecipe == null || !lastRecipe.matches(recipeWrapper, level)) {
-            //Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(fluidTank.getFluid(), level);
-            Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(recipeWrapper, level);
+            Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(fluidTank.getFluid(), level);
+            //Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(recipeWrapper, level);
             if (!recipe.isPresent())
                 return;
             lastRecipe = recipe.get();

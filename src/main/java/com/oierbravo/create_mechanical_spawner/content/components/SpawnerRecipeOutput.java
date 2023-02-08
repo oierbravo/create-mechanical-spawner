@@ -1,5 +1,7 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -24,6 +26,10 @@ public class SpawnerRecipeOutput {
     }
 
     public static SpawnerRecipeOutput fromJson(String mob) {
+        if(mob == null)
+            return new SpawnerRecipeOutput();
+        if(mob.equals("random"))
+            return new SpawnerRecipeOutput();
         ResourceLocation mobResourceLocation = new ResourceLocation(mob);
         EntityType<?> mobEntity = ForgeRegistries.ENTITY_TYPES.getValue(mobResourceLocation);
         if(mobEntity == null)
@@ -37,6 +43,7 @@ public class SpawnerRecipeOutput {
             return new SpawnerRecipeOutput();
         return new SpawnerRecipeOutput(mobEntity);
     }
+
     public String toJson() {
         assert this.mob != null;
         return this.mob.toString();
@@ -55,4 +62,10 @@ public class SpawnerRecipeOutput {
     }
 
 
+    public String serialize() {
+        if(mob == null){
+            return "";
+        }
+        return mob.toShortString();
+    }
 }

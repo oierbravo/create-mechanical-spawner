@@ -34,14 +34,10 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
         this.fluidIngredient = params.fluidIngredient;
         this.processingTime = params.processingTime;
     }
-    @Override
-    public boolean matches(@NotNull SimpleContainer pContainer, @NotNull Level pLevel) {
-        if(pContainer instanceof SpawnerRecipeWrapper) {
-            FluidStack fluidStack = ((SpawnerRecipeWrapper) pContainer).getFluidStack();
-            boolean test = this.fluidIngredient.test(fluidStack);
-            return this.fluidIngredient.test(fluidStack);
-        }
-        return false;
+    public boolean matches(SpawnerRecipeWrapper pContainer, @NotNull Level pLevel) {
+        FluidStack fluidStack = pContainer.getFluidStack();
+        boolean test = this.fluidIngredient.test(fluidStack);
+        return this.fluidIngredient.test(fluidStack);
     }
 
     public boolean matches(FluidStack fluidStack) {
@@ -49,8 +45,13 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
     }
 
     @Override
+    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+        return false;
+    }
+
+    @Override
     public ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
 
     @Override
     public ItemStack getResultItem() {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -106,10 +107,10 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
         @Override
         public SpawnerRecipe fromJson(ResourceLocation id, JsonObject json) {
             SpawnerRecipeBuilder builder = new SpawnerRecipeBuilder(id);
-            FluidIngredient fluidIngredient = FluidIngredient.EMPTY;
+           FluidIngredient fluidIngredient = FluidIngredient.EMPTY;
             SpawnerRecipeOutput mob = SpawnerRecipeOutput.EMPTY;
 
-            fluidIngredient = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
+                fluidIngredient = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
 
             if(GsonHelper.isValidNode(json,"mob")){
                 mob = SpawnerRecipeOutput.fromJson(GsonHelper.getAsString(json, "mob"));
