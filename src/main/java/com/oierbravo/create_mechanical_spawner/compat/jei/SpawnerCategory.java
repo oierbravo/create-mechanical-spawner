@@ -4,7 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.ingredients.ITypedIngredient;
@@ -36,8 +38,12 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
 
 
     public void setRecipe(IRecipeLayoutBuilder builder, SpawnerRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 15, 9).setBackground(getRenderedSlot(), -1, -1).addFluidStack(recipe.getFluidIngredient().getMatchingFluidStacks().get(0).getFluid(), recipe.getFluidAmount());
-
+        FluidIngredient fluidIngredient = recipe.getFluidIngredient();
+        builder
+            .addSlot(RecipeIngredientRole.INPUT, 15, 9)
+            .setBackground(getRenderedSlot(), -1, -1)
+            .addIngredients(ForgeTypes.FLUID_STACK, withImprovedVisibility(fluidIngredient.getMatchingFluidStacks()))
+            .addTooltipCallback(addFluidTooltip(fluidIngredient.getRequiredAmount()));
 
     }
 

@@ -1,9 +1,0 @@
-{
-  "type": "create_mechanical_spawner:spawner",
-  "fluid": {
-    "fluid": "minecraft:lava",
-    "amount": 1000
-  },
-  "mob": "minecraft:skeleton",
-  "processingTime": 10000
-}
