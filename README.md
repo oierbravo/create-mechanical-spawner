@@ -54,6 +54,27 @@ Specific Mob example
 }
 ```
 
+## KubeJS support (Server script)
+
+```
+//Random Mob (WIP) wierd things happen for now.
+event.recipes.createMechanicalSpawnerSpawner("random",Fluid.of('minecraft:water', 700)).processingTime(8000);
+//Specific MOB
+event.recipes.createMechanicalSpawnerSpawner("minecraft:skeleton",Fluid.of('minecraft:water', 700)).processingTime(8000);
+```
+
+- Alternative (custom recipe)
+```
+event.custom({
+    type:"create_mechanical_spawner:spawner",
+    mob: "minecraft:zombie",
+    fluid: {
+        fluid: "minecraft:lava",
+        amount: 500,
+    },
+    processingTime: 20000
+});
+```
 **Thanks to the Creators of Create.**
 
 Code inspiration from the [Create](https://www.curseforge.com/minecraft/mc-mods/create "Create") mod itself & [Mrbysco](https://www.curseforge.com/members/mrbysco) 
