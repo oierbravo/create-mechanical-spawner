@@ -37,7 +37,11 @@ public class SpawnerRecipeOutput {
         return new SpawnerRecipeOutput(mobEntity);
     }
     public static SpawnerRecipeOutput fromNetwork(FriendlyByteBuf buffer) {
-        ResourceLocation mobResourceLocation = new ResourceLocation(buffer.readUtf());
+        String mobId = buffer.readUtf();
+        if(mobId.equals("random"))
+            return new SpawnerRecipeOutput();
+
+        ResourceLocation mobResourceLocation = new ResourceLocation(mobId);
         EntityType<?> mobEntity = ForgeRegistries.ENTITY_TYPES.getValue(mobResourceLocation);
         if(mobEntity == null)
             return new SpawnerRecipeOutput();
@@ -49,8 +53,10 @@ public class SpawnerRecipeOutput {
         return this.mob.toString();
     }
     public void toNetwork(FriendlyByteBuf buffer) {
-        if(this.mob == null)
+        if(this.mob == null) {
+            buffer.writeUtf("random");
             return;
+        }
         ResourceLocation mobResourceLocation = ForgeRegistries.ENTITY_TYPES.getKey(mob);
         assert mobResourceLocation != null;
         buffer.writeUtf(mobResourceLocation.toString());
