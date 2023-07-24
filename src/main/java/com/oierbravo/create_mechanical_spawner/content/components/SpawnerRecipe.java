@@ -1,24 +1,18 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
-import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
-import net.minecraft.core.NonNullList;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 import org.jetbrains.annotations.NotNull;
 
 //public class SpawnerRecipe extends CustomRecipe{
@@ -37,11 +31,13 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
     public boolean matches(SpawnerRecipeWrapper pContainer, @NotNull Level pLevel) {
         FluidStack fluidStack = pContainer.getFluidStack();
         boolean test = this.fluidIngredient.test(fluidStack);
-        return this.fluidIngredient.test(fluidStack);
+         return this.fluidIngredient.test(fluidStack);
     }
 
     public boolean matches(FluidStack fluidStack) {
+
         return this.fluidIngredient.test(fluidStack);
+
     }
 
     @Override

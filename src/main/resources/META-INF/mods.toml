@@ -39,8 +39,8 @@ versionRange="[1.19.2,1.20)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.create_mechanical_spawner]]
-    modId="create"
-    mandatory=true
-    versionRange="[0.5.0.i,0.5.1)"
-    ordering="NONE"
-    side="BOTH"
+    modId = "create"
+    mandatory = true
+    versionRange="[0.5.1.c,)"
+    ordering = "AFTER"
+    side = "BOTH"

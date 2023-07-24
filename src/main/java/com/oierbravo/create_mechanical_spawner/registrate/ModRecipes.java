@@ -35,7 +35,9 @@ public class ModRecipes {
         return  level.getRecipeManager().getRecipeFor(SpawnerRecipe.Type.INSTANCE,inv, level);
     }
     public static Optional<SpawnerRecipe> findSpawner(FluidStack fluidStack,Level level){
-        List<SpawnerRecipe> allRecipes = level.getRecipeManager().getAllRecipesFor(SpawnerRecipe.Type.INSTANCE);
+        if(level.isClientSide())
+            return Optional.empty();
+
         return level.getRecipeManager()
                 .getAllRecipesFor(SpawnerRecipe.Type.INSTANCE) // Gets all recipes
                 .stream() // Looks through all recipes for types

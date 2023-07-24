@@ -1,22 +1,20 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.oierbravo.create_mechanical_spawner.registrate.ModConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
-import com.simibubi.create.content.contraptions.base.KineticTileEntity;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.content.kinetics.speedController.SpeedControllerBlockEntity;
+import com.simibubi.create.content.kinetics.motor.KineticScrollValueBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
-import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
-import com.simibubi.create.foundation.tileEntity.behaviour.CenteredSideValueBoxTransform;
-import com.simibubi.create.foundation.tileEntity.behaviour.scrollvalue.BulkScrollValueBehaviour;
-import com.simibubi.create.foundation.tileEntity.behaviour.scrollvalue.ScrollValueBehaviour;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,7 +26,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SpawnerTile extends KineticTileEntity {
+public class SpawnerBlockEntity extends KineticBlockEntity {
     ScrollValueBehaviour range;
     protected FluidTank fluidTank;
 
@@ -48,23 +45,24 @@ public class SpawnerTile extends KineticTileEntity {
     private int processingTime;
 
 
-    public SpawnerTile(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
-        super(typeIn, pos, state);
+    public SpawnerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         fluidTank = createFluidTank();
         fluidCapability = LazyOptional.of(() -> fluidTank);
         processingTime = 200;
     }
     @Override
-    public void addBehaviours(List<TileEntityBehaviour> behaviours) {
-        int max = 4;
-        range = new BulkScrollValueBehaviour(Lang.translateDirect("generic.range"), this, new CenteredSideValueBoxTransform(),
-                te -> ((SpawnerTile) te).collectSpawnGroup());
-        range.requiresWrench();
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+        int max = 254;
+        range = new KineticScrollValueBehaviour(Lang.translateDirect("generic.range"), this, new CenteredSideValueBoxTransform());
+        //range.requiresWrench();
         range.between(1, max);
         range
                 .withClientCallback(
                         i -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SpawnerPointDisplay.display(this)));
         range.value = max / 2;
+
+
         behaviours.add(range);
     }
     public static int FLUID_CAPACITY = 2000;
@@ -132,18 +130,6 @@ public class SpawnerTile extends KineticTileEntity {
         sendData();
     }
 
-    /*private boolean canProcess(ItemStack stack) {
-
-        ItemStackHandler tester = new ItemStackHandler(2);
-        tester.setStackInSlot(0, stack);
-        SpawnerRecipe.SpawnerRecipeWrapper recipeWrapper = new SpawnerRecipe.SpawnerRecipeWrapper(fluidTank.getFluid());
-        assert level != null;
-        if (lastRecipe != null) {
-            if (lastRecipe.matches(recipeWrapper, level) && lastRecipe.getFluidAmount() < fluidTank.getFluidAmount()) return true;
-        }
-        return ModRecipes.findSpawner( recipeWrapper, level)
-                .isPresent();
-    }*/
 
     private void process() {
 
@@ -151,7 +137,6 @@ public class SpawnerTile extends KineticTileEntity {
 
         if (lastRecipe == null || !lastRecipe.matches(recipeWrapper, level)) {
             Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(fluidTank.getFluid(), level);
-            //Optional<SpawnerRecipe> recipe = ModRecipes.findSpawner(recipeWrapper, level);
             if (!recipe.isPresent())
                 return;
             lastRecipe = recipe.get();
@@ -210,7 +195,7 @@ public class SpawnerTile extends KineticTileEntity {
     public List<BlockPos> getSpawnBlockPosition(Direction forcedMovement, boolean visualize) {
         List<BlockPos> positions = new ArrayList<>();
 
-        int position = visualize ? range.scrollableValue : getRange();
+        int position = visualize ? range.getValue() : getRange();
 
         BlockPos current = worldPosition.relative(Direction.Axis.Y, position);
 
@@ -221,7 +206,7 @@ public class SpawnerTile extends KineticTileEntity {
         return positions;
     }
 
-    public List<SpawnerTile> collectSpawnGroup() {
+    public List<SpawnerBlockEntity> collectSpawnGroup() {
         return new ArrayList<>();
     }
     protected static void spawnLivingEntity(Level level, EntityType<?>  entity,BlockPos pos) {
@@ -275,15 +260,15 @@ public class SpawnerTile extends KineticTileEntity {
             //}
         }
     }
-    protected static boolean spawnLivingEntity(SpawnerTile spawnerTile){
-        assert spawnerTile.level != null && !spawnerTile.level.isClientSide;
+    protected static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){
+        assert SpawnerBlockEntity.level != null && !SpawnerBlockEntity.level.isClientSide;
 
-        int offset = spawnerTile.getRange() ;
+        int offset = SpawnerBlockEntity.getRange() ;
 
-        BlockPos currentSpawnPos = spawnerTile.getBlockPos().relative(Direction.Axis.Y, offset);
+        BlockPos currentSpawnPos = SpawnerBlockEntity.getBlockPos().relative(Direction.Axis.Y, offset);
 
-        Level level = spawnerTile.getLevel();
-        Optional<MobSpawnSettings.SpawnerData> spawn = spawnerTile.level.getBiome(spawnerTile.getBlockPos()).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
+        Level level = SpawnerBlockEntity.getLevel();
+        Optional<MobSpawnSettings.SpawnerData> spawn = SpawnerBlockEntity.level.getBiome(SpawnerBlockEntity.getBlockPos()).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
         if(spawn.isPresent()){
             SpawnGroupData spawngroupdata = null;
 

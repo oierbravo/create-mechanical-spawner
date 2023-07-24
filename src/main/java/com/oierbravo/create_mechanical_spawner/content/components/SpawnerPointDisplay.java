@@ -5,8 +5,6 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.AllKeys;
 import com.simibubi.create.AllSpecialTextures;
 import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.contraptions.components.structureMovement.chassis.ChassisRangeDisplay;
-import com.simibubi.create.content.contraptions.components.structureMovement.chassis.ChassisTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -21,24 +19,24 @@ public class SpawnerPointDisplay {
     private static final int DISPLAY_TIME = 200;
     private static GroupEntry lastHoveredGroup = null;
     private static class Entry {
-        SpawnerTile te;
+        SpawnerBlockEntity be;
         int timer;
 
-        public Entry(SpawnerTile te) {
-            this.te = te;
+        public Entry(SpawnerBlockEntity be) {
+            this.be = be;
             timer = DISPLAY_TIME;
-            CreateClient.OUTLINER.showCluster(getOutlineKey(), createSelection(te))
+            CreateClient.OUTLINER.showCluster(getOutlineKey(), createSelection(be))
                     .colored(0xFFFFFF)
-                    .disableNormals()
+                    //.disableNormals()
                     .lineWidth(1 / 16f)
                     .withFaceTexture(AllSpecialTextures.HIGHLIGHT_CHECKERED);
         }
 
         protected Object getOutlineKey() {
-            return Pair.of(te.getBlockPos(), 1);
+            return Pair.of(be.getBlockPos(), 1);
         }
 
-        protected Set<BlockPos> createSelection(SpawnerTile spawner) {
+        protected Set<BlockPos> createSelection(SpawnerBlockEntity spawner) {
             Set<BlockPos> positions = new HashSet<>();
             List<BlockPos> includedBlockPositions = spawner.getSpawnBlockPosition(null, true);
             if (includedBlockPositions == null)
@@ -50,10 +48,10 @@ public class SpawnerPointDisplay {
     }
     private static class GroupEntry extends Entry {
 
-        List<SpawnerTile> includedTEs;
+        List<SpawnerBlockEntity> includedBEs;
 
-        public GroupEntry(SpawnerTile te) {
-            super(te);
+        public GroupEntry(SpawnerBlockEntity be) {
+            super(be);
         }
 
         @Override
@@ -62,13 +60,13 @@ public class SpawnerPointDisplay {
         }
 
         @Override
-        protected Set<BlockPos> createSelection(SpawnerTile spawner) {
+        protected Set<BlockPos> createSelection(SpawnerBlockEntity spawner) {
             Set<BlockPos> list = new HashSet<>();
-            includedTEs = te.collectSpawnGroup();
-            if (includedTEs == null)
+            includedBEs = be.collectSpawnGroup();
+            if (includedBEs == null)
                 return list;
-            for (SpawnerTile spawnerTile : includedTEs)
-                list.addAll(super.createSelection(spawnerTile));
+            for (SpawnerBlockEntity SpawnerBlockEntity : includedBEs)
+                list.addAll(super.createSelection(SpawnerBlockEntity));
             return list;
         }
 
@@ -110,16 +108,16 @@ public class SpawnerPointDisplay {
         BlockEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity == null || tileEntity.isRemoved())
             return;
-        if (!(tileEntity instanceof SpawnerTile))
+        if (!(tileEntity instanceof SpawnerBlockEntity))
             return;
 
         boolean ctrl = AllKeys.ctrlDown();
-        SpawnerTile spawnerTile = (SpawnerTile) tileEntity;
+        SpawnerBlockEntity SpawnerBlockEntity = (SpawnerBlockEntity) tileEntity;
 
         if (ctrl) {
             SpawnerPointDisplay.GroupEntry existingGroupForPos = getExistingGroupForPos(pos);
             if (existingGroupForPos != null) {
-                for (SpawnerTile included : existingGroupForPos.includedTEs)
+                for (SpawnerBlockEntity included : existingGroupForPos.includedBEs)
                     entries.remove(included.getBlockPos());
                 existingGroupForPos.timer = DISPLAY_TIME;
                 return;
@@ -127,7 +125,7 @@ public class SpawnerPointDisplay {
         }
 
         if (!entries.containsKey(pos) || ctrl)
-            display(spawnerTile);
+            display(SpawnerBlockEntity);
         else {
             if (!ctrl)
                 entries.get(pos).timer = DISPLAY_TIME;
@@ -135,12 +133,12 @@ public class SpawnerPointDisplay {
     }
 
     private static boolean tickEntry(Entry entry, boolean hasWrench) {
-        SpawnerTile spawnerTile = entry.te;
-        Level teWorld = spawnerTile.getLevel();
+        SpawnerBlockEntity SpawnerBlockEntity = entry.be;
+        Level teWorld = SpawnerBlockEntity.getLevel();
         Level world = Minecraft.getInstance().level;
 
-        if (spawnerTile.isRemoved() || teWorld == null || teWorld != world
-                || !world.isLoaded(spawnerTile.getBlockPos())) {
+        if (SpawnerBlockEntity.isRemoved() || teWorld == null || teWorld != world
+                || !world.isLoaded(SpawnerBlockEntity.getBlockPos())) {
             return true;
         }
 
@@ -155,12 +153,12 @@ public class SpawnerPointDisplay {
         return false;
     }
 
-    public static void display(SpawnerTile spawner) {
+    public static void display(SpawnerBlockEntity spawner) {
 
         if (AllKeys.ctrlDown()) {
             GroupEntry hoveredGroup = new GroupEntry(spawner);
 
-            for (SpawnerTile included : hoveredGroup.includedTEs)
+            for (SpawnerBlockEntity included : hoveredGroup.includedBEs)
                 CreateClient.OUTLINER.remove(included.getBlockPos());
 
             groupEntries.forEach(entry -> CreateClient.OUTLINER.remove(entry.getOutlineKey()));
@@ -182,7 +180,7 @@ public class SpawnerPointDisplay {
     }
     private static GroupEntry getExistingGroupForPos(BlockPos pos) {
         for (GroupEntry groupEntry : groupEntries)
-            for (SpawnerTile spawner : groupEntry.includedTEs)
+            for (SpawnerBlockEntity spawner : groupEntry.includedBEs)
                 if (pos.equals(spawner.getBlockPos()))
                     return groupEntry;
         return null;

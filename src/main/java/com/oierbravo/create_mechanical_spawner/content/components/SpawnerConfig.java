@@ -1,6 +1,5 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
-import com.simibubi.create.foundation.config.AllConfigs;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class SpawnerConfig {
@@ -15,7 +14,7 @@ public class SpawnerConfig {
                 .defineInRange("stressImpact", 16.0, 0.0, 64.0);
         SPAWNER_MINIMUM_SPEED = COMMON_BUILDER
                 .comment("Minimum required speed")
-                .defineInRange("minimumSpeed", 100.0, 0.0, Integer.MAX_VALUE);
+                .defineInRange("minimumSpeed", 100.0, 0.0, 254);
         SPAWNER_LIQUID_CAPACITY = COMMON_BUILDER
                 .comment("Liquid capacity")
                 .defineInRange("liquidCapacity", 1000, 1, Integer.MAX_VALUE);

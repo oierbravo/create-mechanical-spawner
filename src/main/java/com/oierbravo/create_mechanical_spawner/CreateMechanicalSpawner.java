@@ -12,26 +12,27 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("create_mechanical_spawner")
+@Mod(CreateMechanicalSpawner.MODID)
 public class CreateMechanicalSpawner
 {
     // Directly reference a slf4j logger
     public static final String MODID = "create_mechanical_spawner";
     public static final String DISPLAY_NAME = "Create Mechanical Spawner";
 
-    public static final NonNullSupplier<CreateRegistrate> registrate = CreateRegistrate.lazy(MODID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public CreateMechanicalSpawner()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        REGISTRATE.registerEventListeners(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
         ModConfigs.register();
         new ModGroup("main");
         ModBlocks.register();
-        //ModItems.register();
-        ModTiles.register();
+        ModBlockEntities.register();
         ModRecipes.register(modEventBus);
         ModFluids.register();
         generateLangEntries();
@@ -43,7 +44,7 @@ public class CreateMechanicalSpawner
         registrate().addRawLang("itemGroup.create_mechanical_spawner:main", DISPLAY_NAME);
     }
     public static CreateRegistrate registrate() {
-        return registrate.get();
+        return REGISTRATE;
     }
     public static ResourceLocation asResource(String path) {
         return new ResourceLocation(MODID, path);
