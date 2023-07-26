@@ -1,4 +1,4 @@
-// 1.19.2	2023-07-26T18:23:49.191796237	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.19.2	2023-07-26T19:42:17.411357697	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 ad5230ce799bd957f80fa6705b30b3211536d2e5 assets/create_mechanical_spawner/blockstates/mechanical_spawner.json
 6c78c4e3bf34ebd83ca39484e6b75cb5406bc37c assets/create_mechanical_spawner/blockstates/spawn_fluid_blaze.json
 802db3f768b7c608640937a33c64e6f5ecc65d39 assets/create_mechanical_spawner/blockstates/spawn_fluid_creeper.json
@@ -9,8 +9,8 @@ ca26c7b7d666bf630e1bf58338c76acd6500d70f assets/create_mechanical_spawner/blocks
 0223e8bb5801b185c04ca8700d8274364e782008 assets/create_mechanical_spawner/blockstates/spawn_fluid_slime.json
 e11ce7806d7bc601b78962bbd9e6ae3ba857f6e8 assets/create_mechanical_spawner/blockstates/spawn_fluid_spider.json
 8d9cd4e67898aae967c7564acb9f523db2d198d5 assets/create_mechanical_spawner/blockstates/spawn_fluid_zombie.json
-7314a0b3eb71c8d5026ebe80b6ec7256e6e161c2 assets/create_mechanical_spawner/lang/en_ud.json
-90276b4a1b73c0b7bd6505b09230ed6cc1dab3c3 assets/create_mechanical_spawner/lang/en_us.json
+699149b58ffbbd128db2a3061d1c051a06b7d5bf assets/create_mechanical_spawner/lang/en_ud.json
+8f812c926b9e4646ba2aa015f81798a39b0412aa assets/create_mechanical_spawner/lang/en_us.json
 4f948bf38c5da510711256489fd07b842bfd323c assets/create_mechanical_spawner/models/block/spawn_fluid_blaze.json
 4f948bf38c5da510711256489fd07b842bfd323c assets/create_mechanical_spawner/models/block/spawn_fluid_creeper.json
 4f948bf38c5da510711256489fd07b842bfd323c assets/create_mechanical_spawner/models/block/spawn_fluid_enderman.json
@@ -31,5 +31,5 @@ f8ba20db64f6c01fe0d480af23dc2cac16e718a4 assets/create_mechanical_spawner/models
 7e31a235cd8dcd2ba77bbce30b5cdfa5811b71b1 assets/create_mechanical_spawner/models/item/spawn_fluid_spider_bucket.json
 bc14fe58d79ac8cee680f0c41335b11e293408a8 assets/create_mechanical_spawner/models/item/spawn_fluid_zombie_bucket.json
 7461f632f7c43cb80620ee399723864e93b2b9c6 data/create_mechanical_spawner/loot_tables/blocks/mechanical_spawner.json
-f047a5929bff7b532168b59dfe30db567a0a4a25 data/create_mechanical_spawner/tags/fluids/spanw_liquid.json
+0645a5e38aa0b4074621dd3ca3cb8f6558aa7ace data/create_mechanical_spawner/tags/fluids/spanw_liquid.json
 657f841afeb514fba42e0942740e4a2acee61ccf data/minecraft/tags/blocks/mineable/pickaxe.json

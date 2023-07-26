@@ -9,6 +9,7 @@
   "block.create_mechanical_spawner.spawn_fluid_slime": "Spawn Fluid Slime",
   "block.create_mechanical_spawner.spawn_fluid_spider": "Spawn Fluid Spider",
   "block.create_mechanical_spawner.spawn_fluid_zombie": "Spawn Fluid Zombie",
+  "config.jade.plugin_create_mechanical_spawner.spawner_data": "Mechanical spawner data",
   "create.recipe.spawner": "Spawner recipe",
   "fluid.create_mechanical_spawner.spawn_fluid_blaze": "Spawn fluid blaze",
   "fluid.create_mechanical_spawner.spawn_fluid_creeper": "Spawn fluid creeper",
@@ -28,5 +29,6 @@
   "item.create_mechanical_spawner.spawn_fluid_slime_bucket": "Spawn Fluid Slime Bucket",
   "item.create_mechanical_spawner.spawn_fluid_spider_bucket": "Spawn Fluid Spider Bucket",
   "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "Spawn Fluid Zombie Bucket",
-  "itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner"
+  "itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+  "mechanical_spawner.tooltip.progress": "Progress: %d%%"
 }

@@ -16,12 +16,15 @@ This mod it's meant to be used in modpacks.
 - Spawner block recipe.
 - JEI integration
 - KubeJS integration
+- Specific liquid for Mobs
+
 
 ## Pending features
-- Configurable Mob Deny List
-- Specific liquid for each Mob
+- JADE integration
 - Ponder scene
 - Nicer model?
+- Liquid textures (still, flowing)
+- New ScrollBehavior. Actually uses the same as the creative motor.
 
 ## Spawn recipes
 - `fluid` required.

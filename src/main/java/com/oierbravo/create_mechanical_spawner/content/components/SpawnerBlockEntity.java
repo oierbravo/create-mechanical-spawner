@@ -10,9 +10,12 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import com.simibubi.create.foundation.utility.Lang;
+import joptsimple.internal.Strings;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
@@ -130,6 +133,17 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         sendData();
     }
 
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        boolean added = super.addToGoggleTooltip(tooltip, isPlayerSneaking);
+        if(this.timer < this.totalTime) {
+            Component percentComponent = Component.translatable("mechanical_spawner.tooltip.progress",this.getProgressPercent()).withStyle(ChatFormatting.YELLOW);
+            tooltip.add(Component.literal(Strings.repeat(' ', 4)).append(percentComponent));
+            return true;
+        }
+        return added;
+
+    }
 
     private void process() {
 
@@ -292,5 +306,9 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
             }
         }
         return false;
+    }
+
+    public int getProgressPercent() {
+        return 100 - this.timer * 100 / this.totalTime;
     }
 }

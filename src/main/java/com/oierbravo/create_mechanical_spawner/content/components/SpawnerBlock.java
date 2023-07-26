@@ -1,6 +1,7 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 
-public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerBlockEntity> {
+public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerBlockEntity>, IWrenchable {
     public SpawnerBlock(Properties properties) {
         super(properties);
     }
