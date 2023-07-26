@@ -12,16 +12,24 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.IServerDataProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
-import snownee.jade.impl.ui.ProgressArrowElement;
+import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.api.ui.IProgressStyle;
+import snownee.jade.util.Color;
 
 public class ProgressComponentProvider  implements IBlockComponentProvider, IServerDataProvider<BlockEntity> {
-
+    int PROGRESS_COLOR = Color.fromHex("b400ff").toInt();; //purple
+    int PROGRESS_TEXT_COLOR = Color.fromHex("ff0000").toInt();;
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         if (accessor.getServerData().contains("mechanical_spawner.progress")) {
             int progress = accessor.getServerData().getInt("mechanical_spawner.progress");
-            if(progress > 0)
-                tooltip.add(Component.translatable("mechanical_spawner.tooltip.progress", progress));
+
+            if(progress > 0){
+                IElementHelper helper = tooltip.getElementHelper();
+                IProgressStyle progressStyle = helper.progressStyle().color(PROGRESS_COLOR);//.textColor(PROGRESS_TEXT_COLOR);
+                tooltip.add(helper.progress((float)progress / 100, Component.translatable("mechanical_spawner.tooltip.progress", progress),progressStyle, helper.borderStyle()));
+            }
+
         }
 
     }
