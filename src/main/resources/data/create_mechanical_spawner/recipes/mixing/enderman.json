@@ -3,23 +3,19 @@
   "heatRequirement": "heated",
   "ingredients": [
     {
-      "item": "minecraft:blaze_rod",
-      "count": 4
-    },
-    {
       "item": "minecraft:ender_pearl",
-      "count": 4
+      "count": 1
     },
     {
       "amount": 250,
-      "fluid": "minecraft:water",
+      "fluid": "create_mechanical_spawner:random_spawn_fluid",
       "nbt": {}
     }
   ],
   "results": [
     {
       "amount": 250,
-      "fluid": "create_mechanical_spawner:spawn_fluid"
+      "fluid": "create_mechanical_spawner:spawn_fluid_enderman"
     }
   ]
 }

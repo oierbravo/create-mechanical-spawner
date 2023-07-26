@@ -27,8 +27,7 @@ public class ModBlocks {
             .properties(p -> p.color(MaterialColor.METAL))
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            //.transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
-            .transform(BlockStressDefaults.setImpact(4.0))
+            .transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
             .item()
             .transform(customItemModel())
             .register();

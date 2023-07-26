@@ -1,0 +1,21 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder",
+      "count": 1
+    },
+    {
+      "amount": 250,
+      "fluid": "create_mechanical_spawner:random_spawn_fluid",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "fluid": "create_mechanical_spawner:spawn_fluid_creeper"
+    }
+  ]
+}

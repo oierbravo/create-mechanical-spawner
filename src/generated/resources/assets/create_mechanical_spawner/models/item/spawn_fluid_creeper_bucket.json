@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "create_mechanical_spawner:item/spawn_fluid_creeper_bucket"
+  }
+}

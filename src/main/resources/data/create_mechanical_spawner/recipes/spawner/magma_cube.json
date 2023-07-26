@@ -1,0 +1,9 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "fluid": "create_mechanical_spawner:spawn_fluid_magma_cube",
+    "amount": 100
+  },
+  "mob": "minecraft:magma_cube",
+  "processingTime": 2500
+}

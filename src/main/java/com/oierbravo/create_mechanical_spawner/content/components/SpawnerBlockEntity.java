@@ -231,7 +231,8 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
             return;
         }
         if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
-        if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
+        //if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
+        if (mob.checkSpawnObstruction(level)) {
             level.addFreshEntity(mob);
         }
 
@@ -254,10 +255,10 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
                 return;
             }
             if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
-            //For now: unrestricted spawn
             //if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
+            if (mob.checkSpawnObstruction(level)) {
                 level.addFreshEntity(mob);
-            //}
+            }
         }
     }
     protected static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){

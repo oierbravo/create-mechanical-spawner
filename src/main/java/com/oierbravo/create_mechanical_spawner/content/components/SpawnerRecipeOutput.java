@@ -63,7 +63,6 @@ public class SpawnerRecipeOutput {
         return this.mob;
     }
 
-
     public String serialize() {
         if(mob == null){
             return "";
