@@ -1,15 +1,21 @@
 package com.oierbravo.create_mechanical_spawner;
 
 import com.mojang.logging.LogUtils;
+import com.oierbravo.create_mechanical_spawner.foundation.data.ModLangPartials;
 import com.oierbravo.create_mechanical_spawner.registrate.*;
+import com.simibubi.create.foundation.data.AllLangPartials;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.data.LangMerger;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -44,15 +50,19 @@ public class CreateMechanicalSpawner
         ModBlockEntities.register();
         ModRecipes.register(modEventBus);
         ModFluids.register();
-        generateLangEntries();
+
+        modEventBus.addListener(EventPriority.LOWEST, CreateMechanicalSpawner::gatherData);
+
 
     }
-    private void generateLangEntries(){
-        registrate().addRawLang("create.recipe.spawner", "Spawner recipe");
-        //registrate().addRawLang("create_mechanical_spawner.recipe.spawner", "Spawner recipe");
-        registrate().addRawLang("itemGroup.create_mechanical_spawner:main", DISPLAY_NAME);
-        registrate().addRawLang("config.jade.plugin_create_mechanical_spawner.spawner_data", "Mechanical spawner data");
-        registrate().addRawLang("mechanical_spawner.tooltip.progress", "Progress: %d%%");
+    public static void gatherData(GatherDataEvent event) {
+        DataGenerator gen = event.getGenerator();
+        if (event.includeClient()) {
+            gen.addProvider(true, new LangMerger(gen, MODID, DISPLAY_NAME, ModLangPartials.values()));
+
+        }
+        if (event.includeServer()) {
+        }
 
     }
     public static CreateRegistrate registrate() {

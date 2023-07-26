@@ -2,10 +2,10 @@ package com.oierbravo.create_mechanical_spawner.compat.jei;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
 import com.simibubi.create.compat.jei.*;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
-import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.infrastructure.config.CRecipes;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import mezz.jei.api.IModPlugin;
@@ -23,15 +23,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -165,7 +162,7 @@ public class CreateMechanicalSpawnerJEI implements IModPlugin {
 
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
                     new mezz.jei.api.recipe.RecipeType<>(CreateMechanicalSpawner.asResource(name), recipeClass),
-                    Lang.translateDirect("recipe." + name), background, icon, recipesSupplier, catalysts);
+                    ModLang.translate("recipe." + name).component(), background, icon, recipesSupplier, catalysts);
             CreateRecipeCategory<T> category = factory.create(info);
             modCategories.add(category);
             return category;

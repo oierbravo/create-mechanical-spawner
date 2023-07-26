@@ -9,8 +9,6 @@
   "block.create_mechanical_spawner.spawn_fluid_slime": "ǝɯıןS pınןℲ uʍɐdS",
   "block.create_mechanical_spawner.spawn_fluid_spider": "ɹǝpıdS pınןℲ uʍɐdS",
   "block.create_mechanical_spawner.spawn_fluid_zombie": "ǝıqɯoZ pınןℲ uʍɐdS",
-  "config.jade.plugin_create_mechanical_spawner.spawner_data": "ɐʇɐp ɹǝuʍɐds ןɐɔıuɐɥɔǝW",
-  "create.recipe.spawner": "ǝdıɔǝɹ ɹǝuʍɐdS",
   "fluid.create_mechanical_spawner.spawn_fluid_blaze": "ǝzɐןq pınןɟ uʍɐdS",
   "fluid.create_mechanical_spawner.spawn_fluid_creeper": "ɹǝdǝǝɹɔ pınןɟ uʍɐdS",
   "fluid.create_mechanical_spawner.spawn_fluid_enderman": "uɐɯɹǝpuǝ pınןɟ uʍɐdS",
@@ -28,7 +26,5 @@
   "item.create_mechanical_spawner.spawn_fluid_skeleton_bucket": "ʇǝʞɔnᗺ uoʇǝןǝʞS pınןℲ uʍɐdS",
   "item.create_mechanical_spawner.spawn_fluid_slime_bucket": "ʇǝʞɔnᗺ ǝɯıןS pınןℲ uʍɐdS",
   "item.create_mechanical_spawner.spawn_fluid_spider_bucket": "ʇǝʞɔnᗺ ɹǝpıdS pınןℲ uʍɐdS",
-  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "ʇǝʞɔnᗺ ǝıqɯoZ pınןℲ uʍɐdS",
-  "itemGroup.create_mechanical_spawner:main": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW ǝʇɐǝɹƆ",
-  "mechanical_spawner.tooltip.progress": "%d%% :ssǝɹboɹԀ"
+  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "ʇǝʞɔnᗺ ǝıqɯoZ pınןℲ uʍɐdS"
 }

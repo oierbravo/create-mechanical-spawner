@@ -3,21 +3,19 @@ package com.oierbravo.create_mechanical_spawner.compat.jei;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
 import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
-import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -74,7 +72,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             return;
         }
 
-        String text = "Biome dependent";
+        String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
         font.draw(matrixStack, text, 80, 60, 8);
     }
 }

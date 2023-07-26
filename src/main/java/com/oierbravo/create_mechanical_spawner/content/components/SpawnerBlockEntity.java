@@ -1,16 +1,13 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.content.kinetics.speedController.SpeedControllerBlockEntity;
-import com.simibubi.create.content.kinetics.motor.KineticScrollValueBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
-import com.simibubi.create.foundation.utility.Lang;
-import joptsimple.internal.Strings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -56,19 +53,17 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     }
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        int max = 254;
-        range = new KineticScrollValueBehaviour(Lang.translateDirect("generic.range"), this, new CenteredSideValueBoxTransform());
-        //range.requiresWrench();
-        range.between(1, max);
-        range
-                .withClientCallback(
-                        i -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SpawnerPointDisplay.display(this)));
-        range.value = max / 2;
+        int max = 4;
+        range = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
+                .between(1, max);
+
+               // .withClientCallback(
+               //         i -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SpawnerPointDisplay.display(this)));
+        range.value = 1;
 
 
         behaviours.add(range);
     }
-    public static int FLUID_CAPACITY = 2000;
 
     protected SmartFluidTank createFluidTank() {
         return new SmartFluidTank(getCapacityMultiplier(), this::onFluidStackChanged);
@@ -137,8 +132,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
         boolean added = super.addToGoggleTooltip(tooltip, isPlayerSneaking);
         if(this.timer < this.totalTime) {
-            Component percentComponent = Component.translatable("mechanical_spawner.tooltip.progress",this.getProgressPercent()).withStyle(ChatFormatting.YELLOW);
-            tooltip.add(Component.literal(Strings.repeat(' ', 4)).append(percentComponent));
+            ModLang.translate("spawner.tooltip.progress", this.getProgressPercent()).style(ChatFormatting.YELLOW).forGoggles(tooltip);
             return true;
         }
         return added;

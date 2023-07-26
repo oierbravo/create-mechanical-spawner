@@ -1,34 +1,69 @@
 {
-  "block.create_mechanical_spawner.mechanical_spawner": "Mechanical Spawner",
-  "block.create_mechanical_spawner.spawn_fluid_blaze": "Spawn Fluid Blaze",
-  "block.create_mechanical_spawner.spawn_fluid_creeper": "Spawn Fluid Creeper",
-  "block.create_mechanical_spawner.spawn_fluid_enderman": "Spawn Fluid Enderman",
-  "block.create_mechanical_spawner.spawn_fluid_magma_cube": "Spawn Fluid Magma Cube",
-  "block.create_mechanical_spawner.spawn_fluid_random": "Spawn Fluid Random",
-  "block.create_mechanical_spawner.spawn_fluid_skeleton": "Spawn Fluid Skeleton",
-  "block.create_mechanical_spawner.spawn_fluid_slime": "Spawn Fluid Slime",
-  "block.create_mechanical_spawner.spawn_fluid_spider": "Spawn Fluid Spider",
-  "block.create_mechanical_spawner.spawn_fluid_zombie": "Spawn Fluid Zombie",
-  "config.jade.plugin_create_mechanical_spawner.spawner_data": "Mechanical spawner data",
-  "create.recipe.spawner": "Spawner recipe",
-  "fluid.create_mechanical_spawner.spawn_fluid_blaze": "Spawn fluid blaze",
-  "fluid.create_mechanical_spawner.spawn_fluid_creeper": "Spawn fluid creeper",
-  "fluid.create_mechanical_spawner.spawn_fluid_enderman": "Spawn fluid enderman",
-  "fluid.create_mechanical_spawner.spawn_fluid_magma_cube": "Spawn fluid magma_cube",
-  "fluid.create_mechanical_spawner.spawn_fluid_random": "Spawn fluid random",
-  "fluid.create_mechanical_spawner.spawn_fluid_skeleton": "Spawn fluid skeleton",
-  "fluid.create_mechanical_spawner.spawn_fluid_slime": "Spawn fluid slime",
-  "fluid.create_mechanical_spawner.spawn_fluid_spider": "Spawn fluid spider",
-  "fluid.create_mechanical_spawner.spawn_fluid_zombie": "Spawn fluid zombie",
-  "item.create_mechanical_spawner.spawn_fluid_blaze_bucket": "Spawn Fluid Blaze Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_creeper_bucket": "Spawn Fluid Creeper Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_enderman_bucket": "Spawn Fluid Enderman Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_magma_cube_bucket": "Spawn Fluid Magma Cube Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_random_bucket": "Spawn Fluid Random Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_skeleton_bucket": "Spawn Fluid Skeleton Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_slime_bucket": "Spawn Fluid Slime Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_spider_bucket": "Spawn Fluid Spider Bucket",
-  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "Spawn Fluid Zombie Bucket",
-  "itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
-  "mechanical_spawner.tooltip.progress": "Progress: %d%%"
+
+	"_": "->------------------------]  Game Elements  [------------------------<-",
+
+	"block.create_mechanical_spawner.mechanical_spawner": "Mechanical Spawner",
+	"block.create_mechanical_spawner.spawn_fluid_blaze": "Spawn Fluid Blaze",
+	"block.create_mechanical_spawner.spawn_fluid_creeper": "Spawn Fluid Creeper",
+	"block.create_mechanical_spawner.spawn_fluid_enderman": "Spawn Fluid Enderman",
+	"block.create_mechanical_spawner.spawn_fluid_magma_cube": "Spawn Fluid Magma Cube",
+	"block.create_mechanical_spawner.spawn_fluid_random": "Spawn Fluid Random",
+	"block.create_mechanical_spawner.spawn_fluid_skeleton": "Spawn Fluid Skeleton",
+	"block.create_mechanical_spawner.spawn_fluid_slime": "Spawn Fluid Slime",
+	"block.create_mechanical_spawner.spawn_fluid_spider": "Spawn Fluid Spider",
+	"block.create_mechanical_spawner.spawn_fluid_zombie": "Spawn Fluid Zombie",
+
+	"fluid.create_mechanical_spawner.spawn_fluid_blaze": "Spawn fluid blaze",
+	"fluid.create_mechanical_spawner.spawn_fluid_creeper": "Spawn fluid creeper",
+	"fluid.create_mechanical_spawner.spawn_fluid_enderman": "Spawn fluid enderman",
+	"fluid.create_mechanical_spawner.spawn_fluid_magma_cube": "Spawn fluid magma_cube",
+	"fluid.create_mechanical_spawner.spawn_fluid_random": "Spawn fluid random",
+	"fluid.create_mechanical_spawner.spawn_fluid_skeleton": "Spawn fluid skeleton",
+	"fluid.create_mechanical_spawner.spawn_fluid_slime": "Spawn fluid slime",
+	"fluid.create_mechanical_spawner.spawn_fluid_spider": "Spawn fluid spider",
+	"fluid.create_mechanical_spawner.spawn_fluid_zombie": "Spawn fluid zombie",
+
+	"item.create_mechanical_spawner.spawn_fluid_blaze_bucket": "Spawn Fluid Blaze Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_creeper_bucket": "Spawn Fluid Creeper Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_enderman_bucket": "Spawn Fluid Enderman Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_magma_cube_bucket": "Spawn Fluid Magma Cube Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_random_bucket": "Spawn Fluid Random Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_skeleton_bucket": "Spawn Fluid Skeleton Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_slime_bucket": "Spawn Fluid Slime Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_spider_bucket": "Spawn Fluid Spider Bucket",
+	"item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "Spawn Fluid Zombie Bucket",
+
+	"itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+
+	"config.jade.plugin_create_mechanical_spawner.spawner_data": "Mechanical spawner data",
+
+	"create_mechanical_spawner.recipe.spawner": "Spawner recipe",
+
+	"create_mechanical_spawner.tooltip.progress": "Progress: %d%%",
+
+	"create_mechanical_spawner.generic.biome_dependant": "Biome dependant",
+
+	"create_mechanical_spawner.spawner.tooltip.progress": "Progress: %d%%",
+	"create_mechanical_spawner.spawner.scrollValue.label": "Spawn at height (in blocks)",
+
+	"block.create_mechanical_spawner.mechanical_spawner.summary": "Spawn Mob with spawn liquid.",
+
+
+	"_": "->------------------------]  UI  [------------------------<-",
+
+	"itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+
+	"config.jade.plugin_create_mechanical_spawner.spawner_data": "Mechanical spawner data",
+
+	"create_mechanical_spawner.recipe.spawner": "Spawner recipe",
+
+	"create_mechanical_spawner.generic.biome_dependant": "Biome dependant",
+
+	"create_mechanical_spawner.spawner.tooltip.progress": "Progress: %d%%",
+	"create_mechanical_spawner.spawner.scrollValue.label": "Spawn at height (in blocks)",
+
+	"block.create_mechanical_spawner.mechanical_spawner.summary": "Spawns Mob with spawn liquid.",
+
+	"_": "Thank you for translating Create Mechanical Spawner!"
+
 }

@@ -1,11 +1,9 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
-import mezz.jei.api.ingredients.ITypedIngredient;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public class RandomMobCycleTimer {
     private static final int cycleTime = 1000;

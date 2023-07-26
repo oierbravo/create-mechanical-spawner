@@ -1,8 +1,8 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.simibubi.create.Create;
-import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
@@ -78,7 +78,7 @@ public class ModTags {
             }
 
             ModFluidTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
-                ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
+                ResourceLocation id = new ResourceLocation(namespace.id, path == null ? ModLang.asId(name()) : path);
                 if (optional) {
                     tag = optionalTag(ForgeRegistries.FLUIDS, id);
                 } else {
