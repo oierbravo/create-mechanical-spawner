@@ -21,7 +21,7 @@ public class SpawnerConfig {
                 .defineInRange("liquidCapacity", 1000, 1, Integer.MAX_VALUE);
         SPAWNER_MAX_RANGE = COMMON_BUILDER
                 .comment("Max range")
-                .defineInRange("maxRange", 4, 1, 4);
+                .defineInRange("maxRange", 2, 1, 6);
         COMMON_BUILDER.pop();
     }
 }

@@ -50,14 +50,11 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     }
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        int max = 6;
+        int max = SpawnerConfig.SPAWNER_MAX_RANGE.get();
+;
         range = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
                 .between(1, max);
-
-               // .withClientCallback(
-               //         i -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SpawnerPointDisplay.display(this)));
         range.value = 1;
-
 
         behaviours.add(range);
     }

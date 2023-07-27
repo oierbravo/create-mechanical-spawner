@@ -1,6 +1,5 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
-import com.jozufozu.flywheel.backend.Backend;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
@@ -16,9 +15,6 @@ public class SpawnerRenderer extends KineticBlockEntityRenderer {
     protected void renderSafe(KineticBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
 
         super.renderSafe(be,partialTicks,ms,buffer,light,overlay);
-        //if (Backend.canUseInstancing(be.getLevel()))
-        //    return;
-
 
     }
 }

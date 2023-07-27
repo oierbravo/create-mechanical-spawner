@@ -7,8 +7,6 @@ public class ModLang extends com.simibubi.create.foundation.utility.Lang {
     public ModLang() {
         super();
     }
-
-
     public static LangBuilder builder() {
         return new LangBuilder(CreateMechanicalSpawner.MODID);
     }

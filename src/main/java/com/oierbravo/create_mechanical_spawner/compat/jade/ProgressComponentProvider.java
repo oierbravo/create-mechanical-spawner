@@ -27,7 +27,6 @@ public class ProgressComponentProvider  implements IBlockComponentProvider, ISer
         }
 
     }
-
     @Override
     public void appendServerData(CompoundTag compoundTag, ServerPlayer serverPlayer, Level level, BlockEntity blockEntity, boolean b) {
         if(blockEntity instanceof SpawnerBlockEntity){

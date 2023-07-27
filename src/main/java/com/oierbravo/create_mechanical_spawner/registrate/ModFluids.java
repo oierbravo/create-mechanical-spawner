@@ -50,7 +50,7 @@ public class ModFluids {
                 .build()
                 .register();
     }
-   
+
     public static void register() {
     }
 

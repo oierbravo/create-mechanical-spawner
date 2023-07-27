@@ -1,20 +1,14 @@
 package com.oierbravo.create_mechanical_spawner.compat.kubejs;
 
-import com.mojang.datafixers.util.Either;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipeOutput;
 import dev.latvian.mods.kubejs.fluid.InputFluid;
-import dev.latvian.mods.kubejs.item.InputItem;
-import dev.latvian.mods.kubejs.item.OutputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.component.FluidComponents;
-import dev.latvian.mods.kubejs.recipe.component.ItemComponents;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.component.StringComponent;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Mob;
 
 public interface SpawnerRecipeSchema {
     RecipeKey<InputFluid> INGREDIENT = FluidComponents.INPUT.key("fluid");

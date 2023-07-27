@@ -21,10 +21,9 @@ This mod it's meant to be used in modpacks.
 
 ## Pending features
 - Ponder scene
-- Nicer model?
-- Liquid textures (still, flowing)
 - Tag support for recipes
-- 
+- Nicer model?
+
 ## Spawn recipes
 - `fluid` required.
 - `mob` required. `"random"` or any entity like `"minecraft:skeleton"`
@@ -65,18 +64,6 @@ event.recipes.createMechanicalSpawnerSpawner("random",Fluid.of('minecraft:water'
 event.recipes.createMechanicalSpawnerSpawner("minecraft:skeleton",Fluid.of('minecraft:water', 700)).processingTime(8000);
 ```
 
-- Alternative (custom recipe)
-```
-event.custom({
-    type:"create_mechanical_spawner:spawner",
-    mob: "minecraft:zombie",
-    fluid: {
-        fluid: "minecraft:lava",
-        amount: 500,
-    },
-    processingTime: 20000
-});
-```
 **Thanks to the Creators of Create.**
 
 Code inspiration from the [Create](https://www.curseforge.com/minecraft/mc-mods/create "Create") mod itself & [Mrbysco](https://www.curseforge.com/members/mrbysco) 

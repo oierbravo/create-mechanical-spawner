@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
-//public class SpawnerRecipe extends CustomRecipe{
 public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
     private ResourceLocation id;
     private final FluidIngredient fluidIngredient;
