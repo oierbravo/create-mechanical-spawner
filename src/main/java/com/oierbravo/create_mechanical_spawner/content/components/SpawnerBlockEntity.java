@@ -42,18 +42,15 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     protected int totalTime;
 
     private SpawnerRecipe lastRecipe;
-    private int processingTime;
-
 
     public SpawnerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         fluidTank = createFluidTank();
         fluidCapability = LazyOptional.of(() -> fluidTank);
-        processingTime = 200;
     }
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        int max = 4;
+        int max = 6;
         range = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
                 .between(1, max);
 

@@ -46,7 +46,12 @@
 	"create_mechanical_spawner.spawner.tooltip.progress": "Progress: %d%%",
 	"create_mechanical_spawner.spawner.scrollValue.label": "Spawn at height (in blocks)",
 
-	"block.create_mechanical_spawner.mechanical_spawner.summary": "Spawn Mob with spawn liquid.",
+	"block.create_mechanical_spawner.mechanical_spawner.summary": "Spawns Mob with spawn liquid.",
+
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip": "Mechanical spawner",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "Spawns Mob with spawn liquid.",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.control1": "When Ctrl pressed",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.action1": "These controls are displayed.",
 
 
 	"_": "->------------------------]  UI  [------------------------<-",
@@ -62,7 +67,8 @@
 	"create_mechanical_spawner.spawner.tooltip.progress": "Progress: %d%%",
 	"create_mechanical_spawner.spawner.scrollValue.label": "Spawn at height (in blocks)",
 
-	"block.create_mechanical_spawner.mechanical_spawner.summary": "Spawns Mob with spawn liquid.",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip": "MECHANICAL SPAWNER",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "Spawns _Mobs_ with spawn liquid.",
 
 	"_": "Thank you for translating Create Mechanical Spawner!"
 

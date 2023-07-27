@@ -20,12 +20,11 @@ This mod it's meant to be used in modpacks.
 
 
 ## Pending features
-- JADE integration
 - Ponder scene
 - Nicer model?
 - Liquid textures (still, flowing)
-- New ScrollBehavior. Actually uses the same as the creative motor.
-
+- Tag support for recipes
+- 
 ## Spawn recipes
 - `fluid` required.
 - `mob` required. `"random"` or any entity like `"minecraft:skeleton"`

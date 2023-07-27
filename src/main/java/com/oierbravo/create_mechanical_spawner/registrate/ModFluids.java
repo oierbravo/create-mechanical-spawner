@@ -4,6 +4,7 @@ import com.mojang.math.Vector3f;
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Color;
 import com.simibubi.create.infrastructure.config.AllConfigs;
@@ -26,44 +27,30 @@ public class ModFluids {
     public static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate()
             .creativeModeTab(() -> ModGroup.MAIN);
 
-   static ResourceLocation spawnFlowingRL = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/base_spawn_fluid_flow");
-   static ResourceLocation spawnStillRL = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/base_spawn_fluid_still");
-
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> RANDOM = createSpawnFluid( "random", 0xb400ff);
+    public static final FluidEntry<VirtualFluid> RANDOM = createSpawnFluid( "random", 0xb400ff);
 
     /* Hostile Mobs */
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> BLAZE = createSpawnFluid("blaze", 0xff6c00);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> CREEPER = createSpawnFluid("creeper", 0x11c900);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> ENDERMAN = createSpawnFluid("enderman", 0x00ba88);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> MAGMA_CUBE = createSpawnFluid("magma_cube", 0x7d0000);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> SKELETON = createSpawnFluid("skeleton", 0x555555);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> SLIME = createSpawnFluid("slime", 0x16ff00);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> SPIDER = createSpawnFluid("spider", 0x220000);
-    public static final FluidEntry<ForgeFlowingFluid.Flowing> ZOMBIE = createSpawnFluid("zombie", 0x0a7300);
+    public static final FluidEntry<VirtualFluid> BLAZE = createSpawnFluid("blaze", 0xff6c00);
+    public static final FluidEntry<VirtualFluid> CREEPER = createSpawnFluid("creeper", 0x11c900);
+    public static final FluidEntry<VirtualFluid> ENDERMAN = createSpawnFluid("enderman", 0x00ba88);
+    public static final FluidEntry<VirtualFluid> MAGMA_CUBE = createSpawnFluid("magma_cube", 0x7d0000);
+    public static final FluidEntry<VirtualFluid> SKELETON = createSpawnFluid("skeleton", 0x555555);
+    public static final FluidEntry<VirtualFluid> SLIME = createSpawnFluid("slime", 0x16ff00);
+    public static final FluidEntry<VirtualFluid> SPIDER = createSpawnFluid("spider", 0x220000);
+    public static final FluidEntry<VirtualFluid> ZOMBIE = createSpawnFluid("zombie", 0x0a7300);
 
     /* Friendly Mobs */
-
-    private static FluidEntry<ForgeFlowingFluid.Flowing> createSpawnFluid(String target, int color){
-
-        return REGISTRATE.fluid(PREFIX + "_" + target,spawnStillRL,spawnFlowingRL,ModFluidAttributes.create(
-                        color))
+    private static FluidEntry<VirtualFluid> createSpawnFluid(String target, int color){
+        ResourceLocation flow = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_flow");
+        ResourceLocation still = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_still");
+        return REGISTRATE.virtualFluid(PREFIX + "_" + target,still,flow)
                 .lang("Spawn fluid " + target)
-
-                .properties(b -> b.viscosity(1500)
-                        .density(1400))
-
-                .fluidProperties(p -> p.levelDecreasePerBlock(2)
-                        .tickRate(25)
-                        .slopeFindDistance(3)
-                        .explosionResistance(100f))
-
                 .tag(ModTags.ModFluidTags.SPANW_LIQUID.tag)
-                .source(ForgeFlowingFluid.Source::new) // TODO: remove when Registrate fixes FluidBuilder
                 .bucket()
                 .build()
                 .register();
     }
-
+   
     public static void register() {
     }
 
@@ -73,7 +60,7 @@ public class ModFluids {
         private int color;
 
         public ModFluidAttributes(Properties p, ResourceLocation s, ResourceLocation f) {
-            super(p, spawnStillRL, spawnFlowingRL);
+            super(p, s, f);
         }
 
         public static FluidBuilder.FluidTypeFactory create(int color) {
