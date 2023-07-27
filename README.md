@@ -58,7 +58,7 @@ Specific Mob example
 ## KubeJS support (Server script)
 
 ```
-//Random Mob (WIP) wierd things happen for now.
+//Random Mob (biome dependant)
 event.recipes.createMechanicalSpawnerSpawner("random",Fluid.of('minecraft:water', 700)).processingTime(8000);
 //Specific MOB
 event.recipes.createMechanicalSpawnerSpawner("minecraft:skeleton",Fluid.of('minecraft:water', 700)).processingTime(8000);
