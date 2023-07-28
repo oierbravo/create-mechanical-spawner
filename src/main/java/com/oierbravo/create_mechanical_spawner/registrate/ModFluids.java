@@ -1,13 +1,10 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
-import com.mojang.math.Vector3f;
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.simibubi.create.AllFluids;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Color;
-import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.tterrag.registrate.builders.FluidBuilder;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.minecraft.core.BlockPos;
@@ -15,17 +12,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-
-import java.util.function.Supplier;
-
-import static com.simibubi.create.Create.REGISTRATE;
+import org.joml.Vector3f;
 
 public class ModFluids {
     public static String PREFIX = "spawn_fluid";
     private static float FOG_DISTANCE = 0.5f;
-    public static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate()
-            .creativeModeTab(() -> ModGroup.MAIN);
+    public static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate();
 
     public static final FluidEntry<VirtualFluid> RANDOM = createSpawnFluid( "random", 0xb400ff);
 

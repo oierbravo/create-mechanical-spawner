@@ -2,26 +2,26 @@ package com.oierbravo.create_mechanical_spawner.compat.jei;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
+import org.joml.Quaternionf;
+
 //from https://github.com/Mrbysco/JustEnoughProfessions/blob/multi/1.19/Common/src/main/java/com/mrbysco/justenoughprofessions/RenderHelper.java
 public class RenderHelper {
-    public static void renderEntity(PoseStack poseStack, int x, int y, double scale, double yaw, double pitch, LivingEntity livingEntity) {
-        if (livingEntity.level == null) livingEntity.level = Minecraft.getInstance().level;
+    public static void renderEntity(GuiGraphics guiGraphics, int x, int y, double scale, double yaw, double pitch, LivingEntity livingEntity) {
+        if (livingEntity.level() == null) return;
+
+        PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate((float) x, (float) y, 50f);
         poseStack.scale((float) scale, (float) scale, (float) scale);
-        poseStack.mulPose(Vector3f.ZP.rotationDegrees(180.0F));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(180.0F));
         // Rotate entity
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(((float) Math.atan((-40 / 40.0F))) * 10.0F));
+        poseStack.mulPose(Axis.XP.rotationDegrees(((float) Math.atan((-40 / 40.0F))) * 10.0F));
 
         livingEntity.yBodyRot = (float) -(yaw / 40.F) * 20.0F;
         livingEntity.setYRot((float) -(yaw / 40.F) * 20.0F);
@@ -30,17 +30,14 @@ public class RenderHelper {
 
         poseStack.translate(0.0F, livingEntity.getMyRidingOffset(), 0.0F);
         EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
-        entityRenderDispatcher.overrideCameraOrientation(Quaternion.ONE);
+        entityRenderDispatcher.overrideCameraOrientation(new Quaternionf(0.0F, 0.0F, 0.0F, 1.0F));
         entityRenderDispatcher.setRenderShadow(false);
         final MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
-        InventoryScreen.renderEntityInInventory(0, 0, (int) scale, 75, -20, livingEntity);
-
         RenderSystem.runAsFancy(() -> {
             entityRenderDispatcher.render(livingEntity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, poseStack, bufferSource, 15728880);
         });
         bufferSource.endBatch();
         entityRenderDispatcher.setRenderShadow(true);
-
         poseStack.popPose();
     }
 }

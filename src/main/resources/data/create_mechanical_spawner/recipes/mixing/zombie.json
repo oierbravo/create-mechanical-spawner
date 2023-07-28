@@ -8,7 +8,7 @@
     },
     {
       "amount": 250,
-      "fluid": "create_mechanical_spawner:random_spawn_fluid",
+      "fluid": "create_mechanical_spawner:spawn_fluid_random",
       "nbt": {}
     }
   ],

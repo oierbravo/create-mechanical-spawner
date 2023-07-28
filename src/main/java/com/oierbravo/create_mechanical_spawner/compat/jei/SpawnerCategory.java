@@ -14,6 +14,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -48,12 +49,12 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
     public LivingEntity getDisplayedMob() {
         return randomMobCycleTimer.getCycledLivingEntity(displayedMobs);
     }
-    public void draw(SpawnerRecipe recipe, @NotNull IRecipeSlotsView iRecipeSlotsView, @NotNull PoseStack matrixStack, double mouseX, double mouseY) {
+    public void draw(SpawnerRecipe recipe, @NotNull IRecipeSlotsView iRecipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
         randomMobCycleTimer.onDraw();
         Font font = Minecraft.getInstance().font;
 
-        AllGuiTextures.JEI_DOWN_ARROW.render(matrixStack, 43, 4);
-        spawner.draw(matrixStack, 48, 27);
+        AllGuiTextures.JEI_DOWN_ARROW.render(guiGraphics, 43, 4);
+        spawner.draw(guiGraphics, 48, 27);
         Level level = Minecraft.getInstance().level;
         EntityType<?> mob = recipe.getMob();
 
@@ -61,18 +62,18 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             assert level != null;
             LivingEntity mobEntity = (LivingEntity) mob.create(level);
 
-            RenderHelper.renderEntity(matrixStack, 100, 35, 20.0F,
+            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F,
                     38 - mouseX,
                     80 - mouseY,
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
             String text = mobEntity.getLootTable().toString();
-
-            font.draw(matrixStack, text, 20, 60, 8);
+            guiGraphics.drawString(font, text, 20, 60, 8);
 
             return;
         }
 
         String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
-        font.draw(matrixStack, text, 80, 60, 8);
+
+        guiGraphics.drawString(font, text, 80, 60, 8);
     }
 }

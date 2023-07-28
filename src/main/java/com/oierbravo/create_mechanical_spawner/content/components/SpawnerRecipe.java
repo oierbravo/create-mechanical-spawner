@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -45,8 +46,8 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
     }
 
     @Override
-    public ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return ItemStack.EMPTY;
+    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
+        return null;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         return ItemStack.EMPTY;
     }
 

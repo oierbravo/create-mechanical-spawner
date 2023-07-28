@@ -43,7 +43,9 @@ public class CreateMechanicalSpawner
 
         MinecraftForge.EVENT_BUS.register(this);
         ModConfigs.register();
-        new ModGroup("main");
+
+        ModCreativeTabs.register(modEventBus);
+
         ModBlocks.register();
         ModBlockEntities.register();
         ModRecipes.register(modEventBus);
@@ -56,7 +58,7 @@ public class CreateMechanicalSpawner
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         if (event.includeClient()) {
-            gen.addProvider(true, new LangMerger(gen, MODID, DISPLAY_NAME, ModLangPartials.values()));
+           // gen.addProvider(true, new LangMerger(gen, MODID, DISPLAY_NAME, ModLangPartials.values()));
 
         }
         if (event.includeServer()) {

@@ -232,8 +232,10 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         if (!(entitySpawn instanceof Mob mob)) {
             return;
         }
-        if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
+        
+        //if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
         //if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
+
         if (mob.checkSpawnObstruction(level)) {
             level.addFreshEntity(mob);
         }
@@ -256,7 +258,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
             if (!(entity instanceof Mob mob)) {
                 return;
             }
-            if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
+            //if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)pos.getX() + 0.51, pos.getY()+ 0.51, (double)pos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return;
             //if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
             if (mob.checkSpawnObstruction(level)) {
                 level.addFreshEntity(mob);
@@ -287,7 +289,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
             if (!(entity instanceof Mob mob)) {
                 return false;
             }
-            if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)currentSpawnPos.getX() + 0.51, currentSpawnPos.getY()+ 0.51, (double)currentSpawnPos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return false;
+            //if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)currentSpawnPos.getX() + 0.51, currentSpawnPos.getY()+ 0.51, (double)currentSpawnPos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return false;
             if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
                 level.addFreshEntity(mob);
                 return true;
