@@ -44,12 +44,14 @@ public class CreateMechanicalSpawner
         MinecraftForge.EVENT_BUS.register(this);
         ModConfigs.register();
 
-        ModCreativeTabs.register(modEventBus);
 
         ModBlocks.register();
         ModBlockEntities.register();
         ModRecipes.register(modEventBus);
         ModFluids.register();
+
+        ModCreativeTabs.register(modEventBus);
+
 
         modEventBus.addListener(EventPriority.LOWEST, CreateMechanicalSpawner::gatherData);
 

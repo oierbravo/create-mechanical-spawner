@@ -30,7 +30,13 @@ public class ModCreativeTabs {
                             pOutput.accept(entry.get());
                         }
                         for (RegistryEntry<Fluid> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.FLUID)) {
-                            pOutput.accept(entry.get().getBucket().getDefaultInstance());
+                            Fluid fluid = entry.get();
+                            Item bucket = fluid.getBucket();
+                            pOutput.accept(bucket);
+                        }
+                        for (RegistryEntry<Item> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.ITEM)) {
+                            //Item bucket = fluid.getBucket();
+                            pOutput.accept(entry.get());
                         }
                     })
                     .build());
