@@ -46,8 +46,8 @@ public class ModFluids {
         return REGISTRATE.virtualFluid(PREFIX + "_" + target,still, flow)
                 .lang("Spawn fluid " + target)
                // .tag(ModTags.forgeFluidTag("spawn_fluid"))
-                //.noBucket()
-                //.build()
+                .bucket()
+                .build()
 
                 .register();
     }
