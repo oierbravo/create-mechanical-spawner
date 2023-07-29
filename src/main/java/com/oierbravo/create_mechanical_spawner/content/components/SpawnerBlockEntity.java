@@ -47,6 +47,8 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         super(type, pos, state);
         fluidTank = createFluidTank();
         fluidCapability = LazyOptional.of(() -> fluidTank);
+        totalTime = 100;
+        timer = 100;
     }
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
