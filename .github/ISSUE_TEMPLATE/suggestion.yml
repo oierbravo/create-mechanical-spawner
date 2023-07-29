@@ -5,7 +5,7 @@ body:
     -   type: textarea
         attributes:
             label: Describe the Suggestion
-            description: What should we add or change to make Create better?
+            description: What should we add or change to make Create Mechanical Spawner better?
         validations:
             required: true
     -   type: textarea
@@ -22,4 +22,4 @@ body:
             required: false
     -   type: markdown
         attributes:
-            value: "Thank you for taking the time to make this suggestion and help improve Create!"
+            value: "Thank you for taking the time to make this suggestion and help improve Create Mechanical Spawner!"
