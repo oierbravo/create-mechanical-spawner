@@ -43,11 +43,12 @@ public class ModFluids {
     private static FluidEntry<VirtualFluid> createSpawnFluid(String target, int color){
         ResourceLocation flow = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_flow");
         ResourceLocation still = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_still");
-        return REGISTRATE.virtualFluid(PREFIX + "_" + target,still,flow)
+        return REGISTRATE.virtualFluid(PREFIX + "_" + target,still, flow)
                 .lang("Spawn fluid " + target)
-                .tag(ModTags.ModFluidTags.SPANW_LIQUID.tag)
-                .bucket()
-                .build()
+               // .tag(ModTags.forgeFluidTag("spawn_fluid"))
+                //.noBucket()
+                //.build()
+
                 .register();
     }
 

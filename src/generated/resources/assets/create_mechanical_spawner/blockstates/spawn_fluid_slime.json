@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "create_mechanical_spawner:block/spawn_fluid_slime"
-    }
-  }
-}

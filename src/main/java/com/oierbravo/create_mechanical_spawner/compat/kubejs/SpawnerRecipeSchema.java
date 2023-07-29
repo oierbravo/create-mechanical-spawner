@@ -23,6 +23,6 @@ public interface SpawnerRecipeSchema {
     public class SpawnerRecipeJS extends RecipeJS{
 
     }
-    RecipeSchema SCHEMA = new RecipeSchema(SpawnerRecipeJS.class, SpawnerRecipeJS::new, MOB, INGREDIENT, PROCESSING_TIME);
+    RecipeSchema SCHEMA = new RecipeSchema(SpawnerRecipeJS.class, SpawnerRecipeJS::new,  INGREDIENT,MOB, PROCESSING_TIME);
 
 }
