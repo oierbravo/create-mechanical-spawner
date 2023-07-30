@@ -82,4 +82,4 @@ body:
             required: false
     -   type: markdown
         attributes:
-            value: "Thank you for taking the time to make this bug report and help improve Create!"
+            value: "Thank you for taking the time to make this bug report and help improve Create Mechanical Spawner!"

@@ -1,5 +1,5 @@
 name: Suggestion
-description: Suggest something that would improve Create
+description: Suggest something that would improve Create Mechanical Spawner
 labels: [ "type: suggestion" ]
 body:
     -   type: textarea
