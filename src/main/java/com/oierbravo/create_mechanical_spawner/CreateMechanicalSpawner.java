@@ -2,14 +2,15 @@ package com.oierbravo.create_mechanical_spawner;
 
 import com.mojang.logging.LogUtils;
 import com.oierbravo.create_mechanical_spawner.foundation.data.ModLangPartials;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.LangMerger;
 import com.oierbravo.create_mechanical_spawner.registrate.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.data.LangMerger;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -59,8 +60,9 @@ public class CreateMechanicalSpawner
     }
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
+        PackOutput output = gen.getPackOutput();
         if (event.includeClient()) {
-           // gen.addProvider(true, new LangMerger(gen, MODID, DISPLAY_NAME, ModLangPartials.values()));
+            gen.addProvider(true, new LangMerger(output, MODID, DISPLAY_NAME, ModLangPartials.values()));
 
         }
         if (event.includeServer()) {

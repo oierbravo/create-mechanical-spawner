@@ -22,7 +22,7 @@ public class ModCreativeTabs {
 
     public static final RegistryObject<CreativeModeTab> MAIN_TAB = TAB_REGISTER.register("main",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.create_mechanical_extruder:main"))
+                    .title(Component.translatable("itemGroup.create_mechanical_spawner:main"))
                     .withTabsBefore(AllCreativeModeTabs.BUILDING_BLOCKS_TAB.getId())
                     .icon(ModBlocks.MECHANICAL_SPAWNER::asStack)
                     .displayItems((pParameters, pOutput) -> {
@@ -32,7 +32,7 @@ public class ModCreativeTabs {
                         for (RegistryEntry<Fluid> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.FLUID)) {
                             Fluid fluid = entry.get();
                             Item bucket = fluid.getBucket();
-                            pOutput.accept(bucket);
+                            //pOutput.accept(bucket);
                         }
                         for (RegistryEntry<Item> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.ITEM)) {
                             //Item bucket = fluid.getBucket();

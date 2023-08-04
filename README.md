@@ -3,7 +3,7 @@
 A mechanical spawner block. Generates Mobs with rotation power.
 This mod it's meant to be used in modpacks. 
 
-## Disclaimer: Currently in active development. 1.18.2 version may come after finishing pending features.
+## Disclaimer: Currently in active development.
 
 
 ## Features
@@ -26,7 +26,7 @@ This mod it's meant to be used in modpacks.
 
 ## Spawn recipes
 - `fluid` required.
-- `mob` required. `"random"` or any entity like `"minecraft:skeleton"`
+- `mob` optional. `"random"` or any entity like `"minecraft:skeleton"`
 - `processingTime` optional. Defaults: 200
 - 
 
@@ -35,7 +35,7 @@ This mod it's meant to be used in modpacks.
 {
   "type": "create_mechanical_spawner:spawner",
   "fluid": {
-    "fluid": "create_mechanical_spawner:spawn_fluid",
+    "fluid": "create_mechanical_spawner:spawn_fluid_random",
     "amount": 1000
   },
   "mob": "random",
@@ -59,9 +59,9 @@ Specific Mob example
 
 ```
 //Random Mob (biome dependant)
-event.recipes.createMechanicalSpawnerSpawner("random",Fluid.of('minecraft:water', 700)).processingTime(8000);
+event.recipes.createMechanicalSpawnerSpawner(Fluid.of('minecraft:water', 700)).processingTime(8000);
 //Specific MOB
-event.recipes.createMechanicalSpawnerSpawner("minecraft:skeleton",Fluid.of('minecraft:water', 700)).processingTime(8000);
+event.recipes.createMechanicalSpawnerSpawner(Fluid.of('minecraft:water', 700)).processingTime(8000).mob("minecraft:skeleton;
 ```
 
 **Thanks to the Creators of Create.**
