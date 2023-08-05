@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:translucent",
 	"textures": {
 		"0": "create_mechanical_spawner:block/brass_casing",
 		"1": "create_mechanical_spawner:block/spawner",

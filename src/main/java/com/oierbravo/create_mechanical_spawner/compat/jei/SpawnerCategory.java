@@ -74,6 +74,6 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
 
         String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
 
-        guiGraphics.drawString(font, text, 80, 60, 8);
+        guiGraphics.drawString(font, text, 80, 60, 8, false);
     }
 }

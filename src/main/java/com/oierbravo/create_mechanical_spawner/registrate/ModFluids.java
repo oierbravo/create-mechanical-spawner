@@ -1,19 +1,11 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.simibubi.create.AllFluids;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.utility.Color;
-import com.tterrag.registrate.builders.FluidBuilder;
 import com.tterrag.registrate.util.entry.FluidEntry;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fluids.FluidStack;
-import org.joml.Vector3f;
 
 public class ModFluids {
     public static String PREFIX = "spawn_fluid";
