@@ -1,0 +1,60 @@
+{
+
+	"_": "->------------------------]  Game Elements  [------------------------<-",
+
+	"block.create_mechanical_spawner.mechanical_spawner": "기계식 생성기",
+
+	"fluid.create_mechanical_spawner.spawn_fluid_blaze": "블레이즈 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_creeper": "크리퍼 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_enderman": "엔더맨 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_magma_cube": "마그마 큐브 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_random": "무작위 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_skeleton": "스켈레톤 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_slime": "슬라임 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_spider": "거미 생성액",
+	"fluid.create_mechanical_spawner.spawn_fluid_zombie": "좀비 생성액",
+
+	"item.create_mechanical_spawner.spawn_fluid_blaze_bucket": "블레이즈 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_creeper_bucket": "크리퍼 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_enderman_bucket": "엔더맨 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_magma_cube_bucket": "마그마 큐브 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_random_bucket": "무작위 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_skeleton_bucket": "스켈레톤 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_slime_bucket": "슬라임 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_spider_bucket": "거미 생성액 양동이",
+	"item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "좀비 생성액 양동이",
+
+	"itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+
+	"config.jade.plugin_create_mechanical_spawner.spawner_data": "기계식 생성기 데이터",
+
+	"create_mechanical_spawner.recipe.spawner": "생성 종류",
+
+	"create_mechanical_spawner.generic.biome_dependant": "생물 군계에 좌우",
+
+	"create_mechanical_spawner.spawner.tooltip.progress": "진행도: %d%%",
+	"create_mechanical_spawner.spawner.scrollValue.label": "생성될 높이 (블록)",
+
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip": "기계식 생성기",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "생성액으로 _몹_을 생성합니다.",
+
+
+	"_": "->------------------------]  UI  [------------------------<-",
+
+	"itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+
+	"config.jade.plugin_create_mechanical_spawner.spawner_data": "기계식 생성기 데이터",
+
+	"create_mechanical_spawner.recipe.spawner": "생성 종류",
+
+	"create_mechanical_spawner.generic.biome_dependant": "생물 군계에 좌우",
+
+	"create_mechanical_spawner.spawner.tooltip.progress": "진행도: %d%%",
+	"create_mechanical_spawner.spawner.scrollValue.label": "생성될 높이 (블록)",
+
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip": "기계식 생성기",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "생성액으로 _몹_을 생성합니다.",
+
+	"_": "Thank you for translating Create Mechanical Spawner!"
+
+}
