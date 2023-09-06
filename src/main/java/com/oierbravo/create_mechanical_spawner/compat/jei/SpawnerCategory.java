@@ -67,7 +67,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
                     80 - mouseY,
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
             String text = mobEntity.getLootTable().toString();
-            guiGraphics.drawString(font, text, 20, 60, 8);
+            guiGraphics.drawString(font, text, 20, 60, 8,false);
 
             return;
         }

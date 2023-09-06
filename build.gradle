@@ -127,8 +127,14 @@ repositories {
         }
     }
 
+    maven {
+        url "https://jitpack.io"
+        content {
+            includeGroup "com.github.llamalad7.mixinextras"
+        }
+    }
 
-    /*maven {
+    maven {
         url "https://maven.saps.dev/minecraft"
         content {
             includeGroup "dev.latvian.mods"
@@ -140,7 +146,7 @@ repositories {
         content {
             includeGroup "dev.architectury"
         }
-    }*/
+    }
     mavenLocal()
     flatDir {
         dirs 'libs'
@@ -155,9 +161,12 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
-//    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-//    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-//    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+
+    annotationProcessor "com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras}"
+    implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras}")
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}-forge-api:${jei_version}")
