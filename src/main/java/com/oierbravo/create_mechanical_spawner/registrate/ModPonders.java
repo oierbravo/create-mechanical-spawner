@@ -11,9 +11,9 @@ public class ModPonders {
 
     public static void register() {
 
-        HELPER.addStoryBoard(ModBlocks.MECHANICAL_SPAWNER, "spawner", PonderScenes::spawner, AllPonderTags.KINETIC_APPLIANCES);
+        /*HELPER.addStoryBoard(ModBlocks.MECHANICAL_SPAWNER, "spawner", PonderScenes::spawner, AllPonderTags.KINETIC_APPLIANCES);
 
         PonderRegistry.TAGS.forTag(AllPonderTags.KINETIC_APPLIANCES)
-                .add(ModBlocks.MECHANICAL_SPAWNER);
+                .add(ModBlocks.MECHANICAL_SPAWNER);*/
     }
 }

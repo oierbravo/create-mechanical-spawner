@@ -17,6 +17,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -51,8 +52,7 @@ public class CreateMechanicalSpawner
         ModRecipes.register(modEventBus);
         ModFluids.register();
 
-        ModCreativeTabs.register(modEventBus);
-
+        modEventBus.addListener(this::doClientStuff);
 
         modEventBus.addListener(EventPriority.LOWEST, CreateMechanicalSpawner::gatherData);
 
@@ -69,6 +69,10 @@ public class CreateMechanicalSpawner
         }
 
     }
+    private void doClientStuff(final FMLClientSetupEvent event) {
+        event.enqueueWork(ModPonders::register);
+    }
+
     public static CreateRegistrate registrate() {
         return REGISTRATE;
     }
