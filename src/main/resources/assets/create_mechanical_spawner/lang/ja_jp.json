@@ -1,0 +1,13 @@
+{
+  "itemGroup.create_mechanical_spawner:main": "Create Mechanical Spawner",
+  "config.jade.plugin_create_mechanical_spawner.spawner_data": "メカニカルスポナーのデータ",
+
+  "create_mechanical_spawner.recipe.spawner": "スポナーのレシピ",
+
+  "create_mechanical_spawner.generic.biome_dependant": "バイオーム依存",
+  "create_mechanical_spawner.spawner.tooltip.progress": "進捗: %d%%",
+  "create_mechanical_spawner.spawner.scrollValue.label": "スポーンする高さ(ブロック単位)",
+
+  "block.create_mechanical_spawner.mechanical_spawner.tooltip": "メカニカルスポナー",
+  "block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "スポーン液でMobをスポーンする."
+}
