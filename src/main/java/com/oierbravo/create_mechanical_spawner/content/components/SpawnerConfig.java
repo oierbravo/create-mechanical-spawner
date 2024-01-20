@@ -12,10 +12,10 @@ public class SpawnerConfig {
         COMMON_BUILDER.comment("Settings for the mechanical spawner").push("mechanical_spawner");
         SPAWNER_STRESS_IMPACT = COMMON_BUILDER
                 .comment("Stress impact")
-                .defineInRange("stressImpact", 16.0, 0.0, 64.0);
+                .defineInRange("stressImpact", 16.0, 0.0, Double.MAX_VALUE);
         SPAWNER_MINIMUM_SPEED = COMMON_BUILDER
                 .comment("Minimum required speed")
-                .defineInRange("minimumSpeed", 100.0, 0.0, 254);
+                .defineInRange("minimumSpeed", 100.0, 0.0, Double.MAX_VALUE);
         SPAWNER_LIQUID_CAPACITY = COMMON_BUILDER
                 .comment("Liquid capacity")
                 .defineInRange("liquidCapacity", 1000, 1, Integer.MAX_VALUE);
