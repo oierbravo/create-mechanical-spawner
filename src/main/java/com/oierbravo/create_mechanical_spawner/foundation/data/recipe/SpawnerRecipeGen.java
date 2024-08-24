@@ -107,6 +107,73 @@ public class SpawnerRecipeGen extends RecipeProvider {
                 .withFluid(ModFluids.ZOMBIE.get(),100)
                 .withProcessingTime(2500)
                 .save(pWriter);
+
+        /* Friendly Spawner */
+        create("bat")
+                .withMob(SpawnerRecipeOutput.of("minecraft:bat"))
+                .withFluid(ModFluids.BAT.get(),100)
+                .withProcessingTime(1000)
+                .save(pWriter);
+
+        create("bee")
+                .withMob(SpawnerRecipeOutput.of("minecraft:bee"))
+                .withFluid(ModFluids.BEE.get(),100)
+                .withProcessingTime(2000)
+                .save(pWriter);
+
+        create("chicken")
+                .withMob(SpawnerRecipeOutput.of("minecraft:chicken"))
+                .withFluid(ModFluids.CHICKEN.get(),100)
+                .withProcessingTime(1000)
+                .save(pWriter);
+
+        create("cow")
+                .withMob(SpawnerRecipeOutput.of("minecraft:cow"))
+                .withFluid(ModFluids.COW.get(),100)
+                .withProcessingTime(2500)
+                .save(pWriter);
+
+        create("fox")
+                .withMob(SpawnerRecipeOutput.of("minecraft:fox"))
+                .withFluid(ModFluids.FOX.get(),100)
+                .withProcessingTime(3000)
+                .save(pWriter);
+
+        create("horse")
+                .withMob(SpawnerRecipeOutput.of("minecraft:horse"))
+                .withFluid(ModFluids.HORSE.get(),100)
+                .withProcessingTime(2000)
+                .save(pWriter);
+
+        create("panda")
+                .withMob(SpawnerRecipeOutput.of("minecraft:panda"))
+                .withFluid(ModFluids.PANDA.get(),100)
+                .withProcessingTime(4000)
+                .save(pWriter);
+
+        create("pig")
+                .withMob(SpawnerRecipeOutput.of("minecraft:pig"))
+                .withFluid(ModFluids.PIG.get(),100)
+                .withProcessingTime(1500)
+                .save(pWriter);
+
+        create("rabbit")
+                .withMob(SpawnerRecipeOutput.of("minecraft:rabbit"))
+                .withFluid(ModFluids.RABBIT.get(),100)
+                .withProcessingTime(1000)
+                .save(pWriter);
+
+        create("villager")
+                .withMob(SpawnerRecipeOutput.of("minecraft:villager"))
+                .withFluid(ModFluids.VILLAGER.get(),100)
+                .withProcessingTime(5000)
+                .save(pWriter);
+
+        create("wolf")
+                .withMob(SpawnerRecipeOutput.of("minecraft:wolf"))
+                .withFluid(ModFluids.WOLF.get(),100)
+                .withProcessingTime(1500)
+                .save(pWriter);
     }
 
     private SpawnerRecipeBuilder create(String id){
