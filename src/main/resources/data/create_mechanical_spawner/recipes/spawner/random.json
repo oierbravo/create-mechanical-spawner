@@ -1,9 +1,0 @@
-{
-  "type": "create_mechanical_spawner:spawner",
-  "fluid": {
-    "fluid": "create_mechanical_spawner:spawn_fluid_random",
-    "amount": 200
-  },
-  "mob": "random",
-  "processingTime": 5000
-}
