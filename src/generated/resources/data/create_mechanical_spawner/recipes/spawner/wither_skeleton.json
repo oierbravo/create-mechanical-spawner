@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 200,
+    "fluid": "create_mechanical_spawner:spawn_fluid_wither_skeleton",
+    "nbt": {}
+  },
+  "mob": "minecraft:wither_skeleton",
+  "processingTime": 5000
+}

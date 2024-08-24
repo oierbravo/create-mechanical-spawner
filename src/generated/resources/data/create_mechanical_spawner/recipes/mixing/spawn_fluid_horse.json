@@ -1,0 +1,26 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "forge:leather"
+    },
+    {
+      "item": "minecraft:lead"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random",
+      "nbt": {}
+    }
+  ],
+  "processingTime": 250,
+  "results": [
+    {
+      "amount": 250,
+      "fluid": "create_mechanical_spawner:spawn_fluid_horse"
+    }
+  ]
+}

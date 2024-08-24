@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_slime",
+    "nbt": {}
+  },
+  "mob": "minecraft:slime",
+  "processingTime": 2500
+}

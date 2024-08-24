@@ -3,6 +3,7 @@ package com.oierbravo.create_mechanical_spawner.registrate;
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlock;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerConfig;
+import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlock;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -25,9 +26,15 @@ public class ModBlocks {
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.mapColor(MapColor.METAL))
             .transform(pickaxeOnly())
-            .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .blockstate(BlockStateGen.horizontalBlockProvider(false))
             .transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
-            .item()
-            .transform(customItemModel())
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<LootCollectorBlock> LOOT_COLLECTOR = REGISTRATE.block("loot_collector", LootCollectorBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.METAL))
+            .transform(pickaxeOnly())
+            .simpleItem()
             .register();
 }

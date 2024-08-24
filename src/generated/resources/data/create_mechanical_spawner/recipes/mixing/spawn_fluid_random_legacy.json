@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "tag": "forge:rods/blaze"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    },
+    {
+      "amount": 250,
+      "fluid": "minecraft:water",
+      "nbt": {}
+    }
+  ],
+  "processingTime": 250,
+  "results": [
+    {
+      "amount": 250,
+      "fluid": "create_mechanical_spawner:spawn_fluid_blaze"
+    }
+  ]
+}

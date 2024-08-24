@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_blaze",
+    "nbt": {}
+  },
+  "mob": "minecraft:blaze",
+  "processingTime": 5000
+}

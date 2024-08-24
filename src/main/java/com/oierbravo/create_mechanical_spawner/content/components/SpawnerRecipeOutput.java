@@ -11,6 +11,8 @@ public class SpawnerRecipeOutput {
     @Nullable
     private EntityType<?> mob;
 
+    private static final String RANDOM_KEY = "random";
+
     SpawnerRecipeOutput(@Nullable EntityType<?> mobEntity){
         this.mob = mobEntity;
     }
@@ -34,7 +36,7 @@ public class SpawnerRecipeOutput {
     }
     public static SpawnerRecipeOutput fromNetwork(FriendlyByteBuf buffer) {
         String mobId = buffer.readUtf();
-        if(mobId.equals("random"))
+        if(mobId.equals(RANDOM_KEY))
             return new SpawnerRecipeOutput();
 
         ResourceLocation mobResourceLocation = new ResourceLocation(mobId);
@@ -44,13 +46,25 @@ public class SpawnerRecipeOutput {
         return new SpawnerRecipeOutput(mobEntity);
     }
 
+    public static SpawnerRecipeOutput of(ResourceLocation mobResourceLocation) {
+        if(mobResourceLocation == null)
+            return new SpawnerRecipeOutput();
+        EntityType<?> mobEntity = ForgeRegistries.ENTITY_TYPES.getValue(mobResourceLocation);
+        return new SpawnerRecipeOutput(mobEntity);
+    }
+    public static SpawnerRecipeOutput of(String mobString) {
+        return of(ResourceLocation.tryParse(mobString));
+    }
+
     public String toJson() {
         assert this.mob != null;
-        return this.mob.toString();
+        if(this.mob == null)
+            return RANDOM_KEY;
+        return ForgeRegistries.ENTITY_TYPES.getKey(this.mob).toString();
     }
     public void toNetwork(FriendlyByteBuf buffer) {
         if(this.mob == null) {
-            buffer.writeUtf("random");
+            buffer.writeUtf(RANDOM_KEY);
             return;
         }
         ResourceLocation mobResourceLocation = ForgeRegistries.ENTITY_TYPES.getKey(mob);

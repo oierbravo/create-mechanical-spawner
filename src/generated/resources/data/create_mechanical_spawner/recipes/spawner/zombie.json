@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_zombie",
+    "nbt": {}
+  },
+  "mob": "minecraft:zombie",
+  "processingTime": 2500
+}

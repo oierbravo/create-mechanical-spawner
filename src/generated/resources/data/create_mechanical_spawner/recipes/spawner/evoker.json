@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 500,
+    "fluid": "create_mechanical_spawner:spawn_fluid_evoker",
+    "nbt": {}
+  },
+  "mob": "minecraft:evoker",
+  "processingTime": 5000
+}

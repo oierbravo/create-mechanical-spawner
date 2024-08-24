@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "fluid": {
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_pigling",
+    "nbt": {}
+  },
+  "mob": "minecraft:piglin",
+  "processingTime": 2500
+}

@@ -1,6 +1,7 @@
 package com.oierbravo.create_mechanical_spawner;
 
 import com.mojang.logging.LogUtils;
+import com.oierbravo.create_mechanical_spawner.infrastructure.data.ModDataGen;
 import com.oierbravo.create_mechanical_spawner.registrate.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
@@ -43,11 +44,12 @@ public class CreateMechanicalSpawner
 
         ModBlocks.register();
         ModBlockEntities.register();
-        ModRecipes.register(modEventBus);
+        ModRecipeTypes.register(modEventBus);
         ModFluids.register();
         ModCreativeTabs.register(modEventBus);
 
         modEventBus.addListener(this::doClientStuff);
+        modEventBus.addListener(ModDataGen::gatherData);
 
 
         generateLangEntries();
@@ -58,10 +60,12 @@ public class CreateMechanicalSpawner
 
         registrate().addRawLang("create_mechanical_spawner.recipe.spawner", "Spawner recipe");
         registrate().addRawLang("create_mechanical_spawner.generic.biome_dependant", "Biome dependant");
+        registrate().addRawLang("create_mechanical_spawner.spawner.tooltip.with_loot_collector", "Loot collector found!");
         registrate().addRawLang("create_mechanical_spawner.spawner.tooltip.progress", "Progress: %d%%");
         registrate().addRawLang("create_mechanical_spawner.spawner.scrollValue.label", "Spawn at height (in blocks)");
         registrate().addRawLang("block.create_mechanical_spawner.mechanical_spawner.tooltip", "MECHANICAL SPAWNER");
         registrate().addRawLang("block.create_mechanical_spawner.mechanical_spawner.tooltip.summary", "Spawns _Mobs_ with spawn liquid.");
+
 
     }
     private void doClientStuff(final FMLClientSetupEvent event) {

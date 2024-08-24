@@ -119,8 +119,22 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
             builder.withFluid(fluidIngredient)
                     .withMob(mob)
                     .withProcessingTime(processingTime);
-            return builder.build();
+            return builder.save();
         }
+        protected JsonObject toJson(JsonObject json, SpawnerRecipe pRecipe) {
+
+            json.add("fluid", pRecipe.getFluidIngredient().serialize());
+
+            json.addProperty("mob", pRecipe.getOutput().toJson());
+            json.addProperty("processingTime", pRecipe.getProcessingTime());
+
+            int processingDuration = pRecipe.getProcessingTime();
+            if (processingDuration > 0)
+                json.addProperty("processingTime", processingDuration);
+
+            return json;
+        }
+
 
         @Override
         public SpawnerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
@@ -132,7 +146,7 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
             builder.withFluid(fluidIngredient)
                     .withMob(mob)
                     .withProcessingTime(processingTime);
-            return builder.build();
+            return builder.save();
         }
 
         @Override
@@ -147,6 +161,13 @@ public class SpawnerRecipe implements Recipe<SimpleContainer>, IRecipeTypeInfo {
 
 
     }
+
+    private SpawnerRecipeOutput getOutput() {
+        if(mob == null)
+            return SpawnerRecipeOutput.EMPTY;
+        return this.mob;
+    }
+
     public static class SpawnerRecipeWrapper extends SimpleContainer {
 
         protected FluidStack fluidStack;

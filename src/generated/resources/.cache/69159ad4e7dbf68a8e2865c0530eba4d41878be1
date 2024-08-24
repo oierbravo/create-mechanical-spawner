@@ -1,0 +1,3 @@
+// 1.20.1	2024-08-24T05:50:56.459196486	Mechanical Spawner's crafting recipes.
+339ca85a217c1c09d9b6db9f2f67e20baa891623 data/create_mechanical_spawner/recipes/loot_collector.json
+86cd4fa855dd483ecdbd676c79803f05054aa300 data/create_mechanical_spawner/recipes/mechanical_spawner.json
