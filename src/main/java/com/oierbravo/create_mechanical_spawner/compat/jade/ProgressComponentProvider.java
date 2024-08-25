@@ -4,8 +4,6 @@ import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEn
 import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.IServerDataProvider;
@@ -13,7 +11,6 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.BoxStyle;
 import snownee.jade.api.ui.IElementHelper;
-import snownee.jade.api.ui.IProgressStyle;
 
 public class ProgressComponentProvider  implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 

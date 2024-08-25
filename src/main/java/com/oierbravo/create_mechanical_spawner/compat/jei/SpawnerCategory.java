@@ -1,6 +1,5 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
