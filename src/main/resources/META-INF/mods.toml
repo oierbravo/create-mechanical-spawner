@@ -5,6 +5,7 @@ license="MIT"
 modId="create_mechanical_spawner" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Create Mechanical Spawner" #mandatory
+updateJSONURL = "https://api.modrinth.com/updates/create-mechanical-spawner/forge_updates.json"
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
@@ -41,6 +42,6 @@ side="BOTH"
 [[dependencies.create_mechanical_spawner]]
     modId = "create"
     mandatory = true
-    versionRange="[0.5.1.d,)"
+    versionRange="[0.5.1.h,)"
     ordering = "AFTER"
     side = "BOTH"
