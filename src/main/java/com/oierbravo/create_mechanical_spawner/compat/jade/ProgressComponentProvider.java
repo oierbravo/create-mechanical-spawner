@@ -11,6 +11,7 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.BoxStyle;
 import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.util.Color;
 
 public class ProgressComponentProvider  implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
@@ -20,7 +21,7 @@ public class ProgressComponentProvider  implements IBlockComponentProvider, ISer
 
             if(progress > 0){
                 IElementHelper helper = tooltip.getElementHelper();
-                tooltip.add(helper.progress((float)progress / 100, ModLang.translate("spawner.tooltip.progress", progress).component(),helper.progressStyle(), BoxStyle.DEFAULT,true));
+                tooltip.add(helper.progress((float)progress / 100, ModLang.translate("spawner.tooltip.progress", progress).component(),helper.progressStyle().color(Color.hex("#FFFF00").toInt()), BoxStyle.DEFAULT,true));
             }
 
         }
