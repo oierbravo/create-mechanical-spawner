@@ -5,6 +5,6 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_pigling",
     "nbt": {}
   },
-  "mob": "minecraft:piglin",
+  "mob": "minecraft:pig",
   "processingTime": 2500
 }

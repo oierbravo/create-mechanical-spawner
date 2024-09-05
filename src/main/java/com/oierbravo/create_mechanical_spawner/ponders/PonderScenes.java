@@ -1,117 +1,111 @@
 package com.oierbravo.create_mechanical_spawner.ponders;
 
+import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
+import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
 import com.simibubi.create.foundation.ponder.*;
-import com.simibubi.create.foundation.ponder.element.EntityElement;
-import com.simibubi.create.foundation.ponder.element.InputWindowElement;
-import com.simibubi.create.foundation.utility.Pointing;
+import com.simibubi.create.foundation.ponder.element.ParrotElement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fluids.FluidStack;
 
 public class PonderScenes {
     public static void spawner(SceneBuilder scene, SceneBuildingUtil util) {
-        scene.title("sifter", "Processing Items in the Sifter");
-        //scene.configureBasePlate(0, 0, 5);
+        scene.title("spawner", "Spawning living entities");
+        scene.configureBasePlate(0, 2, 6);
         scene.showBasePlate();
-        scene.world.showSection(util.select.layer(1),Direction.DOWN);
 
-        Selection spawnerSelect = util.select.position(2, 2, 2);
-        scene.world.showSection(spawnerSelect,Direction.DOWN);
+        BlockPos spawnerPos = util.grid.at(2, 3, 2);
+        Selection spawnerSelection = util.select.position(2, 3, 2);
+        Selection spawnerShaftSelection = util.select.position(2, 1, 2)
+                .add(util.select.position(2, 2, 2));
 
-        /*Selection belt = util.select.fromTo(1, 1, 5, 0, 1, 2)
-                .add(util.select.position(1, 2, 2));
-        Selection beltCog = util.select.position(2, 0, 5);
+        Selection mixerPlateShaftSelection = util.select.position(1, 1, 5);
 
-        scene.world.showSection(util.select.layer(0)
-                .substract(beltCog), Direction.UP);
 
-        BlockPos sifter = util.grid.at(2, 2, 2);
-        Selection sifterSelect = util.select.position(2, 2, 2);
-        Selection cogs = util.select.fromTo(3, 1, 2, 3, 2, 2);
-        scene.world.setKineticSpeed(sifterSelect, 0);
+        scene.world.showSection(util.select.layer(1).substract(spawnerShaftSelection).substract(mixerPlateShaftSelection),Direction.DOWN);
 
-        scene.idle(5);
-        scene.world.showSection(util.select.position(4, 1, 3), Direction.DOWN);
-        scene.world.showSection(util.select.position(2, 1, 2), Direction.DOWN);
-        scene.idle(10);
-        scene.world.showSection(util.select.position(sifter), Direction.DOWN);
-        scene.idle(10);
-        Vec3 sifterTop = util.vector.topOf(sifter);
-        scene.overlay.showText(60)
-                .attachKeyFrame()
-                .text("Sifter process items by sifting them")
-                .pointAt(sifterTop)
-                .placeNearTarget();
-        scene.idle(70);
 
-        scene.world.showSection(cogs, Direction.DOWN);
-        scene.idle(10);
-        scene.world.setKineticSpeed(sifterSelect, 32);
-        scene.effects.indicateSuccess(sifter);
-        scene.idle(10);
+        scene.world.showSection(spawnerSelection,Direction.UP);
 
-        scene.overlay.showText(60)
-                .attachKeyFrame()
-                .colored(PonderPalette.GREEN)
-                .text("They can be powered from the side using cogwheels")
-                .pointAt(util.vector.topOf(sifter.east()))
-                .placeNearTarget();
-        scene.idle(70);
 
-        ItemStack itemStack = new ItemStack(Items.GRAVEL,32);
-        Vec3 entitySpawn = util.vector.topOf(sifter.above(3));
+        Selection allElements = util.select.everywhere();
 
-        ElementLink<EntityElement> entity1 =
-                scene.world.createItemEntity(entitySpawn, util.vector.of(0, 0.2, 0), itemStack);
-        scene.idle(18);
-        scene.world.modifyEntity(entity1, Entity::discard);
-        scene.world.modifyBlockEntity(sifter, SifterBlockEntity.class,
-                ms -> ms.inputInv.setStackInSlot(0, itemStack));
-        scene.idle(10);
-        scene.overlay.showControls(new InputWindowElement(sifterTop, Pointing.DOWN).withItem(itemStack), 30);
-        scene.idle(7);
 
-        scene.overlay.showText(40)
-                .attachKeyFrame()
-                .text("Throw or Insert items at the top")
-                .pointAt(sifterTop)
-                .placeNearTarget();
-        scene.idle(60);
-
-        scene.world.modifyBlockEntity(sifter, SifterBlockEntity.class,
-                ms -> ms.inputInv.setStackInSlot(0, ItemStack.EMPTY));
-
-        scene.overlay.showText(50)
-                .text("After some time, the result can be obtained via Right-click")
-                .pointAt(util.vector.blockSurface(sifter, Direction.WEST))
-                .placeNearTarget();
-        scene.idle(60);
-
-        ItemStack nugget = AllItems.COPPER_NUGGET.asStack();
-        scene.overlay.showControls(
-                new InputWindowElement(util.vector.blockSurface(sifter, Direction.NORTH), Pointing.RIGHT).rightClick(),
-                40);
-        scene.idle(50);
+        Selection mixerSelection = util.select.fromTo(0, 2, 3,3,5 ,5).add(mixerPlateShaftSelection);
 
         scene.addKeyframe();
-        scene.world.showSection(beltCog, Direction.UP);
-        scene.world.showSection(belt, Direction.EAST);
-        scene.idle(15);
-
-        BlockPos beltPos = util.grid.at(1, 1, 2);
-        scene.world.createItemOnBelt(beltPos, Direction.EAST, nugget);
-        scene.idle(15);
-        scene.world.createItemOnBelt(beltPos, Direction.EAST, new ItemStack(Items.COAL));
-        scene.idle(20);
-
-        scene.overlay.showText(50)
-                .text("The outputs can also be extracted by automation")
-                .pointAt(util.vector.blockSurface(sifter, Direction.WEST)
+        scene.idle(10);
+        scene.overlay.showSelectionWithText(spawnerSelection, 50)
+                .text("The Spawner uses rotational force and special fluids to spawn entities")
+                .pointAt(util.vector.blockSurface(spawnerPos, Direction.WEST)
                         .add(-.5, .4, 0))
                 .placeNearTarget();
-        scene.idle(60);*/
+        scene.idle(60);
+
+        scene.addKeyframe();
+        scene.idle(35);
+
+        scene.idle(5);
+
+        scene.world.showSection(spawnerShaftSelection,Direction.DOWN);
+        scene.overlay.showText(50)
+                .text("Its powered from the bottom")
+                .pointAt(util.vector.blockSurface(spawnerPos, Direction.DOWN)
+                        .add(-.5, .4, 0))
+                .placeNearTarget();
+        scene.world.setKineticSpeed(allElements, -64);
+        scene.idle(60);
+
+        scene.addKeyframe();
+        scene.world.showSection(mixerSelection,Direction.EAST);
+        scene.idle(35);
+        scene.overlay.showText(50)
+                .text("Fluid input cab go in fro any horizontal side")
+                .pointAt(util.vector.blockSurface(spawnerPos, Direction.NORTH)
+                        .add(-.5, .4, 0))
+                .placeNearTarget();
+        FluidStack spawnFluid = new FluidStack(ModFluids.ENDERMAN.get().getSource(),1000);
+        scene.world.modifyBlockEntity(spawnerPos, SpawnerBlockEntity.class,
+                ms -> ms.getFluidTank().setFluid(spawnFluid));
+        scene.idle(60);
+
+        scene.addKeyframe();
+        scene.overlay.showText(50)
+                .text("Spawn point can be configured")
+                .pointAt(util.vector.blockSurface(spawnerPos, Direction.WEST)
+                        .add(-.5, .4, 0))
+                .placeNearTarget();
+        scene.overlay.showCenteredScrollInput(spawnerPos, Direction.NORTH, 60);
+        scene.idle(10);
+        scene.overlay.showOutline(PonderPalette.WHITE, new Object(), util.select.position(spawnerPos.relative(Direction.UP)), 5);
+        scene.idle(10);
+        scene.overlay.showOutline(PonderPalette.WHITE, new Object(), util.select.position(spawnerPos.relative(Direction.UP).relative(Direction.UP)), 100);
+        scene.idle(10);
+        ElementLink<ParrotElement> flappyBirb = scene.special.createBirb(util.vector.topOf(spawnerPos.relative(Direction.UP)), ParrotElement.FlappyPose::new);
+        scene.idle(2);
+        scene.special.moveParrot(flappyBirb, util.vector.of(0, -1, 0), 20);
+
+
+        Class<SpawnerBlockEntity> type = SpawnerBlockEntity.class;
+        scene.world.modifyBlockEntity(spawnerPos, type, pte -> pte.getScrollValueBehavior().setValue(2));
+
+        scene.idle(80);
+        scene.addKeyframe();
+        scene.special.hideElement(flappyBirb,Direction.DOWN);
+        BlockPos lootCollector = util.grid.at(2, 5, 2);
+        Selection lootCollectorSelect = util.select.position(lootCollector);
+        Selection lootCollectorSectionSelection = util.select.fromTo(2, 2, 0,2,5 ,2);
+
+        scene.world.showSection(lootCollectorSectionSelection,Direction.NORTH);
+        scene.idle(5);
+        scene.overlay.showSelectionWithText(lootCollectorSelect,100)
+                .text("A loot collector can be placed in the spawn point to automatically collect loot without spawning the entity")
+                .pointAt(util.vector.blockSurface(lootCollector, Direction.WEST)
+                        .add(-.5, .4, 0))
+                .placeNearTarget();
+        scene.idle(60);
+
+        scene.markAsFinished();
+
     }
 }

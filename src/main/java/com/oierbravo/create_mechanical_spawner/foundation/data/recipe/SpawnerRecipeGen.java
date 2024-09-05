@@ -19,7 +19,7 @@ public class SpawnerRecipeGen extends RecipeProvider {
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
         /* Random Spawner */
         create("random")
-                .withFluid(ModFluids.SKELETON.get(),100)
+                .withFluid(ModFluids.RANDOM.get(),100)
                 .withProcessingTime(1500)
                 .save(pWriter);
 
@@ -66,8 +66,8 @@ public class SpawnerRecipeGen extends RecipeProvider {
                 .withProcessingTime(2500)
                 .save(pWriter);
 
-        create("piglin")
-                .withMob(SpawnerRecipeOutput.of("minecraft:piglin"))
+        create("pigling")
+                .withMob(SpawnerRecipeOutput.of("minecraft:pigling"))
                 .withFluid(ModFluids.PIGLING.get(),100)
                 .withProcessingTime(2500)
                 .save(pWriter);
@@ -149,6 +149,12 @@ public class SpawnerRecipeGen extends RecipeProvider {
                 .withMob(SpawnerRecipeOutput.of("minecraft:panda"))
                 .withFluid(ModFluids.PANDA.get(),100)
                 .withProcessingTime(4000)
+                .save(pWriter);
+
+        create("parrot")
+                .withMob(SpawnerRecipeOutput.of("minecraft:parrot"))
+                .withFluid(ModFluids.PARROT.get(),100)
+                .withProcessingTime(1500)
                 .save(pWriter);
 
         create("pig")

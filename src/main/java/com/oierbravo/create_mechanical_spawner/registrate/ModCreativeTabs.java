@@ -7,8 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,24 +24,11 @@ public class ModCreativeTabs {
                     .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
                     .icon(ModBlocks.MECHANICAL_SPAWNER::asStack)
                     .displayItems((pParameters, pOutput) -> {
-                        for (RegistryEntry<Block> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.BLOCK)) {
-                            pOutput.accept(entry.get());
-                        }
-                        for (RegistryEntry<Fluid> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.FLUID)) {
-                            Fluid fluid = entry.get();
-                            Item bucket = fluid.getBucket();
-                            //pOutput.accept(bucket);
-                        }
                         for (RegistryEntry<Item> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.ITEM)) {
-                            //Item bucket = fluid.getBucket();
                             pOutput.accept(entry.get());
                         }
                     })
                     .build());
-
-    public static CreativeModeTab getBaseTab() {
-        return MAIN_TAB.get();
-    }
 
     public static void register(IEventBus modEventBus) {
         TAB_REGISTER.register(modEventBus);

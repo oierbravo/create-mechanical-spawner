@@ -2,13 +2,13 @@ package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.google.gson.JsonObject;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipeTypes;
-import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -29,8 +29,8 @@ public class SpawnerRecipeBuilder {
     public SpawnerRecipeBuilder withFluid(FluidStack fluidStack) {
         return withFluid(FluidIngredient.fromFluidStack(fluidStack));
     }
-    public SpawnerRecipeBuilder withFluid(VirtualFluid virtualFluid, int pAmount) {
-        return withFluid(FluidIngredient.fromFluid(virtualFluid,pAmount));
+    public SpawnerRecipeBuilder withFluid(ForgeFlowingFluid.Flowing pFluid, int pAmount) {
+        return withFluid(FluidIngredient.fromFluid(pFluid,pAmount));
     }
     public SpawnerRecipeBuilder withMob(SpawnerRecipeOutput mob) {
         params.mob = mob;

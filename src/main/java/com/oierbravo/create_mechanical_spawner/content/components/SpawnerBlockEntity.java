@@ -55,7 +55,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     public UUID owner;
     protected DeployerFakePlayer player;
 
-    ScrollValueBehaviour range;
+    ScrollValueBehaviour scrollValueBehaviour;
     protected FluidTank fluidTank = createFluidTank();;
 
     protected LazyOptional<IFluidHandler> fluidCapability = LazyOptional.of(() -> fluidTank);;
@@ -87,11 +87,14 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         int max = SpawnerConfig.SPAWNER_MAX_RANGE.get();
 ;
-        range = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
+        scrollValueBehaviour = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
                 .between(1, max);
-        range.value = 1;
+        scrollValueBehaviour.value = 1;
 
-        behaviours.add(range);
+        behaviours.add(scrollValueBehaviour);
+    }
+    public ScrollValueBehaviour getScrollValueBehavior() {
+        return scrollValueBehaviour;
     }
 
     protected SmartFluidTank createFluidTank() {
@@ -166,12 +169,12 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        SpawnerPointDisplay.display(this);
         boolean added = super.addToGoggleTooltip(tooltip, isPlayerSneaking);
         if(this.timer < this.totalTime) {
             ModLang.translate("spawner.tooltip.progress", this.getProgressPercent()).style(ChatFormatting.YELLOW).forGoggles(tooltip);
             added = true;
         }
-        BlockPos spawnPos = getBlockPos().relative(Direction.Axis.Y, range.getValue());
 
         if(isSpawnPosBlockLootCollector()) {
             ModLang.translate("spawner.tooltip.with_loot_collector").style(ChatFormatting.GREEN).forGoggles(tooltip);
@@ -179,6 +182,12 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         }
         return added;
 
+    }
+
+
+    @Override
+    public boolean containedFluidTooltip(List<Component> tooltip, boolean isPlayerSneaking, LazyOptional<IFluidHandler> handler) {
+        return super.containedFluidTooltip(tooltip, isPlayerSneaking, handler);
     }
 
     private void process() {
@@ -210,7 +219,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     }
 
     private BlockPos getSpawnPos(){
-        return getBlockPos().relative(Direction.Axis.Y, range.getValue());
+        return getBlockPos().relative(Direction.Axis.Y, scrollValueBehaviour.getValue());
     }
 
     private boolean isSpawnPosBlockLootCollector() {
@@ -242,7 +251,9 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         }
         return super.getCapability(cap, side);
     }
-
+    public FluidTank getFluidTank(){
+        return fluidTank;
+    }
     @Override
     public void write(CompoundTag compound, boolean clientPacket) {
         super.write(compound, clientPacket);
@@ -261,14 +272,14 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         totalTime = compound.getInt("TotalTime");
     }
 
-    public int getRange() {
-        return range.getValue();
+    public int getScrollValueBehaviour() {
+        return scrollValueBehaviour.getValue();
     }
 
     public List<BlockPos> getSpawnBlockPosition(Direction forcedMovement, boolean visualize) {
         List<BlockPos> positions = new ArrayList<>();
 
-        int position = visualize ? range.getValue() : getRange();
+        int position = visualize ? scrollValueBehaviour.getValue() : getScrollValueBehaviour();
 
         BlockPos current = worldPosition.relative(Direction.Axis.Y, position);
 
@@ -282,7 +293,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     public List<SpawnerBlockEntity> collectSpawnGroup() {
         return new ArrayList<>();
     }
-    private Entity getEntity(EntityType<?> pEntityType, BlockPos pPos){
+    private Entity createEntity(EntityType<?> pEntityType, BlockPos pPos){
         Entity entity;
         if(pEntityType == null){
             Optional<MobSpawnSettings.SpawnerData> spawn = level.getBiome(pPos).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
@@ -312,7 +323,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
         if(!lootCollectorInventoryHandler.isPresent())
             return;
         IItemHandler lootCollectorInventory = lootCollectorInventoryHandler.resolve().orElseThrow();
-        Entity entitySpawn = getEntity(pEntityType, pSpawnPos);
+        Entity entitySpawn = createEntity(pEntityType, pSpawnPos);
         if (!(entitySpawn instanceof Mob mob))
             return;
 
@@ -398,7 +409,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     protected static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){
         assert SpawnerBlockEntity.level != null && !SpawnerBlockEntity.level.isClientSide;
 
-        int offset = SpawnerBlockEntity.getRange() ;
+        int offset = SpawnerBlockEntity.getScrollValueBehaviour() ;
 
         BlockPos currentSpawnPos = SpawnerBlockEntity.getBlockPos().relative(Direction.Axis.Y, offset);
 

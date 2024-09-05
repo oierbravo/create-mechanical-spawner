@@ -2,11 +2,9 @@ package com.oierbravo.create_mechanical_spawner.foundation.data.recipe;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
-import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -16,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import java.util.function.Consumer;
 
@@ -156,6 +155,11 @@ public class CreateMixingRecipeGen extends RecipeProvider {
                 .require(Blocks.SNOW_BLOCK)
                 .build(pWriter);
 
+        createSpawnFluid("parrot",ModFluids.PARROT.get(),250)
+                .require(ModFluids.RANDOM.get(),100)
+                .require(Items.COOKIE)
+                .build(pWriter);
+
         createSpawnFluid("pig",ModFluids.PIG.get(),250)
                 .require(ModFluids.RANDOM.get(),100)
                 .require(Items.PORKCHOP)
@@ -177,7 +181,7 @@ public class CreateMixingRecipeGen extends RecipeProvider {
                 .require(Tags.Items.BONES)
                 .build(pWriter);
     }
-    private ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, VirtualFluid virtualFluid, int pAmount){
+    private ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, ForgeFlowingFluid virtualFluid, int pAmount){
         ResourceLocation recipeId = CreateMechanicalSpawner.asResource("spawn_fluid_" + id);
 
         FluidStack fluidStack = new FluidStack(virtualFluid.getSource(), pAmount);

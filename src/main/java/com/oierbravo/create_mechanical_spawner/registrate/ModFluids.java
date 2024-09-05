@@ -2,56 +2,65 @@ package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.simibubi.create.AllTags;
-import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public class ModFluids {
     public static String PREFIX = "spawn_fluid";
     public static final CreateRegistrate REGISTRATE = CreateMechanicalSpawner.registrate();
-    public static final FluidEntry<VirtualFluid> RANDOM = createSpawnFluid( "random");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> RANDOM = createSpawnFluid( "random");
 
     /* Hostile Mobs */
-    public static final FluidEntry<VirtualFluid> BLAZE = createSpawnFluid("blaze");
-    public static final FluidEntry<VirtualFluid> CREEPER = createSpawnFluid("creeper");
-    public static final FluidEntry<VirtualFluid> DROWNED = createSpawnFluid("drowned");
-    public static final FluidEntry<VirtualFluid> ENDERMAN = createSpawnFluid("enderman");
-    public static final FluidEntry<VirtualFluid> EVOKER = createSpawnFluid("evoker");
-    public static final FluidEntry<VirtualFluid> GHAST = createSpawnFluid("ghast");
-    public static final FluidEntry<VirtualFluid> MAGMA_CUBE = createSpawnFluid("magma_cube");
-    public static final FluidEntry<VirtualFluid> PIGLING = createSpawnFluid("pigling");
-    public static final FluidEntry<VirtualFluid> SKELETON = createSpawnFluid("skeleton");
-    public static final FluidEntry<VirtualFluid> SLIME = createSpawnFluid("slime");
-    public static final FluidEntry<VirtualFluid> SPIDER = createSpawnFluid("spider");
-    public static final FluidEntry<VirtualFluid> WITCH = createSpawnFluid("witch");
-    public static final FluidEntry<VirtualFluid> WITHER_SKELETON = createSpawnFluid("wither_skeleton");
-    public static final FluidEntry<VirtualFluid> ZOMBIE = createSpawnFluid("zombie");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> BLAZE = createSpawnFluid("blaze");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CREEPER = createSpawnFluid("creeper");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> DROWNED = createSpawnFluid("drowned");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> ENDERMAN = createSpawnFluid("enderman");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> EVOKER = createSpawnFluid("evoker");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> GHAST = createSpawnFluid("ghast");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> MAGMA_CUBE = createSpawnFluid("magma_cube");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PIGLING = createSpawnFluid("pigling");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> SKELETON = createSpawnFluid("skeleton");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> SLIME = createSpawnFluid("slime");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> SPIDER = createSpawnFluid("spider");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> WITCH = createSpawnFluid("witch");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> WITHER_SKELETON = createSpawnFluid("wither_skeleton");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> ZOMBIE = createSpawnFluid("zombie");
 
     /* Friendly Mobs */
-    public static final FluidEntry<VirtualFluid> BAT = createSpawnFluid("bat");
-    public static final FluidEntry<VirtualFluid> BEE = createSpawnFluid("bee");
-    public static final FluidEntry<VirtualFluid> COW = createSpawnFluid("cow");
-    public static final FluidEntry<VirtualFluid> CHICKEN = createSpawnFluid("chicken");
-    public static final FluidEntry<VirtualFluid> FOX = createSpawnFluid("fox");
-    public static final FluidEntry<VirtualFluid> HORSE = createSpawnFluid("horse");
-    public static final FluidEntry<VirtualFluid> PANDA = createSpawnFluid("panda");
-    public static final FluidEntry<VirtualFluid> PIG = createSpawnFluid("pig");
-    public static final FluidEntry<VirtualFluid> RABBIT = createSpawnFluid("rabbit");
-    public static final FluidEntry<VirtualFluid> VILLAGER = createSpawnFluid("villager");
-    public static final FluidEntry<VirtualFluid> WOLF = createSpawnFluid("wolf");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> BAT = createSpawnFluid("bat");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> BEE = createSpawnFluid("bee");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> COW = createSpawnFluid("cow");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CHICKEN = createSpawnFluid("chicken");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> FOX = createSpawnFluid("fox");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> HORSE = createSpawnFluid("horse");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PANDA = createSpawnFluid("panda");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PARROT = createSpawnFluid("parrot");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PIG = createSpawnFluid("pig");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> RABBIT = createSpawnFluid("rabbit");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> VILLAGER = createSpawnFluid("villager");
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> WOLF = createSpawnFluid("wolf");
 
 
-    private static FluidEntry<VirtualFluid> createSpawnFluid(String target){
+    private static FluidEntry<ForgeFlowingFluid.Flowing> createSpawnFluid(String target){
         ResourceLocation flow = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_flow");
         ResourceLocation still = new ResourceLocation(CreateMechanicalSpawner.MODID,"fluid/spawn_fluid_" + target + "_still");
-        return REGISTRATE.virtualFluid(PREFIX + "_" + target,still, flow)
+
+        //return REGISTRATE.standardFluid(PREFIX + "_" + target,still, flow)
+        return REGISTRATE.standardFluid(PREFIX + "_" + target)
                 .lang("Spawn fluid " + target)
-
+                .properties(b -> b.viscosity(2000)
+                        .density(1400))
+                .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                        .tickRate(25)
+                        .slopeFindDistance(3)
+                        .explosionResistance(100f))
                 .tag(AllTags.forgeFluidTag("spawn_fluid"))
+                .source(ForgeFlowingFluid.Source::new) // TODO: remove when Registrate fixes FluidBuilder
                 .bucket()
+                .tag(AllTags.forgeItemTag("buckets/spawn_fluid"))
                 .build()
-
                 .register();
     }
 

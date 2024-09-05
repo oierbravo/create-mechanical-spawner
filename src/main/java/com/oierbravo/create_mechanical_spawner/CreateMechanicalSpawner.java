@@ -55,6 +55,7 @@ public class CreateMechanicalSpawner
         generateLangEntries();
     }
     private void generateLangEntries(){
+
         registrate().addRawLang("itemGroup.create_mechanical_spawner:main", "Create Mechanical Spawner");
         registrate().addRawLang("config.jade.plugin_create_mechanical_spawner.spawner_data", "Mechanical spawner data");
 
@@ -66,6 +67,13 @@ public class CreateMechanicalSpawner
         registrate().addRawLang("block.create_mechanical_spawner.mechanical_spawner.tooltip", "MECHANICAL SPAWNER");
         registrate().addRawLang("block.create_mechanical_spawner.mechanical_spawner.tooltip.summary", "Spawns _Mobs_ with spawn liquid.");
 
+
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.header", "Spawning living entities");
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.text_1", "The Spawner uses rotational force and special fluids to spawn entities");
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.text_2", "Its powered from the bottom");
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.text_3", "Fluid input can go in from any horizontal side");
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.text_4", "Spawn point can be configured");
+        registrate().addRawLang("create_mechanical_spawner.ponder.spawner.text_5", "A loot collector can be placed in the spawn point to automatically collect loot without spawning the entity");
 
     }
     private void doClientStuff(final FMLClientSetupEvent event) {

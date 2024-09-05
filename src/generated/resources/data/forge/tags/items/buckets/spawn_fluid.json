@@ -1,0 +1,31 @@
+{
+  "values": [
+    "create_mechanical_spawner:spawn_fluid_random_bucket",
+    "create_mechanical_spawner:spawn_fluid_blaze_bucket",
+    "create_mechanical_spawner:spawn_fluid_creeper_bucket",
+    "create_mechanical_spawner:spawn_fluid_drowned_bucket",
+    "create_mechanical_spawner:spawn_fluid_enderman_bucket",
+    "create_mechanical_spawner:spawn_fluid_evoker_bucket",
+    "create_mechanical_spawner:spawn_fluid_ghast_bucket",
+    "create_mechanical_spawner:spawn_fluid_magma_cube_bucket",
+    "create_mechanical_spawner:spawn_fluid_pigling_bucket",
+    "create_mechanical_spawner:spawn_fluid_skeleton_bucket",
+    "create_mechanical_spawner:spawn_fluid_slime_bucket",
+    "create_mechanical_spawner:spawn_fluid_spider_bucket",
+    "create_mechanical_spawner:spawn_fluid_witch_bucket",
+    "create_mechanical_spawner:spawn_fluid_wither_skeleton_bucket",
+    "create_mechanical_spawner:spawn_fluid_zombie_bucket",
+    "create_mechanical_spawner:spawn_fluid_bat_bucket",
+    "create_mechanical_spawner:spawn_fluid_bee_bucket",
+    "create_mechanical_spawner:spawn_fluid_cow_bucket",
+    "create_mechanical_spawner:spawn_fluid_chicken_bucket",
+    "create_mechanical_spawner:spawn_fluid_fox_bucket",
+    "create_mechanical_spawner:spawn_fluid_horse_bucket",
+    "create_mechanical_spawner:spawn_fluid_panda_bucket",
+    "create_mechanical_spawner:spawn_fluid_parrot_bucket",
+    "create_mechanical_spawner:spawn_fluid_pig_bucket",
+    "create_mechanical_spawner:spawn_fluid_rabbit_bucket",
+    "create_mechanical_spawner:spawn_fluid_villager_bucket",
+    "create_mechanical_spawner:spawn_fluid_wolf_bucket"
+  ]
+}

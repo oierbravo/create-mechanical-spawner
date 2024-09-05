@@ -1,4 +1,4 @@
-// 1.20.1	2024-08-24T23:02:45.289279226	Mechanical Spawner's spawner recipes.
+// 1.20.1	2024-09-05T17:35:58.064624273	Mechanical Spawner's spawner recipes.
 789502a22a157ea5fa3acd515b3dc0b5029d8def data/create_mechanical_spawner/recipes/spawner/bat.json
 110b3f307372e4636d3ba473d911b9e8a2a52029 data/create_mechanical_spawner/recipes/spawner/bee.json
 0c96de79245bd96e0320f5e85812f113054e2c80 data/create_mechanical_spawner/recipes/spawner/blaze.json
@@ -13,10 +13,11 @@ fc2c31be9a1ff3b8124c89f5d537f0099c47bd40 data/create_mechanical_spawner/recipes/
 175e2db2f84ee48041c77cd47fc8c6582f439500 data/create_mechanical_spawner/recipes/spawner/horse.json
 81545f603a5a2e5ca69ef434d40a0291c17f2309 data/create_mechanical_spawner/recipes/spawner/magma_cube.json
 33d49066d6e77bd5e5ff510de08a75aae199f192 data/create_mechanical_spawner/recipes/spawner/panda.json
+3e4a85ac89e590db3bb597f77a9082fc8f3332d3 data/create_mechanical_spawner/recipes/spawner/parrot.json
 8e54760af31e0f1c88182fca2516eff1e8b69faa data/create_mechanical_spawner/recipes/spawner/pig.json
-5764d5ccf1cd2c2f9d464b0a4e30caa4c87ff145 data/create_mechanical_spawner/recipes/spawner/piglin.json
+7683d69fca045911fe96144c89721dfaab2a3e79 data/create_mechanical_spawner/recipes/spawner/pigling.json
 4adca30d3353bda1e39515a546a4f01532e5e6c8 data/create_mechanical_spawner/recipes/spawner/rabbit.json
-c91b22c061dfc7a7ed8b90479ee19db3926041aa data/create_mechanical_spawner/recipes/spawner/random.json
+ec31c3023f2243300dc4eda4f0ec4256ea934ab2 data/create_mechanical_spawner/recipes/spawner/random.json
 0ad1f2f8039f57248e3add8d7137855975780792 data/create_mechanical_spawner/recipes/spawner/skeleton.json
 79c3bb3dfb5a48a1cd7d7956560b67e6f05cc493 data/create_mechanical_spawner/recipes/spawner/slime.json
 dfced71847df63ef9eb5b8d3d943670805bd5ea8 data/create_mechanical_spawner/recipes/spawner/spider.json

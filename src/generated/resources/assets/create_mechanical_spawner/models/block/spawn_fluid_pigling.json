@@ -1,0 +1,5 @@
+{
+  "textures": {
+    "particle": "create_mechanical_spawner:fluid/spawn_fluid_pigling_still"
+  }
+}

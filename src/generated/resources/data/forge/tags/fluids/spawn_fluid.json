@@ -44,6 +44,8 @@
     "create_mechanical_spawner:spawn_fluid_horse",
     "create_mechanical_spawner:flowing_spawn_fluid_panda",
     "create_mechanical_spawner:spawn_fluid_panda",
+    "create_mechanical_spawner:flowing_spawn_fluid_parrot",
+    "create_mechanical_spawner:spawn_fluid_parrot",
     "create_mechanical_spawner:flowing_spawn_fluid_pig",
     "create_mechanical_spawner:spawn_fluid_pig",
     "create_mechanical_spawner:flowing_spawn_fluid_rabbit",

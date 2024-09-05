@@ -34,6 +34,7 @@ entities = {
     "fox": "#ff9700",
     "horse": "#804c00",
     "panda": "#e5e5e5",
+    "parrot": "#ff0000",
     "pig": "#ff9acd",
     "rabbit": "#ff9acd",
     "villager": "#503600",

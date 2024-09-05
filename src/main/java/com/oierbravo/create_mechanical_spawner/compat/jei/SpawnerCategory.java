@@ -14,9 +14,12 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -37,6 +40,19 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
 
     public void setRecipe(IRecipeLayoutBuilder builder, SpawnerRecipe recipe, IFocusGroup focuses) {
         FluidIngredient fluidIngredient = recipe.getFluidIngredient();
+
+        List<ItemStack> invisibleIngredientsBuckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> new ItemStack(fluidStack.getFluid().getBucket())).toList();
+        List<Fluid> listFluids = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid()).toList();
+        List<ItemStack> buckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid().getFluidType().getBucket(fluidStack)).toList();
+        builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(invisibleIngredientsBuckets);
+        EntityType<?> mob = recipe.getMob();
+
+        if(mob != null) {
+            Level level = Minecraft.getInstance().level;
+            ItemStack egg = mob.create(level).getPickResult();
+            builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(egg);
+        }
+
         builder
             .addSlot(RecipeIngredientRole.INPUT, 15, 9)
             .setBackground(getRenderedSlot(), -1, -1)
@@ -65,9 +81,9 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
                     38 - mouseX,
                     80 - mouseY,
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
-            String text = mobEntity.getLootTable().toString();
-            guiGraphics.drawString(font, text, 20, 60, 8,false);
 
+            Component displayName = mobEntity.getDisplayName();
+            guiGraphics.drawString(font, displayName, 20, 60, 8,false);
             return;
         }
 
