@@ -18,7 +18,7 @@
   "results": [
     {
       "amount": 250,
-      "fluid": "create_mechanical_spawner:spawn_fluid_blaze"
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
     }
   ]
 }

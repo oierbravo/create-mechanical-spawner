@@ -18,8 +18,6 @@ public class SpawnerInstance  extends ShaftInstance<SpawnerBlockEntity> implemen
 
     @Override
     protected Instancer<RotatingData> getModel() {
-
-
         BlockState referenceState = blockState.rotate(blockEntity.getLevel(), blockEntity.getBlockPos(), Rotation.CLOCKWISE_180);
         return getRotatingMaterial().getModel(AllPartialModels.SHAFT_HALF, referenceState, Direction.DOWN);
     }

@@ -9,6 +9,7 @@ import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.material.MapColor;
 
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -26,6 +27,7 @@ public class ModBlocks {
             .properties(p -> p.mapColor(MapColor.METAL))
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.horizontalBlockProvider(false))
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(BlockStressDefaults.setImpact(SpawnerConfig.SPAWNER_STRESS_IMPACT.get()))
             .simpleItem()
             .register();

@@ -1,6 +1,7 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
+import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -13,13 +14,41 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerBlockEntity>, IWrenchable {
+    public static final VoxelShape SHAPE =new AllShapes.Builder(
+                Block.box(0, 0, 0, 16, 1, 16)
+            )
+            .add(
+                    new AllShapes.Builder(
+                            Block.box(1, 2, 1, 15, 15, 15)
+                    ).build()
+            )
+            .add(
+                    new AllShapes.Builder(
+                            Block.box(0, 16, 0, 16, 16, 16)
+                    ).build()
+            )
+            .build();
+
     public SpawnerBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        /*if (context instanceof EntityCollisionContext
+                && ((EntityCollisionContext) context).getEntity() instanceof Player)
+            return SHAPE;*/
+
+
+        return SHAPE;
     }
 
     @Override

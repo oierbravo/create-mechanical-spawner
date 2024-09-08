@@ -28,7 +28,7 @@ public class CreateMixingRecipeGen extends RecipeProvider {
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
 
         /* Base Spawn Fluid */
-        createSpawnFluid("random_legacy",ModFluids.BLAZE.get(),250)
+        createSpawnFluid("random_legacy",ModFluids.RANDOM.get(),250)
                 .require(Fluids.WATER,250)
                 .require(Tags.Items.RODS_BLAZE)
                 .require(Tags.Items.ENDER_PEARLS)
