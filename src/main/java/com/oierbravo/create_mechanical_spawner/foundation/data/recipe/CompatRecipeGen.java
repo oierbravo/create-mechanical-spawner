@@ -37,4 +37,8 @@ public class CompatRecipeGen extends RecipeProvider {
 
 
     }
+    @Override
+    public final String getName() {
+        return "Mechanical Spawner's Compat recipes.";
+    }
 }
