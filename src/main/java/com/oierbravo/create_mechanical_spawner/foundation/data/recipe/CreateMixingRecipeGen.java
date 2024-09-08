@@ -181,7 +181,7 @@ public class CreateMixingRecipeGen extends RecipeProvider {
                 .require(Tags.Items.BONES)
                 .build(pWriter);
     }
-    private ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, ForgeFlowingFluid virtualFluid, int pAmount){
+    static ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, ForgeFlowingFluid virtualFluid, int pAmount){
         ResourceLocation recipeId = CreateMechanicalSpawner.asResource("spawn_fluid_" + id);
 
         FluidStack fluidStack = new FluidStack(virtualFluid.getSource(), pAmount);

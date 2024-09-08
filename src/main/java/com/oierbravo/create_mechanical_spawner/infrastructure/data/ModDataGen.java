@@ -1,5 +1,6 @@
 package com.oierbravo.create_mechanical_spawner.infrastructure.data;
 
+import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.CompatRecipeGen;
 import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.CraftingRecipeGen;
 import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.CreateMixingRecipeGen;
 import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.SpawnerRecipeGen;
@@ -17,6 +18,7 @@ public class ModDataGen {
             generator.addProvider(true, new SpawnerRecipeGen(output));
             generator.addProvider(true, new CraftingRecipeGen(output));
             generator.addProvider(true, new CreateMixingRecipeGen(output));
+            generator.addProvider(true, new CompatRecipeGen(output));
         }
     }
 }

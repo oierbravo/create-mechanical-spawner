@@ -185,6 +185,10 @@ dependencies {
         runtimeOnly fg.deobf("cc.tweaked:cc-tweaked-${cc_tweaked_minecraft_version}-forge:${cc_tweaked_version}")
     }
 
+    if (enchantment_industry_enable.toBoolean()) {
+        implementation fg.deobf("curse.maven:create-enchantment-industry-688768:${enchantment_industry_id}")
+    }
+
 
     if (System.getProperty('idea.sync.active') != 'true') {
         annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"

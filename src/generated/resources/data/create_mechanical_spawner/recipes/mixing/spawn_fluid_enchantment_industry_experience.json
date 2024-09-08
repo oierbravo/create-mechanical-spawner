@@ -1,0 +1,29 @@
+{
+  "type": "create:mixing",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create_enchantment_industry"
+    }
+  ],
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "amount": 500,
+      "fluid": "create_enchantment_industry:experience",
+      "nbt": {}
+    },
+    {
+      "amount": 500,
+      "fluid": "minecraft:water",
+      "nbt": {}
+    }
+  ],
+  "processingTime": 250,
+  "results": [
+    {
+      "amount": 1000,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
+    }
+  ]
+}
