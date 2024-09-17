@@ -179,6 +179,7 @@ public class CreateMixingRecipeGen extends RecipeProvider {
         createSpawnFluid("wolf",ModFluids.WOLF.get(),250)
                 .require(ModFluids.RANDOM.get(),100)
                 .require(Tags.Items.BONES)
+                .require(Items.PORKCHOP)
                 .build(pWriter);
     }
     static ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, ForgeFlowingFluid virtualFluid, int pAmount){

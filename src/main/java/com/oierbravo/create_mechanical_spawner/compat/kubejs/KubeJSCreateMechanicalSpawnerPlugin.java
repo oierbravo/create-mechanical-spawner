@@ -6,8 +6,6 @@ import dev.latvian.mods.kubejs.recipe.schema.RegisterRecipeSchemasEvent;
 
 public class KubeJSCreateMechanicalSpawnerPlugin extends KubeJSPlugin {
 
-
-    //@Override
     @Override
     public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
         event.register(SpawnerRecipe.Serializer.ID, SpawnerRecipeSchema.SCHEMA);

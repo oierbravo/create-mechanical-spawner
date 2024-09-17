@@ -5,6 +5,9 @@
       "tag": "forge:bones"
     },
     {
+      "item": "minecraft:porkchop"
+    },
+    {
       "amount": 100,
       "fluid": "create_mechanical_spawner:spawn_fluid_random",
       "nbt": {}
