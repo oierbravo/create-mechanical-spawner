@@ -6,9 +6,10 @@ import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipeTypes;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
-import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
+import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.ChatFormatting;
@@ -27,7 +28,8 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
@@ -160,7 +162,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
     }
 
     private boolean checkRequirements(SpawnerRecipe recipe) {
-        if(SpawnerConfig.LOOT_COLLECTOR_REQUIRED.get() && !isSpawnPosBlockLootCollector())
+        if(!isSpawnPosBlockLootCollector())
             return false;
         if(recipe != null && recipe.getFluidAmount() > fluidTank.getFluidAmount())
             return false;
@@ -224,11 +226,15 @@ public class SpawnerBlockEntity extends KineticBlockEntity {
 
     private boolean isSpawnPosBlockLootCollector() {
         assert level != null;
-
-        if(level.getBlockEntity(getSpawnPos()) == null)
+        BlockEntity spawnPosBlockEntity = level.getBlockEntity(getSpawnPos());
+        if(spawnPosBlockEntity == null)
             return false;
+
         if(SpawnerConfig.ALLOW_ANY_CONTAINER_FOR_LOOT_COLLECTOR.get())
-            return level.getBlockEntity(getSpawnPos()).getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
+            return spawnPosBlockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
+        if(level.getBlockState(getSpawnPos()).getBlock() instanceof ItemVaultBlock
+            && SpawnerConfig.ALLOW_CREATE_ITEM_VAULT_FOR_LOOT_COLLECTOR.get())
+            return true;
         if(level.getBlockState(getSpawnPos()).getBlock() instanceof LootCollectorBlock)
             return true;
         return false;

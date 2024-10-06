@@ -8,8 +8,10 @@ public class SpawnerConfig {
     public static ForgeConfigSpec.IntValue SPAWNER_LIQUID_CAPACITY;
     public static ForgeConfigSpec.IntValue SPAWNER_MAX_RANGE;
     public static ForgeConfigSpec.BooleanValue ALLOW_ANY_CONTAINER_FOR_LOOT_COLLECTOR;
+    public static ForgeConfigSpec.BooleanValue ALLOW_CREATE_ITEM_VAULT_FOR_LOOT_COLLECTOR;
     public static ForgeConfigSpec.BooleanValue LOOT_COLLECTOR_REQUIRED;
     public static ForgeConfigSpec.IntValue LOOT_COLLECTOR_CAPACITY;
+    //public static ForgeConfigSpec.BooleanValue LOOT_COLLECTOR_ALTERNATIVE_LOOT_ENABLED;
 
     public static void registerCommonConfig(ForgeConfigSpec.Builder COMMON_BUILDER) {
         COMMON_BUILDER.comment("Settings for the mechanical spawner").push("mechanical_spawner");
@@ -26,7 +28,10 @@ public class SpawnerConfig {
                 .comment("Max range")
                 .defineInRange("maxRange", 2, 1, 6);
         ALLOW_ANY_CONTAINER_FOR_LOOT_COLLECTOR = COMMON_BUILDER
-                .comment("Loot collector capacity in stacks")
+                .comment("Allow any container as loot collector")
+                .define("allowAnyContainerLootCollector", false);
+        ALLOW_CREATE_ITEM_VAULT_FOR_LOOT_COLLECTOR = COMMON_BUILDER
+                .comment("Allow Create Item Vault as loot collector")
                 .define("allowAnyContainerLootCollector", false);
         LOOT_COLLECTOR_REQUIRED = COMMON_BUILDER
                 .comment("Forces to require a loot collector for the spawner to work.")
@@ -34,6 +39,10 @@ public class SpawnerConfig {
         LOOT_COLLECTOR_CAPACITY = COMMON_BUILDER
                 .comment("Loot collector capacity in stacks")
                 .defineInRange("lootCollectorCapacity", 8, 1, 16);
+        /*LOOT_COLLECTOR_ALTERNATIVE_LOOT_ENABLED = COMMON_BUILDER
+                .comment("Enables alternative loot for spawner recipes.")
+                .define("lootCollectorAlternativeLootEnabled", true);
+*/
         COMMON_BUILDER.pop();
     }
 }
