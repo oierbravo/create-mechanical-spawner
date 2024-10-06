@@ -56,7 +56,7 @@ public class SpawnerRecipeGen extends RecipeProvider {
 
         create("ghast")
                 .withMob(SpawnerRecipeOutput.of("minecraft:ghast"))
-                .withFluid(ModFluids.ENDERMAN.get(),100)
+                .withFluid(ModFluids.GHAST.get(),100)
                 .withProcessingTime(5000)
                 .save(pWriter);
 

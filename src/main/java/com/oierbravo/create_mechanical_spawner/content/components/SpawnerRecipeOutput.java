@@ -24,10 +24,9 @@ public class SpawnerRecipeOutput {
     }
 
     public static SpawnerRecipeOutput fromJson(String mob) {
-        if(mob == null)
+        if(mob == null || mob.equals("random"))
             return new SpawnerRecipeOutput();
-        if(mob.equals("random"))
-            return new SpawnerRecipeOutput();
+
         ResourceLocation mobResourceLocation = new ResourceLocation(mob);
         EntityType<?> mobEntity = ForgeRegistries.ENTITY_TYPES.getValue(mobResourceLocation);
         if(mobEntity == null)

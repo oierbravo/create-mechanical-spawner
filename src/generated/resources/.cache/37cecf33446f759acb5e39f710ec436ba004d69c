@@ -1,4 +1,4 @@
-// 1.20.1	2024-09-17T21:45:01.334633705	Mechanical Spawner's mixer recipes.
+// 1.20.1	2024-10-06T19:15:15.465851793	Mechanical Spawner's mixer recipes.
 5535b4b5d97a7fc8d241bc85e700011d255716cf data/create_mechanical_spawner/recipes/mixing/spawn_fluid_bat.json
 b87da36a0c003744e734036102add77ee5059eb9 data/create_mechanical_spawner/recipes/mixing/spawn_fluid_bee.json
 36cdcd819935444a4b3fa6817888671e993e9894 data/create_mechanical_spawner/recipes/mixing/spawn_fluid_blaze.json
@@ -23,6 +23,6 @@ e48383a2e297ed57c4d5b51bf47812656a3a13ff data/create_mechanical_spawner/recipes/
 83e2e35738d453469b71cc5f83c1f60940cc5f7e data/create_mechanical_spawner/recipes/mixing/spawn_fluid_spider.json
 bed425480ba9124b5b151deb2c35f34cd0ccdb0f data/create_mechanical_spawner/recipes/mixing/spawn_fluid_villager.json
 fb043071099b5852cedae4d696bba6a8cd4c1fc3 data/create_mechanical_spawner/recipes/mixing/spawn_fluid_witch.json
-cf36e247d703ea4773510935cbbd7f594f8d329c data/create_mechanical_spawner/recipes/mixing/spawn_fluid_wither_skeleton.json
+df71c24194557c0eeef3c36d8d6b64d51945e3f5 data/create_mechanical_spawner/recipes/mixing/spawn_fluid_wither_skeleton.json
 a3561ca9c9b15831d2047e848b06fe3218caa232 data/create_mechanical_spawner/recipes/mixing/spawn_fluid_wolf.json
 3cceb389bb859528bcfdb9b50d1eaa764e92454e data/create_mechanical_spawner/recipes/mixing/spawn_fluid_zombie.json

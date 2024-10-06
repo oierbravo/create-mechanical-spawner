@@ -2,7 +2,7 @@
   "type": "create_mechanical_spawner:spawner",
   "fluid": {
     "amount": 100,
-    "fluid": "create_mechanical_spawner:spawn_fluid_enderman",
+    "fluid": "create_mechanical_spawner:spawn_fluid_ghast",
     "nbt": {}
   },
   "mob": "minecraft:ghast",

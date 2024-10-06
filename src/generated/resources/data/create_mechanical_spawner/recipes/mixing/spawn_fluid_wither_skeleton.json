@@ -3,7 +3,7 @@
   "heatRequirement": "superheated",
   "ingredients": [
     {
-      "tag": "forge:ores/coal"
+      "item": "minecraft:coal"
     },
     {
       "tag": "forge:bones"

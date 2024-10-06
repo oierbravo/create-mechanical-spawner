@@ -1,4 +1,4 @@
-// 1.20.1	2024-09-05T17:35:58.064624273	Mechanical Spawner's spawner recipes.
+// 1.20.1	2024-10-06T19:15:15.463839182	Mechanical Spawner's spawner recipes.
 789502a22a157ea5fa3acd515b3dc0b5029d8def data/create_mechanical_spawner/recipes/spawner/bat.json
 110b3f307372e4636d3ba473d911b9e8a2a52029 data/create_mechanical_spawner/recipes/spawner/bee.json
 0c96de79245bd96e0320f5e85812f113054e2c80 data/create_mechanical_spawner/recipes/spawner/blaze.json
@@ -9,7 +9,7 @@ daf59dc64bd0294c7da4e4adb6ce92a3f933610e data/create_mechanical_spawner/recipes/
 fc2c31be9a1ff3b8124c89f5d537f0099c47bd40 data/create_mechanical_spawner/recipes/spawner/enderman.json
 8a566d45ac9b743c51b9e83e826148fa7cbdc8de data/create_mechanical_spawner/recipes/spawner/evoker.json
 6142e6ad394a838f02be9a2535a3e166d1d31831 data/create_mechanical_spawner/recipes/spawner/fox.json
-454327978baa49537001bf8662e17fef3df42e3e data/create_mechanical_spawner/recipes/spawner/ghast.json
+faebe98e6c21b70e68e0cbea2c0d0b6d4d2936a4 data/create_mechanical_spawner/recipes/spawner/ghast.json
 175e2db2f84ee48041c77cd47fc8c6582f439500 data/create_mechanical_spawner/recipes/spawner/horse.json
 81545f603a5a2e5ca69ef434d40a0291c17f2309 data/create_mechanical_spawner/recipes/spawner/magma_cube.json
 33d49066d6e77bd5e5ff510de08a75aae199f192 data/create_mechanical_spawner/recipes/spawner/panda.json

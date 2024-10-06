@@ -105,7 +105,7 @@ public class CreateMixingRecipeGen extends RecipeProvider {
 
         createSpawnFluid("wither_skeleton",ModFluids.WITHER_SKELETON.get(),250)
                 .require(ModFluids.RANDOM.get(),100)
-                .require(Tags.Items.ORES_COAL)
+                .require(Items.COAL)
                 .require(Tags.Items.BONES)
                 .requiresHeat(HeatCondition.SUPERHEATED)
                 .duration(500)
