@@ -44,13 +44,12 @@ body:
             placeholder: Windows 11
         validations:
             required: true
-    -   type: dropdown
+
+    -   type: input
         attributes:
             label: Mod Version
             description: The version of the mod you were using when the bug occured
-            options:
-                - "0.0.9.c-36"
-                - "0.0.8.b-36"
+            placeholder: "0.0.17.h-48"
         validations:
             required: true
     -   type: dropdown
