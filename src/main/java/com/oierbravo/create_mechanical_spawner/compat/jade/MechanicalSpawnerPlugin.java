@@ -19,6 +19,6 @@ public class MechanicalSpawnerPlugin implements IWailaPlugin {
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(new ProgressComponentProvider(), SpawnerBlock.class);
+      registration.registerBlockComponent(new ProgressComponentProvider(), SpawnerBlock.class);
     }
 }

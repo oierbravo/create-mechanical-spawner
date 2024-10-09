@@ -2,7 +2,10 @@ package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.google.gson.JsonObject;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipeTypes;
+import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
+import com.simibubi.create.foundation.utility.Pair;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -40,6 +43,17 @@ public class SpawnerRecipeBuilder {
         params.processingTime = processingTime;
         return this;
     }
+    public SpawnerRecipeBuilder withCustomLoot(NonNullList<ProcessingOutput> customLoot){
+        this.params.customLoot = customLoot;
+        return this;
+    }
+    public SpawnerRecipeBuilder withCustomLoot(ProcessingOutput output) {
+        this.params.customLoot.add(output);
+        return this;
+    }
+    public SpawnerRecipeBuilder withCustomLoot(float chance, ResourceLocation registryName, int amount) {
+        return this.withCustomLoot(new ProcessingOutput(Pair.of(registryName, amount), chance));
+    }
     public SpawnerRecipe save(){
         return new SpawnerRecipe(params);
     }
@@ -59,11 +73,16 @@ public class SpawnerRecipeBuilder {
         protected FluidIngredient fluidIngredient;
         protected SpawnerRecipeOutput mob;
         protected int processingTime;
+
+        protected NonNullList<ProcessingOutput> customLoot;
+
+
         protected SpawnerRecipeParams(ResourceLocation id) {
             this.id = id;
             mob = null;
             fluidIngredient = FluidIngredient.EMPTY;
             processingTime = 200;
+            customLoot = NonNullList.create();
         }
 
     }
@@ -87,7 +106,7 @@ public class SpawnerRecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return ModRecipeTypes.EXTRUDING_SERIALIZER.get();
+            return ModRecipeTypes.SPAWNER_SERIALIZER.get();
         }
 
         @Nullable

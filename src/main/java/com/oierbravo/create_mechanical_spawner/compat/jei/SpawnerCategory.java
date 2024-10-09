@@ -1,9 +1,11 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
+import com.oierbravo.create_mechanical_spawner.content.components.SpawnerConfig;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
 import mezz.jei.api.forge.ForgeTypes;
@@ -47,10 +49,29 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(invisibleIngredientsBuckets);
         EntityType<?> mob = recipe.getMob();
 
-        if(mob != null) {
+        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get();
+
+        if(mob != null && !useCustomLoot) {
             Level level = Minecraft.getInstance().level;
             ItemStack egg = mob.create(level).getPickResult();
             builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(egg);
+        }
+        if(useCustomLoot){
+            List<ProcessingOutput> customLoot = recipe.getCustomLoot();
+            boolean single = customLoot.size() == 1;
+            int i = 0;
+            for (ProcessingOutput output : customLoot) {
+                int xOffset = i % 2 == 0 ? 0 : 19;
+                int yOffset = (i / 2) * -19;
+
+                builder
+                        .addSlot(RecipeIngredientRole.OUTPUT, single ? 139 : 133 + xOffset, 27 + yOffset)
+                        .setBackground(getRenderedSlot(output), -1, -1)
+                        .addItemStack(output.getStack())
+                        .addTooltipCallback(addStochasticTooltip(output));
+
+                i++;
+            }
         }
 
         builder
@@ -73,22 +94,45 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         Level level = Minecraft.getInstance().level;
         EntityType<?> mob = recipe.getMob();
 
-        if(mob != null){
+        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get();
+
+
+        if(mob != null && !useCustomLoot) {
             assert level != null;
             LivingEntity mobEntity = (LivingEntity) mob.create(level);
+            assert mobEntity != null;
+            String id = mobEntity.getEncodeId();
 
-            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F,
+            assert id != null;
+            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F * getMobScaleModifier(id),
                     38 - mouseX,
                     80 - mouseY,
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
 
             Component displayName = mobEntity.getDisplayName();
-            guiGraphics.drawString(font, displayName, 20, 60, 8,false);
+            guiGraphics.drawString(font, displayName, 20, 60, 8, false);
             return;
         }
 
-        String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
 
-        guiGraphics.drawString(font, text, 80, 60, 8, false);
+        if(!useCustomLoot) {
+            String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
+            guiGraphics.drawString(font, text, 80, 60, 8, false);
+        }
     }
+    private void drawMob(){
+
+    }
+
+    private float getMobScaleModifier(String mobId){
+        return switch (mobId) {
+            case "minecraft:ghast":
+                yield .25f;
+            case "minecraft:enderman":
+                yield .9f;
+            default:
+                yield 1f;
+        };
+    }
+
 }

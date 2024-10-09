@@ -59,6 +59,7 @@ public class CreateMechanicalSpawner
         registrate().addRawLang("itemGroup.create_mechanical_spawner:main", "Create Mechanical Spawner");
         registrate().addRawLang("config.jade.plugin_create_mechanical_spawner.spawner_data", "Mechanical spawner data");
 
+        //registrate().addRawLang("create_mechanical_spawner.recipe.allow_alternative_loot", "Alternative Loot for collector enabled.");
         registrate().addRawLang("create_mechanical_spawner.recipe.spawner", "Spawner recipe");
         registrate().addRawLang("create_mechanical_spawner.generic.biome_dependant", "Biome dependant");
         registrate().addRawLang("create_mechanical_spawner.spawner.tooltip.with_loot_collector", "Loot collector found!");
