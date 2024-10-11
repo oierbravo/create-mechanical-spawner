@@ -7,15 +7,17 @@ This mod it's meant to be used in modpacks.
 
 
 ## Features
-- Spawn liquid
-- Biome dependant random generation
-- Configurable stress
-- Configurable minimum speed
-- Configurable fluid capacity
-- Spawn liquid recipe.
+- Random Spawn fluid
+  - Biome dependant random generation
+- Specific liquid for Mobs
+- Configurable:
+  - Stress
+  - Minimum speed
+  - Fluid capacity
+  - Spawn point max range
+- Spawn fluid mixer recipes.
 - JEI & Jade integration
 - KubeJS integration
-- Specific liquid for Mobs
 - Ponder scene
 - Loot collector block
   - Configurable to allow any container or Create Item Vault.
