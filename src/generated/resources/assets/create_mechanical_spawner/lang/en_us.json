@@ -32,6 +32,7 @@
   "block.create_mechanical_spawner.spawn_fluid_zombie": "Spawn Fluid Zombie",
   "config.jade.plugin_create_mechanical_spawner.spawner_data": "Mechanical spawner data",
   "create_mechanical_spawner.generic.biome_dependant": "Biome dependant",
+  "create_mechanical_spawner.generic.with_custom_loot": "Custom loot with loot collector",
   "create_mechanical_spawner.ponder.spawner.header": "Spawning living entities",
   "create_mechanical_spawner.ponder.spawner.text_1": "The Spawner uses rotational force and special fluids to spawn entities",
   "create_mechanical_spawner.ponder.spawner.text_2": "Its powered from the bottom",

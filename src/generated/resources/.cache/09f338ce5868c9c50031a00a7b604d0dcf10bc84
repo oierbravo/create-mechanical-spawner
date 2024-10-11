@@ -1,4 +1,4 @@
-// 1.20.1	2024-09-05T17:35:58.065696073	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-10-12T00:15:18.585521422	Registrate Provider for create_mechanical_spawner [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 0654077e6129ff2b200f5ef7cb8a055d533ac327 assets/create_mechanical_spawner/blockstates/loot_collector.json
 73476c3a8640a85836f7d7f3876278a180ba7409 assets/create_mechanical_spawner/blockstates/mechanical_spawner.json
 26a9e3acba098210a8bb09f5b5d9beace64b1eef assets/create_mechanical_spawner/blockstates/spawn_fluid_bat.json
@@ -28,8 +28,8 @@ e11ce7806d7bc601b78962bbd9e6ae3ba857f6e8 assets/create_mechanical_spawner/blocks
 bfd32466ce26c3e00522aa163bb0faca35565cc6 assets/create_mechanical_spawner/blockstates/spawn_fluid_wither_skeleton.json
 a639721ffada10a624beb9043a0fd975d58b6f50 assets/create_mechanical_spawner/blockstates/spawn_fluid_wolf.json
 8d9cd4e67898aae967c7564acb9f523db2d198d5 assets/create_mechanical_spawner/blockstates/spawn_fluid_zombie.json
-428066676e5c8b77b50c9d8047c60793818e5ceb assets/create_mechanical_spawner/lang/en_ud.json
-c6725314db4ca746e2ed9eca9597d36e1bf1223d assets/create_mechanical_spawner/lang/en_us.json
+10bbb7295e79a00fbb12a60bb09a72a4f39f7ecf assets/create_mechanical_spawner/lang/en_ud.json
+2160d41fb64bdc73d9d412bb6fe306fcc9ac3f8f assets/create_mechanical_spawner/lang/en_us.json
 cefa6cf9810063df7ffbb48b966298bb19cd0ff1 assets/create_mechanical_spawner/models/block/loot_collector.json
 ec4a753ad421169ca7ee85b184d1a8fd9318bebb assets/create_mechanical_spawner/models/block/spawn_fluid_bat.json
 77f8a315d8effe9ae4a091d237ae73bd3f4d9de3 assets/create_mechanical_spawner/models/block/spawn_fluid_bee.json

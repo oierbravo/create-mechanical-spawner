@@ -97,7 +97,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get();
 
 
-        if(mob != null && !useCustomLoot) {
+        if(mob != null) {
             assert level != null;
             LivingEntity mobEntity = (LivingEntity) mob.create(level);
             assert mobEntity != null;
@@ -110,14 +110,20 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
 
             Component displayName = mobEntity.getDisplayName();
-            guiGraphics.drawString(font, displayName, 20, 60, 8, false);
+            guiGraphics.drawString(font, displayName, 20, 57, 8, false);
+
+            if(useCustomLoot){
+                String customLoottext = ModLang.translate("generic.with_custom_loot").string();
+                guiGraphics.drawString(font, customLoottext, 20, 65, 8, false);
+            }
+
             return;
         }
 
 
         if(!useCustomLoot) {
             String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
-            guiGraphics.drawString(font, text, 80, 60, 8, false);
+            guiGraphics.drawString(font, text, 80, 57, 8, false);
         }
     }
     private void drawMob(){

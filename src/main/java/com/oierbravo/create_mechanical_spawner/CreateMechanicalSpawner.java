@@ -62,6 +62,7 @@ public class CreateMechanicalSpawner
         //registrate().addRawLang("create_mechanical_spawner.recipe.allow_alternative_loot", "Alternative Loot for collector enabled.");
         registrate().addRawLang("create_mechanical_spawner.recipe.spawner", "Spawner recipe");
         registrate().addRawLang("create_mechanical_spawner.generic.biome_dependant", "Biome dependant");
+        registrate().addRawLang("create_mechanical_spawner.generic.with_custom_loot", "Custom loot with loot collector");
         registrate().addRawLang("create_mechanical_spawner.spawner.tooltip.with_loot_collector", "Loot collector found!");
         registrate().addRawLang("create_mechanical_spawner.spawner.tooltip.progress", "Progress: %d%%");
         registrate().addRawLang("create_mechanical_spawner.spawner.scrollValue.label", "Spawn at height (in blocks)");

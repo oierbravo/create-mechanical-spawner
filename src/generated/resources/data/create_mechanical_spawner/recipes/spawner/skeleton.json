@@ -1,5 +1,6 @@
 {
   "type": "create_mechanical_spawner:spawner",
+  "customLoot": [],
   "fluid": {
     "amount": 100,
     "fluid": "create_mechanical_spawner:spawn_fluid_skeleton",
