@@ -320,7 +320,10 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         if(isSpawnPosBlockLootCollector()){
             fillCollector(level,getRecipe().get(), getSpawnPos() );
         } else {
-            LivingEntityHelper.spawnLivingEntity(level,getRecipe().get().getMob(), getSpawnPos() );
+            Optional<SpawnerRecipe> recipe = getRecipe();
+            if (recipe.isPresent()) {
+                LivingEntityHelper.spawnLivingEntity(level,recipe.get().getMob(), getSpawnPos() );
+            }
         }
 
         sendData();
