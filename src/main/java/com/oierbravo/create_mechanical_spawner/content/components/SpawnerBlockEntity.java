@@ -317,11 +317,11 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
 
         fluidTank.drain(getRecipe().get().getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
 
-        if(isSpawnPosBlockLootCollector()){
-            fillCollector(level,getRecipe().get(), getSpawnPos() );
-        } else {
-            Optional<SpawnerRecipe> recipe = getRecipe();
-            if (recipe.isPresent()) {
+        Optional<SpawnerRecipe> recipe = getRecipe();
+        if (recipe.isPresent()) {
+            if(isSpawnPosBlockLootCollector()){
+                fillCollector(level,recipe.get(), getSpawnPos() );
+            } else {
                 LivingEntityHelper.spawnLivingEntity(level,recipe.get().getMob(), getSpawnPos() );
             }
         }
