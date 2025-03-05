@@ -68,7 +68,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
                         .addSlot(RecipeIngredientRole.OUTPUT, single ? 139 : 133 + xOffset, 27 + yOffset)
                         .setBackground(getRenderedSlot(output), -1, -1)
                         .addItemStack(output.getStack())
-                        .addTooltipCallback(addStochasticTooltip(output));
+                        .addRichTooltipCallback(addStochasticTooltip(output));
 
                 i++;
             }
@@ -78,7 +78,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             .addSlot(RecipeIngredientRole.INPUT, 15, 9)
             .setBackground(getRenderedSlot(), -1, -1)
             .addIngredients(ForgeTypes.FLUID_STACK, withImprovedVisibility(fluidIngredient.getMatchingFluidStacks()))
-            .addTooltipCallback(addFluidTooltip(fluidIngredient.getRequiredAmount()));
+            .addRichTooltipCallback(addFluidTooltip(fluidIngredient.getRequiredAmount()));
 
     }
 

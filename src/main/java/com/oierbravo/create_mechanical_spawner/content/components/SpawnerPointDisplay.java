@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllKeys;
 import com.simibubi.create.AllSpecialTextures;
-import com.simibubi.create.CreateClient;
+import net.createmod.catnip.outliner.Outliner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +25,7 @@ public class SpawnerPointDisplay {
         public Entry(SpawnerBlockEntity be) {
             this.be = be;
             timer = DISPLAY_TIME;
-            CreateClient.OUTLINER.showCluster(getOutlineKey(), createSelection(be))
+            Outliner.getInstance().showCluster(getOutlineKey(), createSelection(be))
                     .colored(0xFFFFFF)
                     //.disableNormals()
                     .lineWidth(1 / 16f)
@@ -84,7 +84,7 @@ public class SpawnerPointDisplay {
             SpawnerPointDisplay.Entry entry = entries.get(pos);
             if (tickEntry(entry, hasWrench))
                 iterator.remove();
-            CreateClient.OUTLINER.keep(entry.getOutlineKey());
+            Outliner.getInstance().keep(entry.getOutlineKey());
         }
 
         for (Iterator<SpawnerPointDisplay.GroupEntry> iterator = groupEntries.iterator(); iterator.hasNext();) {
@@ -94,7 +94,7 @@ public class SpawnerPointDisplay {
                 if (group == lastHoveredGroup)
                     lastHoveredGroup = null;
             }
-            CreateClient.OUTLINER.keep(group.getOutlineKey());
+            Outliner.getInstance().keep(group.getOutlineKey());
         }
 
         if (!hasWrench)
@@ -159,9 +159,9 @@ public class SpawnerPointDisplay {
             GroupEntry hoveredGroup = new GroupEntry(spawner);
 
             for (SpawnerBlockEntity included : hoveredGroup.includedBEs)
-                CreateClient.OUTLINER.remove(included.getBlockPos());
+                Outliner.getInstance().remove(included.getBlockPos());
 
-            groupEntries.forEach(entry -> CreateClient.OUTLINER.remove(entry.getOutlineKey()));
+            groupEntries.forEach(entry -> Outliner.getInstance().remove(entry.getOutlineKey()));
             groupEntries.clear();
             entries.clear();
             groupEntries.add(hoveredGroup);
@@ -171,7 +171,7 @@ public class SpawnerPointDisplay {
         BlockPos pos = spawner.getBlockPos();
         GroupEntry entry = getExistingGroupForPos(pos);
         if (entry != null)
-            CreateClient.OUTLINER.remove(entry.getOutlineKey());
+            Outliner.getInstance().remove(entry.getOutlineKey());
 
         groupEntries.clear();
         entries.clear();
