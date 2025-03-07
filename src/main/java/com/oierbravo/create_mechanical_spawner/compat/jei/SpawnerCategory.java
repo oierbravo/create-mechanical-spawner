@@ -10,6 +10,8 @@ import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
 import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
+import mezz.jei.api.gui.ingredient.IRecipeSlotView;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -22,6 +24,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -77,11 +80,17 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         builder
             .addSlot(RecipeIngredientRole.INPUT, 15, 9)
             .setBackground(getRenderedSlot(), -1, -1)
-            .addIngredients(ForgeTypes.FLUID_STACK, withImprovedVisibility(fluidIngredient.getMatchingFluidStacks()))
-            .addRichTooltipCallback(addFluidTooltip(fluidIngredient.getRequiredAmount()));
-
+            .addIngredients(ForgeTypes.FLUID_STACK, fluidIngredient.getMatchingFluidStacks())
+            .addRichTooltipCallback(SpawnerCategory::addFluidAmountTooltip);
     }
+    private static void addFluidAmountTooltip(IRecipeSlotView recipeSlotView, ITooltipBuilder tooltip){
+        Optional<FluidStack> displayed = recipeSlotView.getDisplayedIngredient(ForgeTypes.FLUID_STACK);
+        if (displayed.isEmpty())
+            return;
 
+        FluidStack fluidStack = displayed.get();
+        tooltip.add(Component.literal(fluidStack.getAmount() + "mB"));
+    }
     public LivingEntity getDisplayedMob() {
         return randomMobCycleTimer.getCycledLivingEntity(displayedMobs);
     }
