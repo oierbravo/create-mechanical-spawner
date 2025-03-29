@@ -33,6 +33,7 @@
   "config.jade.plugin_create_mechanical_spawner.spawner_data": "ɐʇɐp ɹǝuʍɐds ןɐɔıuɐɥɔǝW",
   "create_mechanical_spawner.generic.biome_dependant": "ʇuɐpuǝdǝp ǝɯoıᗺ",
   "create_mechanical_spawner.generic.with_custom_loot": "ɹoʇɔǝןןoɔ ʇooן ɥʇıʍ ʇooן ɯoʇsnƆ",
+  "create_mechanical_spawner.itemGroup.create_mechanical_spawner:main": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW ǝʇɐǝɹƆ",
   "create_mechanical_spawner.ponder.spawner.header": "sǝıʇıʇuǝ buıʌıן buıuʍɐdS",
   "create_mechanical_spawner.ponder.spawner.text_1": "sǝıʇıʇuǝ uʍɐds oʇ spınןɟ ןɐıɔǝds puɐ ǝɔɹoɟ ןɐuoıʇɐʇoɹ sǝsn ɹǝuʍɐdS ǝɥ⟘",
   "create_mechanical_spawner.ponder.spawner.text_2": "ɯoʇʇoq ǝɥʇ ɯoɹɟ pǝɹǝʍod sʇI",
@@ -96,6 +97,5 @@
   "item.create_mechanical_spawner.spawn_fluid_witch_bucket": "ʇǝʞɔnᗺ ɥɔʇıM pınןℲ uʍɐdS",
   "item.create_mechanical_spawner.spawn_fluid_wither_skeleton_bucket": "ʇǝʞɔnᗺ uoʇǝןǝʞS ɹǝɥʇıM pınןℲ uʍɐdS",
   "item.create_mechanical_spawner.spawn_fluid_wolf_bucket": "ʇǝʞɔnᗺ ɟןoM pınןℲ uʍɐdS",
-  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "ʇǝʞɔnᗺ ǝıqɯoZ pınןℲ uʍɐdS",
-  "itemGroup.create_mechanical_spawner:main": "ɹǝuʍɐdS ןɐɔıuɐɥɔǝW ǝʇɐǝɹƆ"
+  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "ʇǝʞɔnᗺ ǝıqɯoZ pınןℲ uʍɐdS"
 }

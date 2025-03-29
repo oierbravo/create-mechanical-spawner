@@ -1,8 +1,13 @@
 package com.oierbravo.create_mechanical_spawner.foundation.utility;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
+import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
 import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -14,21 +19,22 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraftforge.common.util.FakePlayer;
+import net.neoforged.neoforge.common.util.FakePlayer;
 
 import java.util.List;
 import java.util.Optional;
 
 public class LivingEntityHelper {
-    public static void spawnLivingEntity(Level level, EntityType<?> entity, BlockPos pos) {
+    public static void spawnLivingEntity(Level level, ResourceKey<EntityType<?>> entityKey, BlockPos pos) {
         if(level.isClientSide){
             return;
         }
-
-        if(entity == null ) {
+        if(entityKey == null){
             spawnRandomLivingEntity(level, pos);
             return;
         }
+
+        EntityType<?> entity = BuiltInRegistries.ENTITY_TYPE.get(entityKey);
         Entity entitySpawn;
         try {
             entitySpawn = entity.create(level);
@@ -73,15 +79,15 @@ public class LivingEntityHelper {
             }
         }
     }
-    /*public static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){
-        assert SpawnerBlockEntity.level != null && !SpawnerBlockEntity.level.isClientSide;
+    public static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){
+        assert SpawnerBlockEntity.getLevel() != null && !SpawnerBlockEntity.getLevel().isClientSide;
 
         int offset = SpawnerBlockEntity.getScrollValueBehaviour() ;
 
         BlockPos currentSpawnPos = SpawnerBlockEntity.getBlockPos().relative(Direction.Axis.Y, offset);
 
         Level level = SpawnerBlockEntity.getLevel();
-        Optional<MobSpawnSettings.SpawnerData> spawn = SpawnerBlockEntity.level.getBiome(SpawnerBlockEntity.getBlockPos()).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
+        Optional<MobSpawnSettings.SpawnerData> spawn = SpawnerBlockEntity.getLevel().getBiome(SpawnerBlockEntity.getBlockPos()).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
         if(spawn.isPresent()){
             SpawnGroupData spawngroupdata = null;
 
@@ -98,31 +104,33 @@ public class LivingEntityHelper {
                 return false;
             }
 
-            //if (net.minecraftforge.common.ForgeHooks.canEntitySpawn(mob, level, (double)currentSpawnPos.getX() + 0.51, currentSpawnPos.getY()+ 0.51, (double)currentSpawnPos.getZ() + 0.51, null, MobSpawnType.TRIGGERED) == -1) return false;
             if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
                 level.addFreshEntity(mob);
                 return true;
             }
         }
         return false;
-    }*/
-    public static Entity createEntity(ServerLevel pLevel, EntityType<?> pEntityType, BlockPos pPos){
-        Entity entity;
-        if(pEntityType == null){
-            Optional<MobSpawnSettings.SpawnerData> spawn = pLevel.getBiome(pPos).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(pLevel.getRandom());
-            try {
-                entity = spawn.get().type.create(pLevel);
-                return entity;
-            } catch (Exception exception) {
-                CreateMechanicalSpawner.LOGGER.warn("Failed to create random mob", (Throwable)exception);
-                return null;
-            }
+    }
+    public static Entity createEntity(ServerLevel pLevel, ResourceKey<EntityType<?>> pEntityKey, BlockPos pPos){
+
+        if(pEntityKey == null){
+            return createRandomEntity(pLevel, pPos);
         }
+        EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(pEntityKey);
+
         try {
-            entity = pEntityType.create(pLevel);
-            return entity;
+            return entityType.create(pLevel);
         } catch (Exception exception) {
             CreateMechanicalSpawner.LOGGER.warn("Failed to create mob", (Throwable)exception);
+            return null;
+        }
+    }
+    private static Entity createRandomEntity(ServerLevel pLevel, BlockPos pPos){
+        Optional<MobSpawnSettings.SpawnerData> spawn = pLevel.getBiome(pPos).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(pLevel.getRandom());
+        try {
+            return spawn.get().type.create(pLevel);
+        } catch (Exception exception) {
+            CreateMechanicalSpawner.LOGGER.warn("Failed to create random mob", (Throwable)exception);
             return null;
         }
     }
@@ -130,24 +138,24 @@ public class LivingEntityHelper {
         if (!(entity instanceof Mob mob))
             return List.of();
 
-        ResourceLocation resourceLocation = mob.getLootTable();
+        ResourceLocation resourceLocation = mob.getLootTable().location();
+        ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, resourceLocation);
 
         FakePlayer fakePlayer = new DeployerFakePlayer(pLevel, pFakePlayer.getUUID());
         DamageSource damageSource = pLevel.damageSources().playerAttack(fakePlayer);
 
         LootParams.Builder builder = new LootParams.Builder(pLevel);
         builder.withParameter(LootContextParams.ORIGIN, pSpawnPos.getCenter());
-        //builder.withLuck(fakePlayer.getLuck())
         builder.withLuck(3)
                 .withParameter(LootContextParams.THIS_ENTITY, entity).withParameter(LootContextParams.ORIGIN, entity.position())
                 .withParameter(LootContextParams.DAMAGE_SOURCE, damageSource)
-                .withOptionalParameter(LootContextParams.KILLER_ENTITY, fakePlayer)
-                .withOptionalParameter(LootContextParams.DIRECT_KILLER_ENTITY, damageSource.getDirectEntity());
+                .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, fakePlayer)
+                .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, damageSource.getDirectEntity());
         builder = builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer);
 
         LootParams params = builder.create(LootContextParamSet.builder().build());
 
-        LootTable table = pLevel.getServer().getLootData().getLootTable(resourceLocation);
+        LootTable table = pLevel.getServer().reloadableRegistries().getLootTable(lootTableKey);
 
         return table.getRandomItems(params);
     }

@@ -1,5 +1,6 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
+import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -43,11 +43,6 @@ public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerB
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        /*if (context instanceof EntityCollisionContext
-                && ((EntityCollisionContext) context).getEntity() instanceof Player)
-            return SHAPE;*/
-
-
         return SHAPE;
     }
 
@@ -82,7 +77,7 @@ public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerB
 
     @Override
     public SpeedLevel getMinimumRequiredSpeedLevel() {
-        return SpeedLevel.of(SpawnerConfig.SPAWNER_MINIMUM_SPEED.get().floatValue());
+        return SpeedLevel.of(MConfigs.server().spawner.minimumSpeed.getF());
     }
 
     @Override
@@ -94,10 +89,6 @@ public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerB
         }
     }
 
-    @Override
-    public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
-        return false;
-    }
     @Override
     public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(worldIn, pos, state, placer, stack);

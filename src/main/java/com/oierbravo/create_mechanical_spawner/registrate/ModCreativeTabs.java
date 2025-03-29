@@ -1,33 +1,24 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
-import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
+import com.oierbravo.create_mechanical_spawner.ModConstants;
+import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.simibubi.create.AllCreativeModeTabs;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCreativeTabs {
 
     private static final DeferredRegister<CreativeModeTab> TAB_REGISTER =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateMechanicalSpawner.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ModConstants.MODID);
 
-    public static final RegistryObject<CreativeModeTab> MAIN_TAB = TAB_REGISTER.register("main",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = TAB_REGISTER.register("main",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.create_mechanical_spawner:main"))
+                    .title(ModLang.translate("itemGroup.create_mechanical_spawner:main").component())
                     .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
                     .icon(ModBlocks.MECHANICAL_SPAWNER::asStack)
-                    .displayItems((pParameters, pOutput) -> {
-                        for (RegistryEntry<Item> entry : CreateMechanicalSpawner.REGISTRATE.getAll(Registries.ITEM)) {
-                            pOutput.accept(entry.get());
-                        }
-                    })
                     .build());
 
     public static void register(IEventBus modEventBus) {

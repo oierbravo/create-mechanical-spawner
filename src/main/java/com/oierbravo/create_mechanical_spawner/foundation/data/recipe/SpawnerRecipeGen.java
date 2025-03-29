@@ -1,194 +1,199 @@
 package com.oierbravo.create_mechanical_spawner.foundation.data.recipe;
 
-import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipeBuilder;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipeOutput;
+import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
+import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipeBuilder;
+import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipeOutput;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
+import com.oierbravo.mechanicals.foundation.data.AbstractMechanicalRecipeGenerator;
+import com.simibubi.create.AllItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.RecipeOutput;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
-public class SpawnerRecipeGen extends RecipeProvider {
-    public SpawnerRecipeGen(PackOutput output) {
-        super(output);
+import static com.oierbravo.create_mechanical_spawner.ModConstants.MODID;
+
+public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerRecipeBuilder> {
+    public SpawnerRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String namespace, String recipeTypeId, Supplier<SpawnerRecipeBuilder> builderSupplier, String displayName) {
+        super(output, registries, namespace, recipeTypeId, builderSupplier,displayName);
+    }
+
+    public SpawnerRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        this(output, registries,
+                MODID,
+                SpawnerRecipe.Type.ID,
+                SpawnerRecipeBuilder::new,
+                "Mechanical Spawner recipes"
+        );
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
+    protected void buildRecipes(RecipeOutput recipeOutput) {
         /* Random Spawner */
-        create("random")
-                .withFluid(ModFluids.RANDOM.get(),100)
-                .withProcessingTime(1500)
-                .save(pWriter);
+       create("random")
+                .require(ModFluids.RANDOM.get(),100)
+                .processingTime(1500)
+                .save(recipeOutput);
 
         /* Hostile Spawner */
         create("blaze")
-                .withMob(SpawnerRecipeOutput.of("minecraft:blaze"))
-                .withFluid(ModFluids.BLAZE.get(),100)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:blaze"))
+                .require(ModFluids.BLAZE.get(),100)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("creeper")
-                .withMob(SpawnerRecipeOutput.of("minecraft:creeper"))
-                .withFluid(ModFluids.CREEPER.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:creeper"))
+                .require(ModFluids.CREEPER.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("drowned")
-                .withMob(SpawnerRecipeOutput.of("minecraft:drowned"))
-                .withFluid(ModFluids.DROWNED.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:drowned"))
+                .require(ModFluids.DROWNED.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("enderman")
-                .withMob(SpawnerRecipeOutput.of("minecraft:enderman"))
-                .withFluid(ModFluids.ENDERMAN.get(),100)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:enderman"))
+                .require(ModFluids.ENDERMAN.get(),100)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("evoker")
-                .withMob(SpawnerRecipeOutput.of("minecraft:evoker"))
-                .withFluid(ModFluids.EVOKER.get(),500)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:evoker"))
+                .require(ModFluids.EVOKER.get(),500)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("ghast")
-                .withMob(SpawnerRecipeOutput.of("minecraft:ghast"))
-                .withFluid(ModFluids.GHAST.get(),100)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:ghast"))
+                .require(ModFluids.GHAST.get(),100)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("magma_cube")
-                .withMob(SpawnerRecipeOutput.of("minecraft:magma_cube"))
-                .withFluid(ModFluids.MAGMA_CUBE.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:magma_cube"))
+                .require(ModFluids.MAGMA_CUBE.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("pigling")
-                .withMob(SpawnerRecipeOutput.of("minecraft:pigling"))
-                .withFluid(ModFluids.PIGLING.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:pigling"))
+                .require(ModFluids.PIGLING.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("skeleton")
-                .withMob(SpawnerRecipeOutput.of("minecraft:skeleton"))
-                .withFluid(ModFluids.SKELETON.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:skeleton"))
+                .require(ModFluids.SKELETON.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("slime")
-                .withMob(SpawnerRecipeOutput.of("minecraft:slime"))
-                .withFluid(ModFluids.SLIME.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:slime"))
+                .require(ModFluids.SLIME.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("spider")
-                .withMob(SpawnerRecipeOutput.of("minecraft:spider"))
-                .withFluid(ModFluids.SPIDER.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:spider"))
+                .require(ModFluids.SPIDER.get(),100)
+                .processingTime(2500)
+                .withCustomLoot(1f, AllItems.ANDESITE_ALLOY.getId(),1)
+                .save(recipeOutput);
 
         create("witch")
-                .withMob(SpawnerRecipeOutput.of("minecraft:witch"))
-                .withFluid(ModFluids.WITCH.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:witch"))
+                .require(ModFluids.WITCH.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("wither_skeleton")
-                .withMob(SpawnerRecipeOutput.of("minecraft:wither_skeleton"))
-                .withFluid(ModFluids.WITHER_SKELETON.get(),200)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:wither_skeleton"))
+                .require(ModFluids.WITHER_SKELETON.get(),200)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("zombie")
-                .withMob(SpawnerRecipeOutput.of("minecraft:zombie"))
-                .withFluid(ModFluids.ZOMBIE.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:zombie"))
+                .require(ModFluids.ZOMBIE.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         /* Friendly Spawner */
         create("bat")
-                .withMob(SpawnerRecipeOutput.of("minecraft:bat"))
-                .withFluid(ModFluids.BAT.get(),100)
-                .withProcessingTime(1000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:bat"))
+                .require(ModFluids.BAT.get(),100)
+                .processingTime(1000)
+                .save(recipeOutput);
 
         create("bee")
-                .withMob(SpawnerRecipeOutput.of("minecraft:bee"))
-                .withFluid(ModFluids.BEE.get(),100)
-                .withProcessingTime(2000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:bee"))
+                .require(ModFluids.BEE.get(),100)
+                .processingTime(2000)
+                .save(recipeOutput);
 
         create("chicken")
-                .withMob(SpawnerRecipeOutput.of("minecraft:chicken"))
-                .withFluid(ModFluids.CHICKEN.get(),100)
-                .withProcessingTime(1000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:chicken"))
+                .require(ModFluids.CHICKEN.get(),100)
+                .processingTime(1000)
+                .save(recipeOutput);
 
         create("cow")
-                .withMob(SpawnerRecipeOutput.of("minecraft:cow"))
-                .withFluid(ModFluids.COW.get(),100)
-                .withProcessingTime(2500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:cow"))
+                .require(ModFluids.COW.get(),100)
+                .processingTime(2500)
+                .save(recipeOutput);
 
         create("fox")
-                .withMob(SpawnerRecipeOutput.of("minecraft:fox"))
-                .withFluid(ModFluids.FOX.get(),100)
-                .withProcessingTime(3000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:fox"))
+                .require(ModFluids.FOX.get(),100)
+                .processingTime(3000)
+                .save(recipeOutput);
 
         create("horse")
-                .withMob(SpawnerRecipeOutput.of("minecraft:horse"))
-                .withFluid(ModFluids.HORSE.get(),100)
-                .withProcessingTime(2000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:horse"))
+                .require(ModFluids.HORSE.get(),100)
+                .processingTime(2000)
+                .save(recipeOutput);
 
         create("panda")
-                .withMob(SpawnerRecipeOutput.of("minecraft:panda"))
-                .withFluid(ModFluids.PANDA.get(),100)
-                .withProcessingTime(4000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:panda"))
+                .require(ModFluids.PANDA.get(),100)
+                .processingTime(4000)
+                .save(recipeOutput);
 
         create("parrot")
-                .withMob(SpawnerRecipeOutput.of("minecraft:parrot"))
-                .withFluid(ModFluids.PARROT.get(),100)
-                .withProcessingTime(1500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:parrot"))
+                .require(ModFluids.PARROT.get(),100)
+                .processingTime(1500)
+                .save(recipeOutput);
 
         create("pig")
-                .withMob(SpawnerRecipeOutput.of("minecraft:pig"))
-                .withFluid(ModFluids.PIG.get(),100)
-                .withProcessingTime(1500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:pig"))
+                .require(ModFluids.PIG.get(),100)
+                .processingTime(1500)
+                .save(recipeOutput);
 
         create("rabbit")
-                .withMob(SpawnerRecipeOutput.of("minecraft:rabbit"))
-                .withFluid(ModFluids.RABBIT.get(),100)
-                .withProcessingTime(1000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:rabbit"))
+                .require(ModFluids.RABBIT.get(),100)
+                .processingTime(1000)
+                .save(recipeOutput);
 
         create("villager")
-                .withMob(SpawnerRecipeOutput.of("minecraft:villager"))
-                .withFluid(ModFluids.VILLAGER.get(),100)
-                .withProcessingTime(5000)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:villager"))
+                .require(ModFluids.VILLAGER.get(),100)
+                .processingTime(5000)
+                .save(recipeOutput);
 
         create("wolf")
-                .withMob(SpawnerRecipeOutput.of("minecraft:wolf"))
-                .withFluid(ModFluids.WOLF.get(),100)
-                .withProcessingTime(1500)
-                .save(pWriter);
+                .output(SpawnerRecipeOutput.of("minecraft:wolf"))
+                .require(ModFluids.WOLF.get(),100)
+                .processingTime(1500)
+                .save(recipeOutput);
     }
-
-    private SpawnerRecipeBuilder create(String id){
-        return new SpawnerRecipeBuilder(CreateMechanicalSpawner.asResource("spawner/" + id));
-    }
-
-    @Override
-    public final String getName() {
-        return "Mechanical Spawner's spawner recipes.";
-    }
-
 }

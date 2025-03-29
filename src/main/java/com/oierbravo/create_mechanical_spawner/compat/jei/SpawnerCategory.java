@@ -1,30 +1,39 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
+import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerConfig;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRecipe;
+import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
+import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
+import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
+import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
+import com.simibubi.create.compat.jei.EmptyBackground;
+import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
-import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -35,6 +44,21 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
     private final RandomMobCycleTimer randomMobCycleTimer;
     private List<LivingEntity> displayedMobs = List.of();
     private List<Optional<EntityType<?>>> allMobs = List.of();
+
+    public final static ResourceLocation UID = ModConstants.asResource(SpawnerRecipe.Type.ID);
+    public final static RecipeType<SpawnerRecipe> TYPE = new mezz.jei.api.recipe.RecipeType<>(UID, SpawnerRecipe.class);
+
+    public final static CreateRecipeCategory.Info<SpawnerRecipe> INFO = new CreateRecipeCategory.Info<>(
+            TYPE,
+            ModLang.translate("recipe." + SpawnerRecipe.Type.ID).component(),
+            new EmptyBackground(177, 100),
+            new ItemIcon(() -> new ItemStack(ModBlocks.MECHANICAL_SPAWNER.asItem())),
+            ModRecipes::getAllHolders,
+            List.of(
+                    ModBlocks.MECHANICAL_SPAWNER::asStack
+            )
+    );
+
 
     public SpawnerCategory(Info<SpawnerRecipe> info) {
         super(info);
@@ -50,13 +74,14 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         List<Fluid> listFluids = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid()).toList();
         List<ItemStack> buckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid().getFluidType().getBucket(fluidStack)).toList();
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(invisibleIngredientsBuckets);
-        EntityType<?> mob = recipe.getMob();
+        ResourceKey<EntityType<?>> mobKey = recipe.getMob();
 
-        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get();
+        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && MConfigs.server().spawner.customLootPerSpawnRecipeEnabled.get();
 
-        if(mob != null && !useCustomLoot) {
+        if(mobKey != null && !useCustomLoot) {
             Level level = Minecraft.getInstance().level;
-            ItemStack egg = mob.create(level).getPickResult();
+            EntityType<?> entity = BuiltInRegistries.ENTITY_TYPE.get(mobKey);
+            ItemStack egg = entity.create(level).getPickResult();
             builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(egg);
         }
         if(useCustomLoot){
@@ -80,11 +105,11 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         builder
             .addSlot(RecipeIngredientRole.INPUT, 15, 9)
             .setBackground(getRenderedSlot(), -1, -1)
-            .addIngredients(ForgeTypes.FLUID_STACK, fluidIngredient.getMatchingFluidStacks())
+            .addIngredients(NeoForgeTypes.FLUID_STACK, fluidIngredient.getMatchingFluidStacks())
             .addRichTooltipCallback(SpawnerCategory::addFluidAmountTooltip);
     }
     private static void addFluidAmountTooltip(IRecipeSlotView recipeSlotView, ITooltipBuilder tooltip){
-        Optional<FluidStack> displayed = recipeSlotView.getDisplayedIngredient(ForgeTypes.FLUID_STACK);
+        Optional<FluidStack> displayed = recipeSlotView.getDisplayedIngredient(NeoForgeTypes.FLUID_STACK);
         if (displayed.isEmpty())
             return;
 
@@ -101,14 +126,18 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         AllGuiTextures.JEI_DOWN_ARROW.render(guiGraphics, 43, 4);
         spawner.draw(guiGraphics, 48, 27);
         Level level = Minecraft.getInstance().level;
-        EntityType<?> mob = recipe.getMob();
-
-        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get();
 
 
-        if(mob != null) {
+        ResourceKey<EntityType<?>> mobKey = recipe.getMob();
+
+        boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && MConfigs.server().spawner.customLootPerSpawnRecipeEnabled.get();
+
+
+        if(mobKey != null) {
+            EntityType<?> entity = BuiltInRegistries.ENTITY_TYPE.get(mobKey);
+
             assert level != null;
-            LivingEntity mobEntity = (LivingEntity) mob.create(level);
+            LivingEntity mobEntity = (LivingEntity) entity.create(level);
             assert mobEntity != null;
             String id = mobEntity.getEncodeId();
 

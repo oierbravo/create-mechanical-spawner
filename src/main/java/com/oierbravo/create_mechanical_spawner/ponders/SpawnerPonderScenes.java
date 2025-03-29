@@ -12,7 +12,7 @@ import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class SpawnerPonderScenes {
     public static void spawner(SceneBuilder builder, SceneBuildingUtil util) {
@@ -73,7 +73,7 @@ public class SpawnerPonderScenes {
                 .placeNearTarget();
         FluidStack spawnFluid = new FluidStack(ModFluids.ENDERMAN.get().getSource(),1000);
         scene.world().modifyBlockEntity(spawnerPos, SpawnerBlockEntity.class,
-                ms -> ms.getFluidTank().setFluid(spawnFluid));
+                ms -> ms.getInputTank().setFluid(spawnFluid));
         scene.idle(60);
 
         scene.addKeyframe();

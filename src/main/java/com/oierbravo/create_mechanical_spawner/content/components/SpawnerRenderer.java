@@ -2,7 +2,7 @@ package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.simibubi.create.AllPartialModels;
+import com.oierbravo.mechanicals.MechanicalPartials;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.render.CachedBuffers;
@@ -27,7 +27,7 @@ public class SpawnerRenderer extends KineticBlockEntityRenderer<SpawnerBlockEnti
          VertexConsumer vb = buffer.getBuffer(RenderType.solid());
          BlockState blockState = pBlockEntity.getBlockState();
 
-         SuperByteBuffer superBuffer = CachedBuffers.partialFacing(AllPartialModels.SHAFT_HALF, blockState, Direction.DOWN);
+         SuperByteBuffer superBuffer = CachedBuffers.partialFacing(MechanicalPartials.SHAFT_QUARTER, blockState, Direction.DOWN);
          standardKineticRotationTransform(superBuffer, pBlockEntity, light).renderInto(pPoseStack, vb);
 
      }

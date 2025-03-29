@@ -1,16 +1,16 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.oierbravo.create_mechanical_spawner.content.components.HalfShaftVisual;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRenderer;
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlockEntity;
+import com.oierbravo.mechanicals.foundation.visual.QuarterShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 public class ModBlockEntities {
     public static final BlockEntityEntry<SpawnerBlockEntity> MECHANICAL_SPAWNER = CreateMechanicalSpawner.registrate()
             .blockEntity("mechanical_spawner", SpawnerBlockEntity::new)
-            .visual(() -> HalfShaftVisual::bottomHalfShaft)
+            .visual(() -> QuarterShaftVisual::bottom)
             .validBlocks(ModBlocks.MECHANICAL_SPAWNER)
             .renderer(() -> SpawnerRenderer::new)
             .register();

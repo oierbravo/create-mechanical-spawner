@@ -28,7 +28,6 @@ public class RenderHelper {
         livingEntity.yHeadRot = livingEntity.getYRot();
         livingEntity.yHeadRotO = livingEntity.getYRot();
 
-        poseStack.translate(0.0F, livingEntity.getMyRidingOffset(), 0.0F);
         EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
         entityRenderDispatcher.overrideCameraOrientation(new Quaternionf(0.0F, 0.0F, 0.0F, 1.0F));
         entityRenderDispatcher.setRenderShadow(false);
