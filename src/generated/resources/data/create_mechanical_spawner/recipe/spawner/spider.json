@@ -1,10 +1,5 @@
 {
   "type": "create_mechanical_spawner:spawner",
-  "customLoot": [
-    {
-      "id": "create:andesite_alloy"
-    }
-  ],
   "input": {
     "type": "fluid_stack",
     "amount": 100,

@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-29T03:34:56.793996511	Mechanical Spawner recipes recipes.
+// 1.21.1	2025-03-29T04:11:15.365924279	Mechanical Spawner recipes recipes.
 8b5b37aef2bb465b8305a6424ddf0e21bd76b9ac data/create_mechanical_spawner/advancement/recipes/spawner/bat.json
 e86d94ca9a38a3365b1561464844c374a00545a7 data/create_mechanical_spawner/advancement/recipes/spawner/bee.json
 abe719ada7387e0efbc9f0ddd2d0f331c835f041 data/create_mechanical_spawner/advancement/recipes/spawner/blaze.json
@@ -47,7 +47,7 @@ c0b802f5f023a7a4f60acd3878c50463a90a6525 data/create_mechanical_spawner/recipe/s
 ec95cf81d32f866217b3081c04438ef31711b9e6 data/create_mechanical_spawner/recipe/spawner/random.json
 bb279b16036d237d0f368b1ad234d98e9e69dea7 data/create_mechanical_spawner/recipe/spawner/skeleton.json
 3931caa986b1a8ca0b066e5452feb42fe8aa7902 data/create_mechanical_spawner/recipe/spawner/slime.json
-881a80495c00b9cbc26d475de3d53cb898b4bb1f data/create_mechanical_spawner/recipe/spawner/spider.json
+5fe05ad52a51985c271b0e04eed239cb26722432 data/create_mechanical_spawner/recipe/spawner/spider.json
 03238c9db91983623401fcc647ed8be2a4af852f data/create_mechanical_spawner/recipe/spawner/villager.json
 f1a957dede6366466e83b58395977396d1d0e71f data/create_mechanical_spawner/recipe/spawner/witch.json
 453dedb13bd474ddf5827f91029b4caec0fc6a3d data/create_mechanical_spawner/recipe/spawner/wither_skeleton.json

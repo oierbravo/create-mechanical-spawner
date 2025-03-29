@@ -5,7 +5,6 @@ import com.oierbravo.create_mechanical_spawner.content.components.recipe.Spawner
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipeOutput;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
 import com.oierbravo.mechanicals.foundation.data.AbstractMechanicalRecipeGenerator;
-import com.simibubi.create.AllItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -102,7 +101,6 @@ public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerR
                 .output(SpawnerRecipeOutput.of("minecraft:spider"))
                 .require(ModFluids.SPIDER.get(),100)
                 .processingTime(2500)
-                .withCustomLoot(1f, AllItems.ANDESITE_ALLOY.getId(),1)
                 .save(recipeOutput);
 
         create("witch")
