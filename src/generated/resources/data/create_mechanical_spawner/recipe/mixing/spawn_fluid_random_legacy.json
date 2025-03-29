@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "tag": "c:rods/blaze"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 250,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "amount": 250,
+      "id": "create_mechanical_spawner:spawn_fluid_random"
+    }
+  ]
+}

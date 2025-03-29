@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
+    }
+  ],
+  "processing_time": 500,
+  "results": [
+    {
+      "amount": 250,
+      "id": "create_mechanical_spawner:spawn_fluid_wither_skeleton"
+    }
+  ]
+}

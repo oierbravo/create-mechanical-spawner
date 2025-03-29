@@ -1,0 +1,15 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "customLoot": [
+    {
+      "id": "create:andesite_alloy"
+    }
+  ],
+  "input": {
+    "type": "fluid_stack",
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_spider"
+  },
+  "output": "minecraft:spider",
+  "processing_time": 2500
+}

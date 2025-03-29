@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "input": {
+    "type": "fluid_stack",
+    "amount": 100,
+    "fluid": "create_mechanical_spawner:spawn_fluid_bat"
+  },
+  "output": "minecraft:bat",
+  "processing_time": 1000
+}

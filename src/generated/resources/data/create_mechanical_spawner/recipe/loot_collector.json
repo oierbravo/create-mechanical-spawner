@@ -1,0 +1,30 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/brass"
+    },
+    "C": {
+      "tag": "c:barrels/wooden"
+    },
+    "I": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "tag": "c:plates/brass"
+    }
+  },
+  "pattern": [
+    "BSSSB",
+    "BIIIB",
+    "BICIB",
+    "BIIIB",
+    "BSSSB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_mechanical_spawner:loot_collector"
+  }
+}

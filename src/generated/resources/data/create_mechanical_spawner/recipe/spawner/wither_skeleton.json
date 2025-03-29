@@ -1,0 +1,10 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "input": {
+    "type": "fluid_stack",
+    "amount": 200,
+    "fluid": "create_mechanical_spawner:spawn_fluid_wither_skeleton"
+  },
+  "output": "minecraft:wither_skeleton",
+  "processing_time": 5000
+}

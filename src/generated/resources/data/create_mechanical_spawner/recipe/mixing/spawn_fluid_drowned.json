@@ -1,0 +1,25 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "amount": 250,
+      "id": "create_mechanical_spawner:spawn_fluid_drowned"
+    }
+  ]
+}

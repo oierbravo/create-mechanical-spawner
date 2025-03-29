@@ -1,0 +1,33 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/brass"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "H": {
+      "item": "create:shaft"
+    },
+    "I": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "tag": "c:plates/brass"
+    }
+  },
+  "pattern": [
+    "BSSSB",
+    "BIIIB",
+    "BIEIB",
+    "BIIIB",
+    "BSHSB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_mechanical_spawner:mechanical_spawner"
+  }
+}

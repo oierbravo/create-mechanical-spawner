@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "c:slimeballs"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "amount": 250,
+      "id": "create_mechanical_spawner:spawn_fluid_slime"
+    }
+  ]
+}
