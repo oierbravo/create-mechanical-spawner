@@ -201,7 +201,7 @@ publishMods {
     modLoaders.add("neoforge")
 
     var cfToken = System.getenv("CF_TOKEN")
-    /*if(cfToken != null) {
+    if(cfToken != null) {
         curseforge {
             accessToken = providers.environmentVariable("CF_TOKEN")
             projectId = "${curseforge_id}"
@@ -209,7 +209,7 @@ publishMods {
             clientRequired = true
             serverRequired = true
             requires("create")
-            optional("jei", "kubejs")
+            optional("jei")
 
         }
     }
@@ -220,8 +220,8 @@ publishMods {
             projectId = "${modrinth_id}"
             minecraftVersions.add(minecraft_version)
             requires("create")
-            optional("jei", "kubejs")
+            optional("jei")
         }
-    }*/
+    }
 }
 
