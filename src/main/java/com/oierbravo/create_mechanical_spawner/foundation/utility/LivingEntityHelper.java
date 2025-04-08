@@ -1,10 +1,8 @@
 package com.oierbravo.create_mechanical_spawner.foundation.utility;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
 import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -79,38 +77,7 @@ public class LivingEntityHelper {
             }
         }
     }
-    public static boolean spawnLivingEntity(SpawnerBlockEntity SpawnerBlockEntity){
-        assert SpawnerBlockEntity.getLevel() != null && !SpawnerBlockEntity.getLevel().isClientSide;
 
-        int offset = SpawnerBlockEntity.getScrollValueBehaviour() ;
-
-        BlockPos currentSpawnPos = SpawnerBlockEntity.getBlockPos().relative(Direction.Axis.Y, offset);
-
-        Level level = SpawnerBlockEntity.getLevel();
-        Optional<MobSpawnSettings.SpawnerData> spawn = SpawnerBlockEntity.getLevel().getBiome(SpawnerBlockEntity.getBlockPos()).value().getMobSettings().getMobs(MobCategory.MONSTER).getRandom(level.getRandom());
-        if(spawn.isPresent()){
-            SpawnGroupData spawngroupdata = null;
-
-            Entity entity;
-            try {
-                entity = spawn.get().type.create(level);
-            } catch (Exception exception) {
-                CreateMechanicalSpawner.LOGGER.warn("Failed to create mob", (Throwable)exception);
-                return false;
-            }
-            assert entity != null;
-            entity.moveTo( (double)currentSpawnPos.getX() + 0.51, currentSpawnPos.getY(), (double)currentSpawnPos.getZ() + 0.51, level.getRandom().nextFloat() * 360.0F, 0.0F);
-            if (!(entity instanceof Mob mob)) {
-                return false;
-            }
-
-            if (mob.checkSpawnRules(level, MobSpawnType.TRIGGERED) && mob.checkSpawnObstruction(level)) {
-                level.addFreshEntity(mob);
-                return true;
-            }
-        }
-        return false;
-    }
     public static Entity createEntity(ServerLevel pLevel, ResourceKey<EntityType<?>> pEntityKey, BlockPos pPos){
 
         if(pEntityKey == null){
@@ -156,7 +123,6 @@ public class LivingEntityHelper {
         LootParams params = builder.create(LootContextParamSet.builder().build());
 
         LootTable table = pLevel.getServer().reloadableRegistries().getLootTable(lootTableKey);
-
         return table.getRandomItems(params);
     }
 

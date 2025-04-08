@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_fox"
   },
   "output": "minecraft:fox",
-  "processing_time": 3000
+  "processingTime": 3000
 }

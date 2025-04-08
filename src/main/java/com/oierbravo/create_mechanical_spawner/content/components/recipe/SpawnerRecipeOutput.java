@@ -23,11 +23,7 @@ public class SpawnerRecipeOutput {
         this.mob = null;
     }
 
-    /*public static SpawnerRecipeOutput of(ResourceKey<EntityType<?>> mobEntity){
-        return new SpawnerRecipeOutput(mobEntity);
-    }*/
     public static SpawnerRecipeOutput of(EntityType<?> mobEntity){
-        //return of(mobEntity.builtInRegistryHolder().value());
         return new SpawnerRecipeOutput(mobEntity.builtInRegistryHolder().key());
     }
     public static SpawnerRecipeOutput of(String id){

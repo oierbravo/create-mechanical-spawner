@@ -14,7 +14,13 @@ import org.joml.Quaternionf;
 public class RenderHelper {
     public static void renderEntity(GuiGraphics guiGraphics, int x, int y, double scale, double yaw, double pitch, LivingEntity livingEntity) {
         if (livingEntity.level() == null) return;
-
+        float entityHeight = livingEntity.getType().getHeight();
+        if(entityHeight > 2 && entityHeight < 3){
+            scale = scale *  (2 / entityHeight);
+        }
+        if(entityHeight > 3){
+            scale = scale *  (1 / entityHeight);
+        }
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate((float) x, (float) y, 50f);

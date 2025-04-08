@@ -1,4 +1,4 @@
-package com.oierbravo.create_mechanical_spawner.ponders;
+package com.oierbravo.create_mechanical_spawner.ponders.scenes;
 
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
@@ -14,7 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class SpawnerPonderScenes {
+public class SpawnerScene {
     public static void spawner(SceneBuilder builder, SceneBuildingUtil util) {
         CreateSceneBuilder scene = new CreateSceneBuilder(builder);
         scene.title("spawner", "Spawning living entities");

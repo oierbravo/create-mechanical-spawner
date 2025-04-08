@@ -7,8 +7,8 @@ import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
+import com.oierbravo.mechanicals.compat.jade.IHavePercent;
 import com.oierbravo.mechanicals.foundation.blockEntity.behaviour.DynamicCycleBehavior;
-import com.oierbravo.mechanicals.jade.IHavePercent;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
@@ -43,7 +43,10 @@ import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING;
 
@@ -283,7 +286,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
     @Override
     public int getProcessingTime() {
         if(getRecipe().isEmpty())
-            return 0;
+            return 1;
         return getRecipe().get().getProcessingTime();
     }
     private boolean checkRequirements(SpawnerRecipe recipe) {
@@ -295,12 +298,16 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
     }
     @Override
     public boolean tryProcess(boolean simulate) {
-        if(getRecipe().isEmpty())
+        if(!isSpeedRequirementFulfilled())
             return false;
 
+        Optional<SpawnerRecipe> optionalSpawnerRecipe = getRecipe();
+        if(optionalSpawnerRecipe.isEmpty())
+            return false;
+        SpawnerRecipe spawnerRecipe = optionalSpawnerRecipe.get();
         /*if(!checkLootCollector())
             return false;*/
-        if (inputTank.getPrimaryHandler().getFluidAmount() < getRecipe().get().getFluidAmount())
+        if (inputTank.getPrimaryHandler().getFluidAmount() < spawnerRecipe.getFluidAmount())
             return false;
         if(!isSpawnableBlockPos())
             return false;
@@ -310,15 +317,15 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         if(this.level != null && this.level.isClientSide())
             return true;
 
-        inputTank.getPrimaryHandler().drain(getRecipe().get().getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
 
-        Optional<SpawnerRecipe> recipe = getRecipe();
-        if (recipe.isPresent()) {
-            if(isSpawnPosBlockLootCollector()){
-                fillCollector(level,recipe.get(), getSpawnPos() );
-            } else {
-                LivingEntityHelper.spawnLivingEntity(level,recipe.get().getMob(), getSpawnPos() );
-            }
+
+
+        inputTank.getPrimaryHandler().drain(spawnerRecipe.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
+
+        if(isSpawnPosBlockLootCollector()){
+            fillCollector(level,spawnerRecipe, getSpawnPos() );
+        } else {
+            LivingEntityHelper.spawnLivingEntity(level,spawnerRecipe.getMob(), getSpawnPos() );
         }
 
         sendData();

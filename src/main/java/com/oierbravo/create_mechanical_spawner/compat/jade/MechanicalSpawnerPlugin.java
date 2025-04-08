@@ -3,7 +3,7 @@ package com.oierbravo.create_mechanical_spawner.compat.jade;
 import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlock;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEntity;
-import com.oierbravo.mechanicals.jade.MechanicalProgressComponentProvider;
+import com.oierbravo.mechanicals.compat.jade.MechanicalProgressComponentProvider;
 import net.minecraft.resources.ResourceLocation;
 import snownee.jade.api.IWailaClientRegistration;
 import snownee.jade.api.IWailaCommonRegistration;

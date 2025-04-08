@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_bee"
   },
   "output": "minecraft:bee",
-  "processing_time": 2000
+  "processingTime": 2000
 }

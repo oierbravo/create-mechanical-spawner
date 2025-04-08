@@ -35,7 +35,7 @@ public class ModRecipes {
     }
 
     public static Optional<SpawnerRecipe> findSpawner(FluidStack fluidStack, Level level){
-        if(level.isClientSide())
+        if(level == null || level.isClientSide())
             return Optional.empty();
 
         return level.getRecipeManager()

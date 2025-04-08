@@ -9,10 +9,11 @@ public class SpawnerConfigs extends ConfigBase {
     public final ConfigInt fluidCapacity = i(1000,1,"liquidCapacity", Comments.liquidCapacity);
     public final ConfigInt maxRange = i(2,1,16,"maxRange", Comments.maxRange);
     public final ConfigBool allowAnyContainerForLootCollector = b(false,"allowAnyContainerForLootCollector", Comments.allowAnyContainerForLootCollector);
-    public final ConfigBool allowCreateItemVaultForLootCollector = b(false,"allowCreateItemVaultForLootCollector", Comments.allowCreateItemVaultForLootCollector);
+    public final ConfigBool allowCreateItemVaultForLootCollector = b(true,"allowCreateItemVaultForLootCollector", Comments.allowCreateItemVaultForLootCollector);
     public final ConfigBool lootCollectorRequired = b(false,"lootCollectorRequired", Comments.lootCollectorRequired);
     public final ConfigInt lootCollectorCapacity = i(8,1,"lootCollectorCapacity", Comments.lootCollectorCapacity);
     public final ConfigBool customLootPerSpawnRecipeEnabled = b(true,"customLootPerSpawnRecipeEnabled", Comments.customLootPerSpawnRecipeEnabled);
+
 
     private static class Comments {
         static String minimumSpeed = "Minimum required speed.";

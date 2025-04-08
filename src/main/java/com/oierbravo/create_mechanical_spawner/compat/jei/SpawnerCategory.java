@@ -32,7 +32,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -71,8 +70,6 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         FluidIngredient fluidIngredient = recipe.getFluidIngredient();
 
         List<ItemStack> invisibleIngredientsBuckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> new ItemStack(fluidStack.getFluid().getBucket())).toList();
-        List<Fluid> listFluids = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid()).toList();
-        List<ItemStack> buckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> fluidStack.getFluid().getFluidType().getBucket(fluidStack)).toList();
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(invisibleIngredientsBuckets);
         ResourceKey<EntityType<?>> mobKey = recipe.getMob();
 
@@ -142,7 +139,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             String id = mobEntity.getEncodeId();
 
             assert id != null;
-            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F * getMobScaleModifier(id),
+            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F,
                     38 - mouseX,
                     80 - mouseY,
                     randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));

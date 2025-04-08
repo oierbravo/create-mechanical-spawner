@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_panda"
   },
   "output": "minecraft:panda",
-  "processing_time": 4000
+  "processingTime": 4000
 }

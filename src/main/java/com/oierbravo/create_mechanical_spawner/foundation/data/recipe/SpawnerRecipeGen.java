@@ -97,6 +97,7 @@ public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerR
                 .processingTime(2500)
                 .save(recipeOutput);
 
+
         create("spider")
                 .output(SpawnerRecipeOutput.of("minecraft:spider"))
                 .require(ModFluids.SPIDER.get(),100)

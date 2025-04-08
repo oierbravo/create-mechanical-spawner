@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_blaze"
   },
   "output": "minecraft:blaze",
-  "processing_time": 5000
+  "processingTime": 5000
 }

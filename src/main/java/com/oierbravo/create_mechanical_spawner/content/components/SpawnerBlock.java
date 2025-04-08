@@ -95,4 +95,6 @@ public class SpawnerBlock extends HorizontalKineticBlock implements IBE<SpawnerB
         if (placer instanceof ServerPlayer)
             withBlockEntityDo(worldIn, pos, dbe -> dbe.owner = placer.getUUID());
     }
+
+
 }

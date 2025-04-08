@@ -56,7 +56,7 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
                             FluidIngredient.CODEC.fieldOf("input").forGetter(SpawnerRecipe::getInput),
                             ResourceLocation.CODEC.optionalFieldOf("output", ModConstants.asResource("random")).forGetter(SpawnerRecipe::getMobResourceLocation),
                             NonNullList.codecOf(ProcessingOutput.CODEC_NEW).optionalFieldOf("customLoot", NonNullList.create()).forGetter(SpawnerRecipe::getCustomLoot),
-                            ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("processing_time", 0).forGetter(SpawnerRecipe::getProcessingTime),
+                            ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("processingTime", 0).forGetter(SpawnerRecipe::getProcessingTime),
                             IRecipeRequirement.LIST_CODEC.optionalFieldOf("requirements", List.of()).forGetter(SpawnerRecipe::getRecipeRequirements),
                             ICondition.LIST_CODEC.optionalFieldOf(ConditionalOps.DEFAULT_CONDITIONS_KEY, List.of()).forGetter(SpawnerRecipe::getConditions)
                     ).apply(instance, (input, output, customLoot, processingTime, requirements, iConditions) -> {

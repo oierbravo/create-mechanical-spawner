@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_slime"
   },
   "output": "minecraft:slime",
-  "processing_time": 2500
+  "processingTime": 2500
 }

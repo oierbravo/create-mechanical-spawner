@@ -1,11 +1,17 @@
 package com.oierbravo.create_mechanical_spawner.ponders;
 
 import com.oierbravo.create_mechanical_spawner.ModConstants;
+import com.oierbravo.create_mechanical_spawner.ponders.scenes.SpawnerScene;
+import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+
+import static com.simibubi.create.infrastructure.ponder.AllCreatePonderTags.KINETIC_APPLIANCES;
 
 public class ModPonderPlugin implements PonderPlugin {
 
@@ -16,12 +22,16 @@ public class ModPonderPlugin implements PonderPlugin {
 
 	@Override
 	public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
-		ModPonderScenes.register(helper);
+		PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+
+		HELPER.forComponents(ModBlocks.MECHANICAL_SPAWNER)
+				.addStoryBoard("spawner_full", SpawnerScene::spawner);
 	}
 
 	@Override
 	public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-		ModPonderTags.register(helper);
+		PonderTagRegistrationHelper<RegistryEntry<?,?>> TAG_HELPER = helper.withKeyFunction(RegistryEntry::getId);
+		TAG_HELPER.addToTag(KINETIC_APPLIANCES).add(ModBlocks.MECHANICAL_SPAWNER);
 	}
 
 

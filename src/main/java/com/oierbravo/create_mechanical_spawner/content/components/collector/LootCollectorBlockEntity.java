@@ -5,6 +5,8 @@ import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -48,27 +50,17 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
             }
         };
     }
-    /*@Override
-    public <T> @NotNull LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-        if (isItemHandlerCap(cap))
-            return capability.cast();
-        return super.getCapability(cap, side);
-    }*/
-    /*@Override
-    public void invalidateCaps() {
-        capability.invalidate();
-        super.invalidateCaps();
-    }*/
+    @Override
+    public void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        compound.put("Inventory", inventory.serializeNBT(registries));
+        super.write(compound, registries, clientPacket);
 
-    /*@Override
-    public void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
-        compound.put("Inventory", inventory.serializeNBT());
     }
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
-        inventory.deserializeNBT(compound.getCompound("Inventory"));
-    }*/
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        inventory.deserializeNBT(registries, compound.getCompound("Inventory"));
+        super.read(compound, registries, clientPacket);
+
+    }
   }

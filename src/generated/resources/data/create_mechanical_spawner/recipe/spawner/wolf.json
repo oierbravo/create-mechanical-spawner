@@ -6,5 +6,5 @@
     "fluid": "create_mechanical_spawner:spawn_fluid_wolf"
   },
   "output": "minecraft:wolf",
-  "processing_time": 1500
+  "processingTime": 1500
 }
