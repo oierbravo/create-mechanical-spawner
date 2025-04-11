@@ -21,6 +21,7 @@ import net.createmod.catnip.math.VecHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -109,15 +110,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
     public static int getCapacityMultiplier() {
         return MConfigs.server().spawner.fluidCapacity.get();
     }
-    /*public Optional<SpawnerRecipe> getRecipe(){
-        SpawnerRecipe.SpawnerRecipeWrapper recipeWrapper = new SpawnerRecipe.SpawnerRecipeWrapper(fluidTank.getFluid());
-        assert level != null;
-        if (lastRecipe == null || !lastRecipe.matches(recipeWrapper, level)) {
-            Optional<SpawnerRecipe> sp = ModRecipes.findSpawner( fluidTank.getFluid(), level);
-            return ModRecipes.findSpawner( fluidTank.getFluid(), level);
-        }
-        return Optional.ofNullable(lastRecipe);
-    }*/
+
     public Optional<SpawnerRecipe> getRecipe(){
         return ModRecipes.findSpawner( inputTank.getPrimaryHandler().getFluid(), level);
     }
@@ -179,19 +172,14 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         return Mth.clamp((int) Math.abs(getSpeed() / 16f), 1, 512);
     }
     public void spawnParticles() {
-        //ToDo:
-        return;
+        Vec3 offset = new Vec3(0f, 0f, 0f);
+
+        Vec3 center = offset.add(VecHelper.getCenterOf(worldPosition));
+
+        assert level != null;
+        level.addParticle(ParticleTypes.POOF, center.x, center.y , center.z, 0, 0.01, 0);
     }
-    /*@Override
-    public <T> Lazy<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (isFluidHandlerCap(cap)) {
-            if (fluidCapability == null) {
-                initHandler();
-            }
-            return fluidCapability.cast();
-        }
-        return super.getCapability(cap, side);
-    }*/
+
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,

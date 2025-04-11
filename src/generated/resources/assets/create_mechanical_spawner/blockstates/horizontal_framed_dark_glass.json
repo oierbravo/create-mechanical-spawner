@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_mechanical_spawner:block/horizontal_framed_dark_glass"
+    }
+  }
+}

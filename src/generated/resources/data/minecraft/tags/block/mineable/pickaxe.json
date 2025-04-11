@@ -1,6 +1,7 @@
 {
   "values": [
     "create_mechanical_spawner:mechanical_spawner",
-    "create_mechanical_spawner:loot_collector"
+    "create_mechanical_spawner:loot_collector",
+    "create_mechanical_spawner:reinforced_brass_casing"
   ]
 }

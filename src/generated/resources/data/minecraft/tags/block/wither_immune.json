@@ -1,0 +1,8 @@
+{
+  "values": [
+    "create_mechanical_spawner:reinforced_brass_casing",
+    "create_mechanical_spawner:framed_dark_glass",
+    "create_mechanical_spawner:horizontal_framed_dark_glass",
+    "create_mechanical_spawner:vertical_framed_dark_glass"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "create_mechanical_spawner:block/framed_dark_glass",
+    "side": "create_mechanical_spawner:block/vertical_framed_dark_glass"
+  }
+}
