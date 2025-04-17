@@ -71,23 +71,22 @@ public class CreateMechanicalSpawner
     }
 
     private void generateLangEntries(){
-        new RegistrateLangBuilder(MODID, registrate())
-            .add("itemGroup.create_mechanical_spawner:main", "Create Mechanical Spawner")
-            .addRaw("config.jade.plugin_create_mechanical_spawner.spawner_data", "Mechanical spawner data")
+        new RegistrateLangBuilder<>(MODID, registrate())
+            .addCreativeTab("Create Mechanical Spawner")
+            .addJade("Mechanical spawner data")
             .add("recipe.spawner", "Spawner recipe")
             .add("generic.biome_dependant", "Biome dependant")
             .add("generic.with_custom_loot", "Custom loot with loot collector")
             .add("spawner.tooltip.with_loot_collector", "Loot collector found!")
             .add("spawner.tooltip.progress", "Progress: %d%%")
             .add("spawner.scrollValue.label", "Spawn at height (in blocks)")
-            .addRaw("block.create_mechanical_spawner.mechanical_spawner.tooltip", "MECHANICAL SPAWNER")
-            .addRaw("block.create_mechanical_spawner.mechanical_spawner.tooltip.summary", "Spawns _Mobs_ with spawn liquid.")
-            .add("ponder.spawner.header", "Spawning living entities")
-            .add("ponder.spawner.text_1", "The Spawner uses rotational force and special fluids to spawn entities")
-            .add("ponder.spawner.text_2", "Its powered from the bottom")
-            .add("ponder.spawner.text_3", "Fluid input can go in from any horizontal side")
-            .add("ponder.spawner.text_4", "Spawn point can be configured")
-            .add("ponder.spawner.text_5", "A loot collector can be placed in the spawn point to automatically collect loot without spawning the entity");
+            .addBlockTooltipSummary("mechanical_spawner", "Spawns _Mobs_ with spawn liquid.")
+            .addPonderHeader("spawner","Spawning living entities")
+            .addPonderText(1,"spawner","The Spawner uses rotational force and special fluids to spawn entities")
+            .addPonderText(2,"spawner","Its powered from the bottom")
+            .addPonderText(3,"spawner","Fluid input can go in from any horizontal side")
+            .addPonderText(4,"spawner","Spawn point can be configured")
+            .addPonderText(5,"spawner","A loot collector can be placed in the spawn point to automatically collect loot without spawning the entity");
 
     }
     private void doClientStuff(final FMLClientSetupEvent event) {

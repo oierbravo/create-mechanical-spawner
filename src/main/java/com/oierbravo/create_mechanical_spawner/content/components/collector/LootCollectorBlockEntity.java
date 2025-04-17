@@ -4,23 +4,27 @@ import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.util.Lazy;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.List;
 
 public class LootCollectorBlockEntity extends SmartBlockEntity {
     private final ItemStackHandler inventory = createInventory();
-    private final Lazy<IItemHandler> capability = Lazy.of(() -> inventory);
+    private FilteringBehaviour filtering;
 
     public LootCollectorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -31,6 +35,9 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+        filtering = new FilteringBehaviour(this, new FilterPositioning())
+                .forRecipes();
+        behaviours.add(filtering);
 
     }
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -46,7 +53,13 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
             @Override
             protected void onContentsChanged(int slot) {
                 setChanged();
+                assert level != null;
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, ItemStack stack) {
+                return filtering.test(stack);
             }
         };
     }
@@ -63,4 +76,17 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
         super.read(compound, registries, clientPacket);
 
     }
+    public static class FilterPositioning extends ValueBoxTransform.Sided {
+        @Override
+        protected boolean isSideActive(BlockState state, Direction direction) {
+            return direction == Direction.UP;
+        }
+
+        @Override
+        protected Vec3 getSouthLocation() {
+            return VecHelper.voxelSpace(8f, 8f,  15f);
+        }
+
+    }
+
   }

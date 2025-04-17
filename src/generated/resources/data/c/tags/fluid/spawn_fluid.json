@@ -30,6 +30,8 @@
     "create_mechanical_spawner:spawn_fluid_wither_skeleton",
     "create_mechanical_spawner:flowing_spawn_fluid_zombie",
     "create_mechanical_spawner:spawn_fluid_zombie",
+    "create_mechanical_spawner:flowing_spawn_fluid_wither",
+    "create_mechanical_spawner:spawn_fluid_wither",
     "create_mechanical_spawner:flowing_spawn_fluid_bat",
     "create_mechanical_spawner:spawn_fluid_bat",
     "create_mechanical_spawner:flowing_spawn_fluid_bee",

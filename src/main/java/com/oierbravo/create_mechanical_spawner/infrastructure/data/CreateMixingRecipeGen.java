@@ -1,4 +1,4 @@
-package com.oierbravo.create_mechanical_spawner.foundation.data.recipe;
+package com.oierbravo.create_mechanical_spawner.infrastructure.data;
 
 import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
@@ -183,14 +183,22 @@ public class CreateMixingRecipeGen extends AbstractCreateRecipeGen {
                 .require(BONES)
                 .require(Items.PORKCHOP)
                 .build(recipeOutput);
+
+        createSpawnFluid("wither",ModFluids.WITHER.get(),100)
+                .require(ModFluids.RANDOM.get(),100)
+                .require(ModFluids.WITHER_SKELETON.get(),100)
+                .require(Items.WITHER_SKELETON_SKULL)
+                .requiresHeat(HeatCondition.SUPERHEATED)
+                .duration(700)
+                .build(recipeOutput);
     }
-    private ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, BaseFlowingFluid virtualFluid, int pAmount){
+    protected ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, BaseFlowingFluid flowingFluid, int pAmount){
         return createMixing("spawn_fluid_" + id)
                 .duration(250)
-                .output(new FluidStack(virtualFluid.getSource(), pAmount));
+                .output(new FluidStack(flowingFluid.getSource(), pAmount));
     }
     @Override
-    public final String getName() {
+    public String getName() {
         return "Mechanical Spawner's mixer recipes.";
     }
 }

@@ -1,22 +1,22 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
+import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlock;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.LivingEntityHelper;
-import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
 import com.oierbravo.mechanicals.compat.jade.IHavePercent;
 import com.oierbravo.mechanicals.foundation.blockEntity.behaviour.DynamicCycleBehavior;
+import com.oierbravo.mechanicals.foundation.blockEntity.behaviour.RecipeRequirementsBehaviour;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
-import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.createmod.catnip.math.VecHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -24,7 +24,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
@@ -36,7 +35,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -52,13 +50,15 @@ import java.util.UUID;
 import static com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING;
 
 
-public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCycleBehavior.DynamicCycleBehaviorSpecifics, IHavePercent {
+public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCycleBehavior.DynamicCycleBehaviorSpecifics , RecipeRequirementsBehaviour.RecipeRequirementsSpecifics<SpawnerRecipe>, IHavePercent {
     public UUID owner;
     protected DeployerFakePlayer player;
 
     DynamicCycleBehavior dynamicCycleBehaviour;
     ScrollValueBehaviour scrollValueBehaviour;
     public SmartFluidTankBehaviour inputTank;
+    public RecipeRequirementsBehaviour<SpawnerRecipe> recipeRequirementsBehaviour;
+
 
     public SpawnerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -82,7 +82,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         inputTank = SmartFluidTankBehaviour.single(this, MConfigs.server().spawner.fluidCapacity.get());
         behaviours.add(inputTank);
 
-        scrollValueBehaviour = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new CenteredSideValueBoxTransform())
+        scrollValueBehaviour = new ScrollValueBehaviour(ModLang.translate("spawner.scrollValue.label").component(), this, new SpawnPointValuePositioning())
                 .between(1, max);
         scrollValueBehaviour.value = 1;
 
@@ -90,32 +90,18 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
 
         dynamicCycleBehaviour = new DynamicCycleBehavior(this);
         behaviours.add(dynamicCycleBehaviour);
+
+        recipeRequirementsBehaviour = new RecipeRequirementsBehaviour<>(this);
+        behaviours.add(recipeRequirementsBehaviour);
     }
     public ScrollValueBehaviour getScrollValueBehavior() {
         return scrollValueBehaviour;
     }
 
-    protected SmartFluidTank createFluidTank() {
-        return new SmartFluidTank(getCapacityMultiplier(), this::onFluidStackChanged);
-    }
-    protected void onFluidStackChanged(FluidStack newFluidStack) {
-        if (!hasLevel())
-            return;
-
-        if (!level.isClientSide) {
-            setChanged();
-            sendData();
-        }
-    }
-    public static int getCapacityMultiplier() {
-        return MConfigs.server().spawner.fluidCapacity.get();
-    }
 
     public Optional<SpawnerRecipe> getRecipe(){
         return ModRecipes.findSpawner( inputTank.getPrimaryHandler().getFluid(), level);
     }
-
-
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
@@ -134,6 +120,11 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
             containedFluidTooltip(tooltip, isPlayerSneaking, inputTank.getPrimaryHandler());
             added = true;
         }
+
+        boolean addedRequirements = recipeRequirementsBehaviour.addToGoggleTooltip(tooltip, isPlayerSneaking, added);
+        if(addedRequirements)
+            added = true;
+
         return added;
 
     }
@@ -168,10 +159,9 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         return false;
     }
 
-    public int getProcessingSpeed() {
-        return Mth.clamp((int) Math.abs(getSpeed() / 16f), 1, 512);
-    }
-    public void spawnParticles() {
+
+    @Override
+    public void showParticles() {
         Vec3 offset = new Vec3(0f, 0f, 0f);
 
         Vec3 center = offset.add(VecHelper.getCenterOf(worldPosition));
@@ -205,11 +195,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         int position = visualize ? scrollValueBehaviour.getValue() : getScrollValueBehaviour();
 
         BlockPos current = worldPosition.relative(Direction.Axis.Y, position);
-
-
         positions.add(current);
-
-
         return positions;
     }
 
@@ -261,10 +247,6 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         return player;
     }
 
-    @Override
-    public void onOperationCompleted() {
-
-    }
 
     @Override
     public float getKineticSpeed() {
@@ -275,7 +257,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
     public int getProcessingTime() {
         if(getRecipe().isEmpty())
             return 1;
-        return getRecipe().get().getProcessingTime();
+        return (int)(getRecipe().get().getProcessingTime() * MConfigs.server().spawner.timeMultiplier.get());
     }
     private boolean checkRequirements(SpawnerRecipe recipe) {
         if(!isSpawnPosBlockLootCollector())
@@ -290,23 +272,22 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
             return false;
 
         Optional<SpawnerRecipe> optionalSpawnerRecipe = getRecipe();
-        if(optionalSpawnerRecipe.isEmpty())
+
+        if(optionalSpawnerRecipe.isEmpty()){
+            recipeRequirementsBehaviour.cleanRequirements();
             return false;
+        }
         SpawnerRecipe spawnerRecipe = optionalSpawnerRecipe.get();
-        /*if(!checkLootCollector())
-            return false;*/
-        if (inputTank.getPrimaryHandler().getFluidAmount() < spawnerRecipe.getFluidAmount())
+
+        if(!recipeRequirementsBehaviour.checkRequirements(spawnerRecipe))
             return false;
-        if(!isSpawnableBlockPos())
-            return false;
+
+
         if(simulate)
             return true;
 
         if(this.level != null && this.level.isClientSide())
             return true;
-
-
-
 
         inputTank.getPrimaryHandler().drain(spawnerRecipe.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE);
 
@@ -316,22 +297,33 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
             LivingEntityHelper.spawnLivingEntity(level,spawnerRecipe.getMob(), getSpawnPos() );
         }
 
-        sendData();
-        setChanged();
+        //sendData();
+        //setChanged();
         return true;
     }
 
     @Override
-    public void playCompletionSound() {
-
+    public boolean hasEnoughOutputSpace(SpawnerRecipe spawnerRecipe) {
+        return isSpawnableBlockPos();
     }
 
-    private boolean checkLootCollector(){
-        if(MConfigs.server().spawner.lootCollectorRequired.get() ||
-                MConfigs.server().spawner.allowCreateItemVaultForLootCollector.get() ||
-                MConfigs.server().spawner.allowAnyContainerForLootCollector.get()
-        )
-            return isSpawnPosBlockLootCollector();
-        return false;
+    @Override
+    public boolean matchesIngredients(SpawnerRecipe spawnerRecipe) {
+        if(inputTank.getPrimaryHandler().getFluidAmount() < spawnerRecipe.getFluidAmount())
+            return false;
+        return spawnerRecipe.getFluidIngredient().test(inputTank.getPrimaryHandler().getFluid());
+    }
+
+    public static class SpawnPointValuePositioning extends ValueBoxTransform.Sided {
+        @Override
+        protected boolean isSideActive(BlockState state, Direction direction) {
+            return direction != Direction.UP  && direction != Direction.DOWN;
+        }
+
+        @Override
+        protected Vec3 getSouthLocation() {
+            return VecHelper.voxelSpace(8f, 8f,  16f);
+        }
+
     }
 }

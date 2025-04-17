@@ -106,8 +106,6 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
     }
 
     public SpawnerRecipeOutput getOutput() {
-        /*if(mob == null)
-            return SpawnerRecipeOutput.EMPTY;*/
         return this.mob;
     }
 
@@ -127,10 +125,6 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
         return ModConstants.asResource("random");
     }
 
-    public ResourceLocation getId() {
-        return id;
-    }
-
     public static class Type implements RecipeType<SpawnerRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
@@ -145,8 +139,8 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
 
         protected NonNullList<ProcessingOutput> customLoot;
 
-        protected SpawnerRecipeParams(ResourceLocation id) {
-            super(id);
+        protected SpawnerRecipeParams() {
+            super();
             mob = new SpawnerRecipeOutput();
             fluidIngredient = FluidIngredient.EMPTY;
             processingTime = 200;

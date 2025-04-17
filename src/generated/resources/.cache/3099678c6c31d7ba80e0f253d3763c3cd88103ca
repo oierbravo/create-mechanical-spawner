@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-08T03:11:39.493748701	Mechanical Spawner recipes recipes.
+// 1.21.1	2025-04-17T22:00:16.393660083	Mechanical Spawner recipes recipes.
 8b5b37aef2bb465b8305a6424ddf0e21bd76b9ac data/create_mechanical_spawner/advancement/recipes/spawner/bat.json
 e86d94ca9a38a3365b1561464844c374a00545a7 data/create_mechanical_spawner/advancement/recipes/spawner/bee.json
 abe719ada7387e0efbc9f0ddd2d0f331c835f041 data/create_mechanical_spawner/advancement/recipes/spawner/blaze.json
@@ -23,6 +23,7 @@ d34dbdcc0d7ed46ecefea3aaabf61661a8c1054d data/create_mechanical_spawner/advancem
 8c01e440301855f2566c46cc002c76bad007b111 data/create_mechanical_spawner/advancement/recipes/spawner/spider.json
 db0c579d4d4ef3bacf55df60ebe028986eda5891 data/create_mechanical_spawner/advancement/recipes/spawner/villager.json
 9215ca5f344b8e35eb7985c60a0d088b1b1f9d22 data/create_mechanical_spawner/advancement/recipes/spawner/witch.json
+5eaea0edca721fa2897c20cccbfaab18998e9a35 data/create_mechanical_spawner/advancement/recipes/spawner/wither.json
 4e6116bf0654267d74040e2cba12832177bc3672 data/create_mechanical_spawner/advancement/recipes/spawner/wither_skeleton.json
 9782d02d3cdbc7d5833e9a8a87ba62dd157a9038 data/create_mechanical_spawner/advancement/recipes/spawner/wolf.json
 1f4a2658d679f950892bfc6fe1c5388d2c4e28c2 data/create_mechanical_spawner/advancement/recipes/spawner/zombie.json
@@ -50,6 +51,7 @@ eac7df47148a9fdb85c5402c8515a5208f113faf data/create_mechanical_spawner/recipe/s
 bc8ea460931911f0c641984472525125b49cf6b7 data/create_mechanical_spawner/recipe/spawner/spider.json
 fadc33bd24660893bb7fdab53995fc2d9fe53e54 data/create_mechanical_spawner/recipe/spawner/villager.json
 069d19487df3807fb83894b0767ad7fe9d7898ce data/create_mechanical_spawner/recipe/spawner/witch.json
+04e2ee8e306f383d204fc79c27bbb068bcc9cd0d data/create_mechanical_spawner/recipe/spawner/wither.json
 89014430b9fb21b9c0c55192c43514dc8a012ef1 data/create_mechanical_spawner/recipe/spawner/wither_skeleton.json
 155f9273f5ba842687d2542f70f8cb58a57ee6e5 data/create_mechanical_spawner/recipe/spawner/wolf.json
 c334c4bd16976e41e251ab3e2a38659d12393b8b data/create_mechanical_spawner/recipe/spawner/zombie.json

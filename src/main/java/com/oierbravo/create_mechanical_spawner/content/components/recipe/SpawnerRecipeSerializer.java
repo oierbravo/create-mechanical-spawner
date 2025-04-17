@@ -25,14 +25,13 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
     public final StreamCodec<RegistryFriendlyByteBuf, SpawnerRecipe> STREAM_CODEC = StreamCodec.of(this::toNetwork, this::fromNetwork);
 
     private SpawnerRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-        ResourceLocation recipeId = ResourceLocation.STREAM_CODEC.decode(buffer);
         FluidIngredient input = FluidIngredient.STREAM_CODEC.decode(buffer);
         ResourceLocation output = ResourceLocation.STREAM_CODEC.decode(buffer);
         NonNullList<ProcessingOutput> customLoot = CatnipStreamCodecBuilders.nonNullList(ProcessingOutput.STREAM_CODEC).decode(buffer);
         int processingTime = ByteBufCodecs.VAR_INT.decode(buffer);
         List<IRecipeRequirement> recipeRequirements = IRecipeRequirement.LIST_STREAM_CODEC.decode(buffer);
 
-        return new SpawnerRecipeBuilder(recipeId)
+        return new SpawnerRecipeBuilder()
                 .require(input)
                 .output(output)
                 .withCustomLoot(customLoot)
@@ -42,7 +41,6 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
     }
 
     private void toNetwork(RegistryFriendlyByteBuf buffer, SpawnerRecipe spawnerRecipe) {
-        ResourceLocation.STREAM_CODEC.encode(buffer, spawnerRecipe.getId());
         FluidIngredient.STREAM_CODEC.encode(buffer, spawnerRecipe.getFluidIngredient());
         ResourceLocation.STREAM_CODEC.encode(buffer, spawnerRecipe.getMobResourceLocation());
         CatnipStreamCodecBuilders.nonNullList(ProcessingOutput.STREAM_CODEC).encode(buffer, spawnerRecipe.getCustomLoot());
@@ -60,17 +58,15 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
                             IRecipeRequirement.LIST_CODEC.optionalFieldOf("requirements", List.of()).forGetter(SpawnerRecipe::getRecipeRequirements),
                             ICondition.LIST_CODEC.optionalFieldOf(ConditionalOps.DEFAULT_CONDITIONS_KEY, List.of()).forGetter(SpawnerRecipe::getConditions)
                     ).apply(instance, (input, output, customLoot, processingTime, requirements, iConditions) -> {
-                        SpawnerRecipeBuilder builder = new SpawnerRecipeBuilder(ModConstants.asResource(SpawnerRecipe.Type.ID));
 
-                        builder
+                        return new SpawnerRecipeBuilder()
                                 .require(input)
                                 .output(output)
                                 .processingTime(processingTime)
                                 .withCustomLoot(customLoot)
                                 .withRequirements(requirements)
                                 .withConditions(iConditions)
-                        ;
-                        return builder.build();
+                                .build();
                     })
     );
     @Override

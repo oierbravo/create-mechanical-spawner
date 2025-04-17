@@ -12,7 +12,7 @@ import snownee.jade.api.WailaPlugin;
 
 @WailaPlugin
 public class MechanicalSpawnerPlugin implements IWailaPlugin {
-    public static final ResourceLocation MECHANICAL_SPAWNER_DATA = ModConstants.asResource("spawner_data");
+    public static final ResourceLocation MECHANICAL_SPAWNER_DATA = ModConstants.asResource("data");
 
     @Override
     public void register(IWailaCommonRegistration registration) {

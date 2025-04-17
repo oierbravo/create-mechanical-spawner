@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_framed_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:framed_glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "create_mechanical_spawner:crafting/framed_dark_glass"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_framed_glass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "create_mechanical_spawner:crafting/framed_dark_glass"
+    ]
+  }
+}

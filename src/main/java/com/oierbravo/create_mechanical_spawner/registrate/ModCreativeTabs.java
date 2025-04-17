@@ -1,7 +1,8 @@
 package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.ModConstants;
-import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
+import com.oierbravo.create_mechanical_spawner.ModLang;
+import com.oierbravo.mechanicals.utility.MechanicalLangIdGenerator;
 import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,7 +17,7 @@ public class ModCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = TAB_REGISTER.register("main",
             () -> CreativeModeTab.builder()
-                    .title(ModLang.translate("itemGroup.create_mechanical_spawner:main").component())
+                    .title(ModLang.translate(MechanicalLangIdGenerator.creativeTabId("main")).component())
                     .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
                     .icon(ModBlocks.MECHANICAL_SPAWNER::asStack)
                     .build());

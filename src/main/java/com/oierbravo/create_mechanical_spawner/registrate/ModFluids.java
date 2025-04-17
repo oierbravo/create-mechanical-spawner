@@ -28,6 +28,7 @@ public class ModFluids {
     public static final FluidEntry<BaseFlowingFluid.Flowing> WITCH = createSpawnFluid("witch",0x095000);
     public static final FluidEntry<BaseFlowingFluid.Flowing> WITHER_SKELETON = createSpawnFluid("wither_skeleton",0x393939);
     public static final FluidEntry<BaseFlowingFluid.Flowing> ZOMBIE = createSpawnFluid("zombie",0x0a7300);
+    public static final FluidEntry<BaseFlowingFluid.Flowing> WITHER = createSpawnFluid("wither",0x393939);
 
     /* Friendly Mobs */
     public static final FluidEntry<BaseFlowingFluid.Flowing> BAT = createSpawnFluid("bat",0xff9acd);

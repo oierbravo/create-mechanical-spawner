@@ -27,7 +27,6 @@ public class SpawnerPointDisplay {
             timer = DISPLAY_TIME;
             Outliner.getInstance().showCluster(getOutlineKey(), createSelection(be))
                     .colored(0xFFFFFF)
-                    //.disableNormals()
                     .lineWidth(1 / 16f)
                     .withFaceTexture(AllSpecialTextures.HIGHLIGHT_CHECKERED);
         }

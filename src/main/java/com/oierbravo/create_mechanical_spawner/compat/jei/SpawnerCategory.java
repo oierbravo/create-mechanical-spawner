@@ -1,18 +1,19 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
 import com.oierbravo.create_mechanical_spawner.ModConstants;
+import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
-import com.oierbravo.create_mechanical_spawner.foundation.utility.ModLang;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
+import com.oierbravo.mechanicals.compat.jei.RecipeRequirementRenderer;
+import com.oierbravo.mechanicals.foundation.gui.MechanicalGUITextures;
 import com.simibubi.create.compat.jei.EmptyBackground;
 import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
-import com.simibubi.create.foundation.gui.AllGuiTextures;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
@@ -40,9 +41,6 @@ import java.util.Optional;
 
 public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
     private final AnimatedSpawner spawner = new AnimatedSpawner();
-    private final RandomMobCycleTimer randomMobCycleTimer;
-    private List<LivingEntity> displayedMobs = List.of();
-    private List<Optional<EntityType<?>>> allMobs = List.of();
 
     public final static ResourceLocation UID = ModConstants.asResource(SpawnerRecipe.Type.ID);
     public final static RecipeType<SpawnerRecipe> TYPE = new mezz.jei.api.recipe.RecipeType<>(UID, SpawnerRecipe.class);
@@ -61,8 +59,6 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
 
     public SpawnerCategory(Info<SpawnerRecipe> info) {
         super(info);
-        this.randomMobCycleTimer = new RandomMobCycleTimer(0);
-
     }
 
 
@@ -100,7 +96,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         }
 
         builder
-            .addSlot(RecipeIngredientRole.INPUT, 15, 9)
+            .addSlot(RecipeIngredientRole.INPUT, 2, 2)
             .setBackground(getRenderedSlot(), -1, -1)
             .addIngredients(NeoForgeTypes.FLUID_STACK, fluidIngredient.getMatchingFluidStacks())
             .addRichTooltipCallback(SpawnerCategory::addFluidAmountTooltip);
@@ -113,15 +109,11 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         FluidStack fluidStack = displayed.get();
         tooltip.add(Component.literal(fluidStack.getAmount() + "mB"));
     }
-    public LivingEntity getDisplayedMob() {
-        return randomMobCycleTimer.getCycledLivingEntity(displayedMobs);
-    }
     public void draw(SpawnerRecipe recipe, @NotNull IRecipeSlotsView iRecipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        randomMobCycleTimer.onDraw();
         Font font = Minecraft.getInstance().font;
 
-        AllGuiTextures.JEI_DOWN_ARROW.render(guiGraphics, 43, 4);
-        spawner.draw(guiGraphics, 48, 27);
+        MechanicalGUITextures.JEI_DOWN_RIGHT_ARROW.render(guiGraphics, 6, 25);
+        spawner.draw(guiGraphics, 30, 30);
         Level level = Minecraft.getInstance().level;
 
 
@@ -130,7 +122,10 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         boolean useCustomLoot = !recipe.getCustomLoot().isEmpty() && MConfigs.server().spawner.customLootPerSpawnRecipeEnabled.get();
 
 
-        if(mobKey != null) {
+        if(mobKey == null) {
+            String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
+            guiGraphics.drawString(font, text, 20, 57,  8, false);
+        } else {
             EntityType<?> entity = BuiltInRegistries.ENTITY_TYPE.get(mobKey);
 
             assert level != null;
@@ -139,10 +134,10 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             String id = mobEntity.getEncodeId();
 
             assert id != null;
-            RenderHelper.renderEntity(guiGraphics, 100, 35, 20.0F,
+            RenderHelper.renderEntity(guiGraphics, 70, 50, 20.0F,
                     38 - mouseX,
                     80 - mouseY,
-                    randomMobCycleTimer.getCycledLivingEntity(List.of(mobEntity)));
+                    mobEntity);
 
             Component displayName = mobEntity.getDisplayName();
             guiGraphics.drawString(font, displayName, 20, 57, 8, false);
@@ -152,28 +147,9 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
                 guiGraphics.drawString(font, customLoottext, 20, 65, 8, false);
             }
 
-            return;
+
         }
-
-
-        if(!useCustomLoot) {
-            String text = ModLang.translate("generic.biome_dependant").string();// "Biome dependent";
-            guiGraphics.drawString(font, text, 80, 57, 8, false);
-        }
-    }
-    private void drawMob(){
+        RecipeRequirementRenderer.drawRequirements(recipe,guiGraphics, 85,10);
 
     }
-
-    private float getMobScaleModifier(String mobId){
-        return switch (mobId) {
-            case "minecraft:ghast":
-                yield .25f;
-            case "minecraft:enderman":
-                yield .9f;
-            default:
-                yield 1f;
-        };
-    }
-
 }

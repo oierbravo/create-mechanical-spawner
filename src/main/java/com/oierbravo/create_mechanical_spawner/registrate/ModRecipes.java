@@ -27,7 +27,7 @@ public class ModRecipes {
     public static final Supplier<SpawnerRecipeSerializer> SPAWNER_SERIALIZER =
             SERIALIZERS.register("spawner", () -> SpawnerRecipeSerializer.INSTANCE);
 
-    public static final Supplier<RecipeType<SpawnerRecipe>> SPAWNER_TYPE = RECIPE_TYPES.register("sieve", () -> RecipeType.simple(ModConstants.asResource(SpawnerRecipe.Type.ID)));
+    public static final Supplier<RecipeType<SpawnerRecipe>> SPAWNER_TYPE = RECIPE_TYPES.register("spawner", () -> RecipeType.simple(ModConstants.asResource(SpawnerRecipe.Type.ID)));
     public static void register(IEventBus eventBus) {
 
         SERIALIZERS.register(eventBus);

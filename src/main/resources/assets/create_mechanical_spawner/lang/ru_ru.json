@@ -1,7 +1,6 @@
 {
   "block.create_mechanical_spawner.loot_collector": "Сборщик добычи",
   "block.create_mechanical_spawner.mechanical_spawner": "Механический рассадник монстров",
-  "block.create_mechanical_spawner.mechanical_spawner.tooltip": "МЕХАНИЧЕСКИЙ РАССАДНИК МОНСТРОВ",
   "block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "Призывает _существ_ с помощью жидкостей призыва.",
   "block.create_mechanical_spawner.spawn_fluid_bat": "Жидкость призыва летучей мыши",
   "block.create_mechanical_spawner.spawn_fluid_bee": "Жидкость призыва пчелы",
@@ -30,10 +29,10 @@
   "block.create_mechanical_spawner.spawn_fluid_wither_skeleton": "Жидкость призыва визер-скелета",
   "block.create_mechanical_spawner.spawn_fluid_wolf": "Жидкость призыва волка",
   "block.create_mechanical_spawner.spawn_fluid_zombie": "Жидкость призыва зомби",
-  "config.jade.plugin_create_mechanical_spawner.spawner_data": "Данные механического рассадника монстров",
+  "config.jade.plugin_create_mechanical_spawner.data": "Данные механического рассадника монстров",
   "create_mechanical_spawner.generic.biome_dependant": "Зависимость от биома",
   "create_mechanical_spawner.generic.with_custom_loot": "Пользовательская добыча со сборщиком добычи",
-  "create_mechanical_spawner.itemGroup.create_mechanical_spawner:main": "Create: Механический Рассадник",
+  "create_mechanical_spawner.itemGroup:main": "Create: Механический Рассадник",
   "create_mechanical_spawner.ponder.spawner.header": "Призыв живых существ",
   "create_mechanical_spawner.ponder.spawner.text_1": "Рассадник использует вращательную силу и специальные жидкости для призыва существ",
   "create_mechanical_spawner.ponder.spawner.text_2": "Он запитывается снизу",
@@ -97,6 +96,5 @@
   "item.create_mechanical_spawner.spawn_fluid_witch_bucket": "Ведро жидкости призыва ведьмы",
   "item.create_mechanical_spawner.spawn_fluid_wither_skeleton_bucket": "Ведро жидкости призыва визер-скелета",
   "item.create_mechanical_spawner.spawn_fluid_wolf_bucket": "Ведро жидкости призыва волка",
-  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "Ведро жидкости призыва зомби",
-  "itemGroup.create_mechanical_spawner:main": "Create: Механический Рассадник"
+  "item.create_mechanical_spawner.spawn_fluid_zombie_bucket": "Ведро жидкости призыва зомби"
 }

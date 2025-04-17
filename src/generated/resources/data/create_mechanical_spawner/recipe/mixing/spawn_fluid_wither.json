@@ -1,0 +1,26 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_random"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 100,
+      "fluid": "create_mechanical_spawner:spawn_fluid_wither_skeleton"
+    }
+  ],
+  "processing_time": 700,
+  "results": [
+    {
+      "amount": 100,
+      "id": "create_mechanical_spawner:spawn_fluid_wither"
+    }
+  ]
+}

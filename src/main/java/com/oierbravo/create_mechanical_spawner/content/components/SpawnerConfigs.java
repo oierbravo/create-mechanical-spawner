@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 public class SpawnerConfigs extends ConfigBase {
 
     public final ConfigFloat minimumSpeed = f(100,1,"minimumSpeed", Comments.minimumSpeed);
+    public final ConfigFloat timeMultiplier = f(1, 0,1,"timeMultiplier", Comments.timeMultiplier);
     public final ConfigInt fluidCapacity = i(1000,1,"liquidCapacity", Comments.liquidCapacity);
     public final ConfigInt maxRange = i(2,1,16,"maxRange", Comments.maxRange);
     public final ConfigBool allowAnyContainerForLootCollector = b(false,"allowAnyContainerForLootCollector", Comments.allowAnyContainerForLootCollector);
@@ -17,6 +18,7 @@ public class SpawnerConfigs extends ConfigBase {
 
     private static class Comments {
         static String minimumSpeed = "Minimum required speed.";
+        static String timeMultiplier = "Processing time multiplier. Allows to change processing time without editing the recipes.";
         static String liquidCapacity = "Input liquid capacity.";
         static String maxRange = "Max range";
         static String allowAnyContainerForLootCollector = "Allow any container as loot collector";

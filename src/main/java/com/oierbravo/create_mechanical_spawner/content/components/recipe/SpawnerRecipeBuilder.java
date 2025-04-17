@@ -13,16 +13,12 @@ import java.util.Optional;
 public class SpawnerRecipeBuilder extends AbstractMechanicalRecipeBuilder<SpawnerRecipe, SpawnerRecipe.SpawnerRecipeParams, SpawnerRecipeBuilder> {
 
 
-    public SpawnerRecipeBuilder() {
-        super();
-    }
-    public SpawnerRecipeBuilder create(ResourceLocation id) {
-        params = new SpawnerRecipe.SpawnerRecipeParams(id);
+    public SpawnerRecipeBuilder create() {
+        params = new SpawnerRecipe.SpawnerRecipeParams();
         return this;
     }
-    public SpawnerRecipeBuilder(ResourceLocation id){
-        this();
-        params = new SpawnerRecipe.SpawnerRecipeParams(id);
+    public SpawnerRecipeBuilder(){
+        params = new SpawnerRecipe.SpawnerRecipeParams();
     }
 
     public SpawnerRecipeBuilder require(FluidIngredient fluidIngredient) {

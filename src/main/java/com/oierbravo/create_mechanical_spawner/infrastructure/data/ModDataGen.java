@@ -1,9 +1,6 @@
 package com.oierbravo.create_mechanical_spawner.infrastructure.data;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.CreateMixingRecipeGen;
-import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.SpawnerCompatRecipeGen;
-import com.oierbravo.create_mechanical_spawner.foundation.data.recipe.SpawnerRecipeGen;
 import com.tterrag.registrate.providers.RegistrateDataProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -26,6 +23,7 @@ public class ModDataGen {
             generator.addProvider(true, new SpawnerRecipeGen(output, lookupProvider));
             generator.addProvider(true, new CreateMixingRecipeGen(output, lookupProvider));
             generator.addProvider(true, new SpawnerCompatRecipeGen(output, lookupProvider));
+            generator.addProvider(true, new CreateItemApplicationRecipeGen(output, lookupProvider));
         }
         event.getGenerator().addProvider(true, CreateMechanicalSpawner.registrate().setDataProvider(new RegistrateDataProvider(CreateMechanicalSpawner.registrate(), MODID, event)));
 

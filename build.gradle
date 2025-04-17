@@ -166,7 +166,8 @@ dependencies {
     runtimeOnly("curse.maven:just-enough-resources-jei-240630:${jeiresources_id}")
 
     if (enchantment_industry_enable.toBoolean()) {
-        modImplementation("curse.maven:create-enchantment-industry-688768:${enchantment_industry_id}")
+        implementation("curse.maven:create-enchantment-industry-688768:${enchantment_industry_id}")
+        implementation("curse.maven:create-dragons-plus-1216624:${dragon_plus_id}")
     }
 }
 

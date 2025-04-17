@@ -1,0 +1,24 @@
+{
+  "type": "create_mechanical_spawner:spawner",
+  "customLoot": [
+    {
+      "id": "minecraft:nether_star"
+    },
+    {
+      "count": 16,
+      "id": "create:experience_nugget"
+    },
+    {
+      "chance": 0.5,
+      "count": 8,
+      "id": "create:experience_nugget"
+    }
+  ],
+  "input": {
+    "type": "fluid_stack",
+    "amount": 300,
+    "fluid": "create_mechanical_spawner:spawn_fluid_wither"
+  },
+  "output": "minecraft:wither",
+  "processingTime": 5000
+}

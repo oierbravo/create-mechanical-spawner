@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create:vertical_framed_glass"
+    },
+    {
+      "item": "minecraft:coal_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_mechanical_spawner:vertical_framed_dark_glass"
+  }
+}

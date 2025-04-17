@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:horizontal_framed_glass"
+    },
+    {
+      "item": "minecraft:coal"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_mechanical_spawner:horizontal_framed_dark_glass"
+    }
+  ]
+}

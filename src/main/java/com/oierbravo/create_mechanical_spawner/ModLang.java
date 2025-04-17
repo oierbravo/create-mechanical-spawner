@@ -1,6 +1,5 @@
-package com.oierbravo.create_mechanical_spawner.foundation.utility;
+package com.oierbravo.create_mechanical_spawner;
 
-import com.oierbravo.create_mechanical_spawner.ModConstants;
 import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
 

@@ -15,6 +15,7 @@
     "create_mechanical_spawner:spawn_fluid_witch_bucket",
     "create_mechanical_spawner:spawn_fluid_wither_skeleton_bucket",
     "create_mechanical_spawner:spawn_fluid_zombie_bucket",
+    "create_mechanical_spawner:spawn_fluid_wither_bucket",
     "create_mechanical_spawner:spawn_fluid_bat_bucket",
     "create_mechanical_spawner:spawn_fluid_bee_bucket",
     "create_mechanical_spawner:spawn_fluid_cow_bucket",

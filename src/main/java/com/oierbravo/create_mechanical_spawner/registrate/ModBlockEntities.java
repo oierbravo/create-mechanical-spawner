@@ -5,6 +5,7 @@ import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlockEn
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerRenderer;
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlockEntity;
 import com.oierbravo.mechanicals.foundation.visual.QuarterShaftVisual;
+import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 public class ModBlockEntities {
@@ -17,6 +18,7 @@ public class ModBlockEntities {
 
     public static final BlockEntityEntry<LootCollectorBlockEntity> LOOT_COLLECTOR = CreateMechanicalSpawner.registrate()
             .blockEntity("loot_collector", LootCollectorBlockEntity::new)
+            .renderer(() -> SmartBlockEntityRenderer::new)
             .validBlocks(ModBlocks.LOOT_COLLECTOR)
             .register();
 

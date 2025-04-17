@@ -1,13 +1,16 @@
-package com.oierbravo.create_mechanical_spawner.foundation.data.recipe;
+package com.oierbravo.create_mechanical_spawner.infrastructure.data;
 
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipeBuilder;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipeOutput;
 import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
+import com.oierbravo.mechanicals.compat.kubejs.bindings.ProcessingOutputBuilder;
 import com.oierbravo.mechanicals.foundation.data.AbstractMechanicalRecipeGenerator;
+import com.simibubi.create.AllItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -110,6 +113,7 @@ public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerR
                 .processingTime(2500)
                 .save(recipeOutput);
 
+
         create("wither_skeleton")
                 .output(SpawnerRecipeOutput.of("minecraft:wither_skeleton"))
                 .require(ModFluids.WITHER_SKELETON.get(),200)
@@ -193,6 +197,16 @@ public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerR
                 .output(SpawnerRecipeOutput.of("minecraft:wolf"))
                 .require(ModFluids.WOLF.get(),100)
                 .processingTime(1500)
+                .save(recipeOutput);
+
+        /* Bosses */
+        create("wither")
+                .output(SpawnerRecipeOutput.of("minecraft:wither"))
+                .require(ModFluids.WITHER.get(),300)
+                .processingTime(5000)
+                .withCustomLoot(ProcessingOutputBuilder.of(Items.NETHER_STAR.getDefaultInstance()))
+                .withCustomLoot(ProcessingOutputBuilder.of(AllItems.EXP_NUGGET.asStack(16)))
+                .withCustomLoot(ProcessingOutputBuilder.of(AllItems.EXP_NUGGET.asStack(8),0.5f))
                 .save(recipeOutput);
     }
 }
