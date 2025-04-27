@@ -16,7 +16,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.DoubleSupplier;
-
+/**
+ * Credits to the Creators of Create
+ * https://github.com/Creators-of-Create/Create/blob/mc1.20.1/dev/src/main/java/com/simibubi/create/infrastructure/config/CStress.java
+ * License: MIT
+ */
 public class ModStress extends ConfigBase {
 	// bump this version to reset configured values.
 	private static final int VERSION = 1;
