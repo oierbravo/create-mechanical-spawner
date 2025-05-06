@@ -94,6 +94,7 @@ Custom loot example
 
 ## KubeJS support (Server script)
 
+
 ### Disable all default recipes:
 ```
 event.remove({ type: 'create_mechanical_spawner:spawner' })
@@ -101,6 +102,12 @@ event.remove({ type: 'create_mechanical_spawner:spawner' })
 ### Disable specific mob recipes:
 ```
 event.remove({ output: 'minecraft:wolf'});
+```
+
+### Bindings
+- Chanced output
+```js
+Output.of('minecraft:clay', 0.5)
 ```
 
 ### Add random generation recipe:
