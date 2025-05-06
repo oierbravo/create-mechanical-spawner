@@ -82,11 +82,11 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             boolean single = customLoot.size() == 1;
             int i = 0;
             for (ProcessingOutput output : customLoot) {
-                int xOffset = i % 2 == 0 ? 0 : 19;
-                int yOffset = (i / 2) * -19;
+                int xOffset = i % 9 == 0 ? 0 : 19;
+                int yOffset = 0 ;
 
                 builder
-                        .addSlot(RecipeIngredientRole.OUTPUT, single ? 139 : 133 + xOffset, 27 + yOffset)
+                        .addSlot(RecipeIngredientRole.OUTPUT, 2 + xOffset * i, 75 + yOffset)
                         .setBackground(getRenderedSlot(output), -1, -1)
                         .addItemStack(output.getStack())
                         .addRichTooltipCallback(addStochasticTooltip(output));
