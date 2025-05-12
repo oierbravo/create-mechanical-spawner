@@ -11,6 +11,19 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "merge",
+                  "source": "VanillaTag",
+                  "target": "{}"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
           "name": "create_mechanical_spawner:loot_collector"
         }
       ],
