@@ -1,6 +1,7 @@
 package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlock;
+import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlockEntity;
 import com.oierbravo.create_mechanical_spawner.foundation.blockEntity.behaviour.DynamicCycleBehavior;
 import com.oierbravo.create_mechanical_spawner.foundation.blockEntity.behaviour.IHavePercent;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.LivingEntityHelper;
@@ -234,7 +235,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         assert level != null;
         if(pLevel.isClientSide)
             return;
-        BlockEntity lootCollector = level.getBlockEntity(pSpawnPos);
+        LootCollectorBlockEntity lootCollector = (LootCollectorBlockEntity) level.getBlockEntity(pSpawnPos);
         @NotNull LazyOptional<IItemHandler> lootCollectorInventoryHandler = lootCollector.getCapability(ForgeCapabilities.ITEM_HANDLER);
         if(!lootCollectorInventoryHandler.isPresent())
             return;
@@ -243,7 +244,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         if( SpawnerConfig.CUSTOM_LOOT_PER_SPAWN_RECIPE_ENABLED.get() && !pSpawnerRecipe.customLoot.isEmpty()){
             fillCollectorWithCustomLoot(lootCollectorInventory,pSpawnerRecipe);
         } else {
-            fillCollectorWithMobLoot(lootCollectorInventory,pSpawnerRecipe,pSpawnPos);
+            fillCollectorWithMobLoot(lootCollectorInventory,pSpawnerRecipe,pSpawnPos,lootCollector.getLootingLevel());
         }
 
         lootCollector.setChanged();
@@ -256,12 +257,12 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
                 ItemHandlerHelper.insertItem(pLootCollectorInventory, itemStack,false);
             }
     }
-    protected void fillCollectorWithMobLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe, BlockPos pSpawnPos){
+    protected void fillCollectorWithMobLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe, BlockPos pSpawnPos, int lootingLevel){
         Entity entitySpawn = LivingEntityHelper.createEntity((ServerLevel) this.level, pSpawnerRecipe.getMob(), pSpawnPos);
         if (!(entitySpawn instanceof Mob mob))
             return;
 
-        List<ItemStack> list = LivingEntityHelper.getLootFromMob((ServerLevel) this.level,mob,pSpawnPos,getPlayer());
+        List<ItemStack> list = LivingEntityHelper.getLootFromMob((ServerLevel) this.level,mob,pSpawnPos,getPlayer(), lootingLevel);
         for (ItemStack itemStack : list) {
             ItemHandlerHelper.insertItem(pLootCollectorInventory, itemStack,false);
         }

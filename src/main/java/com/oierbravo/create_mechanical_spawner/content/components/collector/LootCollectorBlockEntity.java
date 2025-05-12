@@ -20,9 +20,12 @@ import java.util.List;
 public class LootCollectorBlockEntity extends SmartBlockEntity {
     private final ItemStackHandler inventory = createInventory();
     private final LazyOptional<IItemHandler> capability = LazyOptional.of(() -> inventory);
+    private int lootingLevel;
+    private CompoundTag vanillaTag;
 
     public LootCollectorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        vanillaTag = new CompoundTag();
     }
 
     @Override
@@ -55,11 +58,37 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
     public void write(CompoundTag compound, boolean clientPacket) {
         super.write(compound, clientPacket);
         compound.put("Inventory", inventory.serializeNBT());
+        compound.putInt("LootingLevel", lootingLevel);
+        compound.put("VanillaTag", vanillaTag);
     }
 
     @Override
     protected void read(CompoundTag compound, boolean clientPacket) {
         super.read(compound, clientPacket);
         inventory.deserializeNBT(compound.getCompound("Inventory"));
+        lootingLevel = compound.getInt("LootingLevel");
+        vanillaTag = compound.getCompound("VanillaTag");
     }
-  }
+
+    public int getLootingLevel()
+    {
+        return lootingLevel;
+    }
+
+    public void setLootingLevel(int lootingLevel)
+    {
+        this.lootingLevel = lootingLevel;
+    }
+
+    public CompoundTag getVanillaTag()
+    {
+        return vanillaTag;
+    }
+
+    public void setTags(CompoundTag vanillaTag) {
+        //Based on create backtank code
+        this.vanillaTag = vanillaTag.copy();
+        // Prevent nesting of the ctrl+pick block added tag
+        vanillaTag.remove("BlockEntityTag");
+    }
+}
