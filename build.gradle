@@ -139,7 +139,6 @@ repositories {
     maven {
         url "https://maven.saps.dev/minecraft"
         content {
-            includeGroup "dev.latvian.mods"
             includeGroup "dev.ftb.mods"
         }
     }
@@ -147,6 +146,13 @@ repositories {
         url "https://maven.architectury.dev/"
         content {
             includeGroup "dev.architectury"
+        }
+    }
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
         }
     }
     mavenLocal()

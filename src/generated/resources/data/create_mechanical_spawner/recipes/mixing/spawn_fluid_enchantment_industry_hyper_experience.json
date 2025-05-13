@@ -10,7 +10,7 @@
   "ingredients": [
     {
       "amount": 10,
-      "fluid": "create_enchantment_industry:hyper_experience",
+      "fluid": "create_enchantment_industry:flowing_hyper_experience",
       "nbt": {}
     },
     {
