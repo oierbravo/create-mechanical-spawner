@@ -28,6 +28,7 @@ A mechanical spawner block. Generates Mobs with rotation power.
   - Configurable to allow any container or Create Item Vault.
   - Can be disabled.
   - The spawner can be configured to work only with loot collectors.
+  - Enchantable
 - Wither & explosion immune glass & casing.
 - Wither recipe.
 

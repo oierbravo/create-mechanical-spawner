@@ -22,6 +22,7 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.BlockTags;
@@ -34,6 +35,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.function.Supplier;
 
@@ -79,6 +87,16 @@ public class ModBlocks {
             .properties(p -> p.mapColor(MapColor.METAL))
             .blockstate(BlockStateGen.horizontalBlockProvider(false))
             .transform(pickaxeOnly())
+            .loot((lt, block) -> {
+                LootTable.Builder builder = LootTable.lootTable();
+                LootItemCondition.Builder survivesExplosion = ExplosionCondition.survivesExplosion();
+                lt.add(block, builder.withPool(LootPool.lootPool()
+                        .when(survivesExplosion)
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block)
+                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(DataComponents.ENCHANTMENTS)))));
+            })
             .simpleItem()
             .recipe((blockLootCollectorBlockDataGenContext, registrateRecipeProvider) ->
                     MechanicalCraftingRecipeBuilder.shapedRecipe(blockLootCollectorBlockDataGenContext.get())

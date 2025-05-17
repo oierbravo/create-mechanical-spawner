@@ -6,8 +6,12 @@ import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -35,6 +39,19 @@ public class LootCollectorBlock extends Block implements IBE<LootCollectorBlockE
         return this.defaultBlockState()
                 .setValue(HORIZONTAL_FACING, context.getHorizontalDirection()
                         .getOpposite());
+    }
+
+    @Override
+    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(worldIn, pos, state, placer, stack);
+        if (worldIn.isClientSide)
+            return;
+        if (stack == null)
+            return;
+        withBlockEntityDo(worldIn, pos, be -> {
+            be.setLootingLevel(stack.getEnchantmentLevel(worldIn.holderOrThrow(Enchantments.LOOTING)));
+
+        });
     }
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {

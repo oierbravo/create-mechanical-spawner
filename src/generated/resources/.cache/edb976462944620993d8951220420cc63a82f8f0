@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T21:34:46.209636388	Registrate Provider for create_mechanical_spawner [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-05-17T12:15:35.672844569	Registrate Provider for create_mechanical_spawner [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 d1b393a2597472961bcfc49add092e7e89a3df67 assets/create_mechanical_spawner/blockstates/framed_dark_glass.json
 bb6dd959a5c0f5fe2f8c1be03eceb3c29b08e3bb assets/create_mechanical_spawner/blockstates/horizontal_framed_dark_glass.json
 269fcd69dc0ec76f54d2b2aa57dc5af85f9dbf52 assets/create_mechanical_spawner/blockstates/loot_collector.json
@@ -33,8 +33,8 @@ bfd32466ce26c3e00522aa163bb0faca35565cc6 assets/create_mechanical_spawner/blocks
 a639721ffada10a624beb9043a0fd975d58b6f50 assets/create_mechanical_spawner/blockstates/spawn_fluid_wolf.json
 8d9cd4e67898aae967c7564acb9f523db2d198d5 assets/create_mechanical_spawner/blockstates/spawn_fluid_zombie.json
 02e4c9342602a03d4a3cb54f7de1832e39421498 assets/create_mechanical_spawner/blockstates/vertical_framed_dark_glass.json
-791ed4e5bb4fdbe0afab4d9cd582d1bece596831 assets/create_mechanical_spawner/lang/en_ud.json
-cf4f413e1ba2b66ec31564046337803dd5e109eb assets/create_mechanical_spawner/lang/en_us.json
+e324ee78239c4be25256f69081ee8e69c7416742 assets/create_mechanical_spawner/lang/en_ud.json
+ad92fc6311fabc9323ee52bc3586ef4e07638e31 assets/create_mechanical_spawner/lang/en_us.json
 c317589a5bb15465dde79f9804db00519596d5b2 assets/create_mechanical_spawner/models/block/framed_dark_glass.json
 c317589a5bb15465dde79f9804db00519596d5b2 assets/create_mechanical_spawner/models/block/horizontal_framed_dark_glass.json
 489cf65232189847f6c2e4e2bfaa400623ebd2c7 assets/create_mechanical_spawner/models/block/reinforced_brass_casing.json
@@ -112,7 +112,7 @@ d85e32ec128b2ba2bba4d8ce521ea45ef001466d data/create_mechanical_spawner/advancem
 777087f8a7150197b5e7ebbd05a284e4e912a64d data/create_mechanical_spawner/advancement/recipes/misc/crafting/vertical_framed_dark_glass.json
 f5bea2b0607705f281bc39464bbdce76a2b8a656 data/create_mechanical_spawner/loot_table/blocks/framed_dark_glass.json
 c7483cfcc3c717f20cb54ac50a8543f1b60a89ad data/create_mechanical_spawner/loot_table/blocks/horizontal_framed_dark_glass.json
-1117487b01cc162f6a33f23943606d3a4dafb55f data/create_mechanical_spawner/loot_table/blocks/loot_collector.json
+dd75ef125112207a8fd9d263fce12ffefefda397 data/create_mechanical_spawner/loot_table/blocks/loot_collector.json
 3fd50cc4d1e655c11afb5c5628716ac55f19464a data/create_mechanical_spawner/loot_table/blocks/mechanical_spawner.json
 2d77045048886dcf14e007786c25f00aacdcd30e data/create_mechanical_spawner/loot_table/blocks/reinforced_brass_casing.json
 0f8399c1e5b71233287bbe3fcf9a8b561e03b734 data/create_mechanical_spawner/loot_table/blocks/vertical_framed_dark_glass.json

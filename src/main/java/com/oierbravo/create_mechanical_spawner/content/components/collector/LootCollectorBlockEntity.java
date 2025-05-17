@@ -1,7 +1,9 @@
 package com.oierbravo.create_mechanical_spawner.content.components.collector;
 
+import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlockEntities;
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
@@ -11,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -22,9 +25,10 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.List;
 
-public class LootCollectorBlockEntity extends SmartBlockEntity {
+public class LootCollectorBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
     private final ItemStackHandler inventory = createInventory();
     private FilteringBehaviour filtering;
+    private int lootingLevel;
 
     public LootCollectorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -66,6 +70,7 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
     @Override
     public void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         compound.put("Inventory", inventory.serializeNBT(registries));
+        compound.putInt("LootingLevel", lootingLevel);
         super.write(compound, registries, clientPacket);
 
     }
@@ -73,6 +78,7 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
     @Override
     protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         inventory.deserializeNBT(registries, compound.getCompound("Inventory"));
+        lootingLevel = compound.getInt("LootingLevel");
         super.read(compound, registries, clientPacket);
 
     }
@@ -88,5 +94,22 @@ public class LootCollectorBlockEntity extends SmartBlockEntity {
         }
 
     }
+    public int getLootingLevel()
+    {
+        return lootingLevel;
+    }
 
-  }
+    public void setLootingLevel(int lootingLevel)
+    {
+        this.lootingLevel = lootingLevel;
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        if(lootingLevel > 0){
+            ModLang.translate("goggles.with_loot_enchantment", lootingLevel).forGoggles(tooltip);
+            return true;
+        }
+        return false;
+    }
+}

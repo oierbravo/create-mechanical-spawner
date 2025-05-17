@@ -2,6 +2,7 @@ package com.oierbravo.create_mechanical_spawner.content.components;
 
 import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlock;
+import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlockEntity;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.foundation.utility.LivingEntityHelper;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
@@ -162,6 +163,8 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
 
     @Override
     public void showParticles() {
+        if(!isSpeedRequirementFulfilled())
+            return;
         Vec3 offset = new Vec3(0f, 0f, 0f);
 
         Vec3 center = offset.add(VecHelper.getCenterOf(worldPosition));
@@ -208,6 +211,10 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         if(pLevel.isClientSide)
             return;
         BlockEntity lootCollector = level.getBlockEntity(pSpawnPos);
+        int lootLevel = 0;
+        if(lootCollector instanceof LootCollectorBlockEntity lootCollectorBlockEntity){
+            lootLevel = lootCollectorBlockEntity.getLootingLevel();
+        }
         @NotNull IItemHandler lootCollectorInventoryHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, pSpawnPos, Direction.DOWN);
         if(lootCollectorInventoryHandler == null)
             return;
@@ -215,7 +222,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
         if( MConfigs.server().spawner.customLootPerSpawnRecipeEnabled.get() && !pSpawnerRecipe.getCustomLoot().isEmpty()){
             fillCollectorWithCustomLoot(lootCollectorInventoryHandler,pSpawnerRecipe);
         } else {
-            fillCollectorWithMobLoot(lootCollectorInventoryHandler,pSpawnerRecipe,pSpawnPos);
+            fillCollectorWithMobLoot(lootCollectorInventoryHandler,pSpawnerRecipe,pSpawnPos,lootLevel);
         }
 
         lootCollector.setChanged();
@@ -228,12 +235,12 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
                 ItemHandlerHelper.insertItem(pLootCollectorInventory, itemStack,false);
             }
     }
-    protected void fillCollectorWithMobLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe, BlockPos pSpawnPos){
+    protected void fillCollectorWithMobLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe, BlockPos pSpawnPos, int lootingLevel){
         Entity entitySpawn = LivingEntityHelper.createEntity((ServerLevel) this.level, pSpawnerRecipe.getOutput().getMob(), pSpawnPos);
         if (!(entitySpawn instanceof Mob mob))
             return;
 
-        List<ItemStack> list = LivingEntityHelper.getLootFromMob((ServerLevel) this.level,mob,pSpawnPos,getPlayer());
+        List<ItemStack> list = LivingEntityHelper.getLootFromMob((ServerLevel) this.level,mob,pSpawnPos,getPlayer(), lootingLevel);
         for (ItemStack itemStack : list) {
             ItemHandlerHelper.insertItem(pLootCollectorInventory, itemStack,false);
         }

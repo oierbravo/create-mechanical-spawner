@@ -77,6 +77,7 @@ public class CreateMechanicalSpawner
             .add("recipe.spawner", "Spawner recipe")
             .add("generic.biome_dependant", "Biome dependant")
             .add("generic.with_custom_loot", "Custom loot with loot collector")
+            .add("goggles.with_loot_enchantment", "Looting: %d")
             .add("spawner.tooltip.with_loot_collector", "Loot collector found!")
             .add("spawner.tooltip.progress", "Progress: %d%%")
             .add("spawner.scrollValue.label", "Spawn at height (in blocks)")

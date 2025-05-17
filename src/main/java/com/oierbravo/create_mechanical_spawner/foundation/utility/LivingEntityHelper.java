@@ -11,6 +11,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -101,7 +103,7 @@ public class LivingEntityHelper {
             return null;
         }
     }
-    public static List<ItemStack> getLootFromMob(ServerLevel pLevel,Entity entity,  BlockPos pSpawnPos, DeployerFakePlayer pFakePlayer){
+    public static List<ItemStack> getLootFromMob(ServerLevel pLevel,Entity entity,  BlockPos pSpawnPos, DeployerFakePlayer pFakePlayer, int lootingLevel){
         if (!(entity instanceof Mob mob))
             return List.of();
 
@@ -109,6 +111,11 @@ public class LivingEntityHelper {
         ResourceKey<LootTable> lootTableKey = ResourceKey.create(Registries.LOOT_TABLE, resourceLocation);
 
         FakePlayer fakePlayer = new DeployerFakePlayer(pLevel, pFakePlayer.getUUID());
+        ItemStack fakeSword = new ItemStack(Items.DIAMOND_SWORD);
+        if(lootingLevel > 0)
+            fakeSword.enchant(pLevel.holderOrThrow(Enchantments.LOOTING), lootingLevel);
+        fakePlayer.getInventory().add(fakePlayer.getInventory().selected, fakeSword);
+
         DamageSource damageSource = pLevel.damageSources().playerAttack(fakePlayer);
 
         LootParams.Builder builder = new LootParams.Builder(pLevel);
@@ -116,6 +123,7 @@ public class LivingEntityHelper {
         builder.withLuck(3)
                 .withParameter(LootContextParams.THIS_ENTITY, entity).withParameter(LootContextParams.ORIGIN, entity.position())
                 .withParameter(LootContextParams.DAMAGE_SOURCE, damageSource)
+                .withParameter(LootContextParams.TOOL, fakeSword)
                 .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, fakePlayer)
                 .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, damageSource.getDirectEntity());
         builder = builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer);
