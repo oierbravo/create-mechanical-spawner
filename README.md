@@ -2,6 +2,8 @@
 
 A mechanical spawner block. Generates Mobs with rotation power.
 
+## [Dedicated wiki](https://wiki.mechanicalmods.net/mods/mechanical-spawner/)
+
 ## 1.21.1-2.x Version Requires Mechanicals Lib
 - [Curseforge](https://www.curseforge.com/minecraft/mc-mods/mechanicals-lib "Curseforge")
 - [Modrinth](https://modrinth.com/mod/mechanicals-lib "Modrinth")
@@ -96,13 +98,13 @@ Custom loot example
 ## KubeJS support (Server script)
 
 
-### Disable all default recipes:
-```
+### Remove all default recipes:
+```js
 event.remove({ type: 'create_mechanical_spawner:spawner' })
 ```
-### Disable specific mob recipes:
-```
-event.remove({ output: 'minecraft:wolf'});
+### Remove specific mob recipes:
+```js
+event.remove({id:"create_mechanical_spawner:spawner/skeleton"})
 ```
 
 ### Bindings
