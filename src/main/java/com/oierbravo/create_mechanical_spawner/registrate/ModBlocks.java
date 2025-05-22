@@ -5,6 +5,7 @@ import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.content.components.ConnectedDarkGlassBlock;
 import com.oierbravo.create_mechanical_spawner.content.components.SpawnerBlock;
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorBlock;
+import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorItem;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.ModStress;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
@@ -97,7 +98,7 @@ public class ModBlocks {
                                 .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
                                         .include(DataComponents.ENCHANTMENTS)))));
             })
-            .simpleItem()
+            .item(LootCollectorItem::new)
             .recipe((blockLootCollectorBlockDataGenContext, registrateRecipeProvider) ->
                     MechanicalCraftingRecipeBuilder.shapedRecipe(blockLootCollectorBlockDataGenContext.get())
                             .key('I', Ingredient.of(Blocks.IRON_BARS))
@@ -110,6 +111,7 @@ public class ModBlocks {
                             .patternLine( "BIIIB")
                             .patternLine( "BSSSB")
                             .build(registrateRecipeProvider))
+            .build()
             .register();
 
 
