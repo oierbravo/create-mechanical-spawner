@@ -1,15 +1,11 @@
 package com.oierbravo.create_mechanical_spawner.infrastructure.data;
 
-import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
-import com.tterrag.registrate.providers.RegistrateDataProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
-
-import static com.oierbravo.create_mechanical_spawner.ModConstants.MODID;
 
 public class ModDataGen {
     public static void gatherData(GatherDataEvent event) {
@@ -25,7 +21,6 @@ public class ModDataGen {
             generator.addProvider(true, new SpawnerCompatRecipeGen(output, lookupProvider));
             generator.addProvider(true, new CreateItemApplicationRecipeGen(output, lookupProvider));
         }
-        event.getGenerator().addProvider(true, CreateMechanicalSpawner.registrate().setDataProvider(new RegistrateDataProvider(CreateMechanicalSpawner.registrate(), MODID, event)));
 
     }
 }

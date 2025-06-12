@@ -5,7 +5,7 @@ import com.oierbravo.create_mechanical_spawner.registrate.ModFluids;
 import com.oierbravo.mechanicals.foundation.data.AbstractCreateRecipeGen;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -192,7 +192,7 @@ public class CreateMixingRecipeGen extends AbstractCreateRecipeGen {
                 .duration(700)
                 .build(recipeOutput);
     }
-    protected ProcessingRecipeBuilder<MixingRecipe> createSpawnFluid(String id, BaseFlowingFluid flowingFluid, int pAmount){
+    protected StandardProcessingRecipe.Builder<MixingRecipe> createSpawnFluid(String id, BaseFlowingFluid flowingFluid, int pAmount){
         return createMixing("spawn_fluid_" + id)
                 .duration(250)
                 .output(new FluidStack(flowingFluid.getSource(), pAmount));

@@ -1,15 +1,14 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
-import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.MConfigs;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
 import com.oierbravo.create_mechanical_spawner.registrate.ModRecipes;
+import com.oierbravo.mechanicals.compat.jei.CreateRecipeCategoryBuilder;
 import com.oierbravo.mechanicals.compat.jei.RecipeRequirementRenderer;
 import com.oierbravo.mechanicals.foundation.gui.MechanicalGUITextures;
-import com.simibubi.create.compat.jei.EmptyBackground;
 import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
@@ -21,14 +20,12 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -42,19 +39,15 @@ import java.util.Optional;
 public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
     private final AnimatedSpawner spawner = new AnimatedSpawner();
 
-    public final static ResourceLocation UID = ModConstants.asResource(SpawnerRecipe.Type.ID);
-    public final static RecipeType<SpawnerRecipe> TYPE = new mezz.jei.api.recipe.RecipeType<>(UID, SpawnerRecipe.class);
+    @SuppressWarnings("unchecked")
+    public final static CreateRecipeCategory<SpawnerRecipe> INFO = CreateRecipeCategoryBuilder
+            .builder(SpawnerRecipe.class)
+            .addRecipes(ModRecipes::getAllHolders)
+            .catalyst(ModBlocks.MECHANICAL_SPAWNER)
+            .icon(new ItemIcon(() -> new ItemStack(ModBlocks.MECHANICAL_SPAWNER.asItem())))
+            .emptyBackground(177, 100)
+            .build("extruding", SpawnerCategory::new);
 
-    public final static CreateRecipeCategory.Info<SpawnerRecipe> INFO = new CreateRecipeCategory.Info<>(
-            TYPE,
-            ModLang.translate("recipe." + SpawnerRecipe.Type.ID).component(),
-            new EmptyBackground(177, 100),
-            new ItemIcon(() -> new ItemStack(ModBlocks.MECHANICAL_SPAWNER.asItem())),
-            ModRecipes::getAllHolders,
-            List.of(
-                    ModBlocks.MECHANICAL_SPAWNER::asStack
-            )
-    );
 
 
     public SpawnerCategory(Info<SpawnerRecipe> info) {

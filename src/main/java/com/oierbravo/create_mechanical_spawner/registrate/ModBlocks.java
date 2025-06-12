@@ -9,6 +9,7 @@ import com.oierbravo.create_mechanical_spawner.content.components.collector.Loot
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.ModStress;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.api.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import com.simibubi.create.foundation.block.connected.ConnectedTextureBehaviour;
@@ -18,7 +19,6 @@ import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
-import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
