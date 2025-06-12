@@ -46,7 +46,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             .catalyst(ModBlocks.MECHANICAL_SPAWNER)
             .icon(new ItemIcon(() -> new ItemStack(ModBlocks.MECHANICAL_SPAWNER.asItem())))
             .emptyBackground(177, 100)
-            .build("extruding", SpawnerCategory::new);
+            .build("spawning", SpawnerCategory::new);
 
 
 
