@@ -3,7 +3,7 @@ package com.oierbravo.create_mechanical_spawner.foundation.data.recipe;
 import com.oierbravo.create_mechanical_spawner.registrate.ModBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
-import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
+import com.simibubi.create.api.data.recipe.MechanicalCraftingRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
