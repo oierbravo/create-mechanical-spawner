@@ -24,5 +24,5 @@
 	"create_mechanical_spawner.recipe.spawner": "Recette du Générateur",
 	"create_mechanical_spawner.spawner.tooltip.progress": "Progression: %d%%",
 	"create_mechanical_spawner.spawner.scrollValue.label": "Hauteur d'apparition (en blocs)",
-	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "Apparition de _Mobs_ avec le liquide de génération.",
+	"block.create_mechanical_spawner.mechanical_spawner.tooltip.summary": "Apparition de _Mobs_ avec le liquide de génération."
 }

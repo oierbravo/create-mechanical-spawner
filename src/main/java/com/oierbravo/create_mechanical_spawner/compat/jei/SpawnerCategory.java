@@ -1,5 +1,6 @@
 package com.oierbravo.create_mechanical_spawner.compat.jei;
 
+import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.create_mechanical_spawner.ModLang;
 import com.oierbravo.create_mechanical_spawner.compat.jei.animations.AnimatedSpawner;
 import com.oierbravo.create_mechanical_spawner.content.components.recipe.SpawnerRecipe;
@@ -12,7 +13,6 @@ import com.oierbravo.mechanicals.foundation.gui.MechanicalGUITextures;
 import com.simibubi.create.compat.jei.ItemIcon;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
@@ -31,8 +31,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +48,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
             .catalyst(ModBlocks.MECHANICAL_SPAWNER)
             .icon(new ItemIcon(() -> new ItemStack(ModBlocks.MECHANICAL_SPAWNER.asItem())))
             .emptyBackground(177, 100)
-            .build("spawning", SpawnerCategory::new);
+            .build(ModConstants.asResource("spawner"), SpawnerCategory::new);
 
 
 
@@ -56,9 +58,9 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
 
 
     public void setRecipe(IRecipeLayoutBuilder builder, SpawnerRecipe recipe, IFocusGroup focuses) {
-        FluidIngredient fluidIngredient = recipe.getFluidIngredient();
+        SizedFluidIngredient fluidIngredient = recipe.getFluidIngredient();
 
-        List<ItemStack> invisibleIngredientsBuckets = fluidIngredient.getMatchingFluidStacks().stream().map(fluidStack -> new ItemStack(fluidStack.getFluid().getBucket())).toList();
+        List<ItemStack> invisibleIngredientsBuckets = Arrays.stream(fluidIngredient.getFluids()).map(fluidStack -> new ItemStack(fluidStack.getFluid().getBucket())).toList();
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(invisibleIngredientsBuckets);
         ResourceKey<EntityType<?>> mobKey = recipe.getMob();
 
@@ -91,7 +93,7 @@ public class SpawnerCategory extends CreateRecipeCategory<SpawnerRecipe> {
         builder
             .addSlot(RecipeIngredientRole.INPUT, 2, 2)
             .setBackground(getRenderedSlot(), -1, -1)
-            .addIngredients(NeoForgeTypes.FLUID_STACK, fluidIngredient.getMatchingFluidStacks())
+            .addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(fluidIngredient.getFluids()))
             .addRichTooltipCallback(SpawnerCategory::addFluidAmountTooltip);
     }
     private static void addFluidAmountTooltip(IRecipeSlotView recipeSlotView, ITooltipBuilder tooltip){

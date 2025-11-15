@@ -9,7 +9,7 @@
       "tag": "c:ender_pearls"
     },
     {
-      "type": "fluid_stack",
+      "type": "neoforge:single",
       "amount": 250,
       "fluid": "minecraft:water"
     }

@@ -2,11 +2,11 @@ package com.oierbravo.create_mechanical_spawner.content.components.recipe;
 
 import com.oierbravo.mechanicals.foundation.recipe.AbstractMechanicalRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.Optional;
 
@@ -21,15 +21,16 @@ public class SpawnerRecipeBuilder extends AbstractMechanicalRecipeBuilder<Spawne
         params = new SpawnerRecipe.SpawnerRecipeParams();
     }
 
-    public SpawnerRecipeBuilder require(FluidIngredient fluidIngredient) {
-        params.fluidIngredient = fluidIngredient;
+    public SpawnerRecipeBuilder require(SizedFluidIngredient ingredient) {
+        params.fluidIngredient = ingredient;
         return this;
     }
+
     public SpawnerRecipeBuilder require(FluidStack fluidStack) {
-        return require(FluidIngredient.fromFluidStack(fluidStack));
+        return require(SizedFluidIngredient.of(fluidStack));
     }
     public SpawnerRecipeBuilder require(BaseFlowingFluid.Flowing pFluid, int pAmount) {
-        return require(FluidIngredient.fromFluid(pFluid,pAmount));
+        return require(new FluidStack(pFluid.getSource(), pAmount));
     }
     public SpawnerRecipeBuilder output(SpawnerRecipeOutput mob) {
         params.mob = mob;

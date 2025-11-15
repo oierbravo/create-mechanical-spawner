@@ -15,7 +15,6 @@
     }
   ],
   "input": {
-    "type": "fluid_stack",
     "amount": 300,
     "fluid": "create_mechanical_spawner:spawn_fluid_wither"
   },
