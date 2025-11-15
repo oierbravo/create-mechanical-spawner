@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T19:02:13.843934137	Mechanical Spawner's item application recipes.
+// 1.21.1	2025-11-15T13:08:12.2433694	Mechanical Spawner's item application recipes.
 3f270e5df582da4af3d3486eaf3a7a2f0d981f7c data/create_mechanical_spawner/recipe/item_application/framed_glass.json
 4451fa095423ef476f3a2f348ff186c6f2438347 data/create_mechanical_spawner/recipe/item_application/horizontal_framed_glass.json
 157447b9a4e45577ad821bc3888bb3cd27d2a969 data/create_mechanical_spawner/recipe/item_application/reinforced_casing.json

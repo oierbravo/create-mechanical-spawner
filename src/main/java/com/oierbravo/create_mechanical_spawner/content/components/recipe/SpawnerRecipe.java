@@ -5,11 +5,11 @@ import com.oierbravo.mechanicals.foundation.recipe.AbstractMechanicalRecipe;
 import com.oierbravo.mechanicals.foundation.recipe.AbstractMechanicalRecipeParams;
 import com.oierbravo.mechanicals.foundation.recipe.IRecipeRequirement;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -17,13 +17,15 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, SpawnerRecipe.SpawnerRecipeParams> {
-    private final FluidIngredient fluidIngredient;
+    private final SizedFluidIngredient fluidIngredient;
 
     private NonNullList<ProcessingOutput> customLoot;
 
@@ -77,10 +79,10 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
     }
 
     public int getFluidAmount() {
-        return fluidIngredient.getRequiredAmount();
+        return fluidIngredient.amount();
     }
 
-    public FluidIngredient getFluidIngredient() { return fluidIngredient; }
+    public SizedFluidIngredient getFluidIngredient() { return fluidIngredient; }
 
     public ResourceKey<EntityType<?>> getMob() {
         return mob.getMob();
@@ -90,15 +92,15 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
         return customLoot;
     }
 
-    public List<ItemStack> rollCustomLoot() {
-        return rollCustomLoot(this.getCustomLoot());
+    public List<ItemStack> rollCustomLoot(RandomSource source) {
+        return rollCustomLoot(this.getCustomLoot(), source);
     }
 
-    public List<ItemStack> rollCustomLoot(List<ProcessingOutput> rollableResults) {
+    public List<ItemStack> rollCustomLoot(List<ProcessingOutput> rollableResults, RandomSource source) {
         List<ItemStack> results = new ArrayList<>();
         for (int i = 0; i < rollableResults.size(); i++) {
             ProcessingOutput output = rollableResults.get(i);
-            ItemStack stack = output.rollOutput();
+            ItemStack stack = output.rollOutput(source);
             if (!stack.isEmpty())
                 results.add(stack);
         }
@@ -114,7 +116,7 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
         return recipeRequirements;
     }
 
-    public FluidIngredient getInput() {
+    public SizedFluidIngredient getInput() {
         return fluidIngredient;
     }
 
@@ -133,7 +135,7 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
 
     public static class SpawnerRecipeParams extends AbstractMechanicalRecipeParams {
 
-        protected FluidIngredient fluidIngredient;
+        protected SizedFluidIngredient fluidIngredient;
         protected SpawnerRecipeOutput mob;
         protected int processingTime;
 
@@ -142,7 +144,7 @@ public class SpawnerRecipe extends AbstractMechanicalRecipe<RecipeInput, Spawner
         protected SpawnerRecipeParams() {
             super();
             mob = new SpawnerRecipeOutput();
-            fluidIngredient = FluidIngredient.EMPTY;
+            fluidIngredient = new SizedFluidIngredient(FluidIngredient.empty(), 1000);
             processingTime = 200;
             customLoot = NonNullList.create();
         }

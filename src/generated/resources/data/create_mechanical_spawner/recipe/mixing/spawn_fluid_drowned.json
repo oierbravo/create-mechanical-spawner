@@ -5,12 +5,12 @@
       "item": "minecraft:rotten_flesh"
     },
     {
-      "type": "fluid_stack",
+      "type": "neoforge:single",
       "amount": 100,
       "fluid": "create_mechanical_spawner:spawn_fluid_random"
     },
     {
-      "type": "fluid_stack",
+      "type": "neoforge:single",
       "amount": 100,
       "fluid": "minecraft:water"
     }

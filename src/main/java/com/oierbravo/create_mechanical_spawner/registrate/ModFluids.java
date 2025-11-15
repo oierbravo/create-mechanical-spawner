@@ -2,7 +2,6 @@ package com.oierbravo.create_mechanical_spawner.registrate;
 
 import com.oierbravo.create_mechanical_spawner.CreateMechanicalSpawner;
 import com.oierbravo.mechanicals.register.fluid.MechanicalSolidRenderedPlaceableFluidType;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.tterrag.registrate.util.entry.FluidEntry;
@@ -56,10 +55,10 @@ public class ModFluids {
                         .tickRate(25)
                         .slopeFindDistance(3)
                         .explosionResistance(100f))
-                .tag(AllTags.commonFluidTag("spawn_fluid"))
+                .tag(CreateMechanicalSpawner.commonFluidTag("spawn_fluid"))
                 .source(BaseFlowingFluid.Source::new) // TODO: remove when Registrate fixes FluidBuilder
                 .bucket()
-                .tag(AllTags.commonItemTag("buckets/spawn_fluid"))
+                .tag(CreateMechanicalSpawner.commonItemTag("buckets/spawn_fluid"))
                 .build()
                 .register();
     }

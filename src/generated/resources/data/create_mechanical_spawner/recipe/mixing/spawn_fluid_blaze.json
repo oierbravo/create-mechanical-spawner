@@ -6,7 +6,7 @@
       "tag": "c:rods/blaze"
     },
     {
-      "type": "fluid_stack",
+      "type": "neoforge:single",
       "amount": 100,
       "fluid": "create_mechanical_spawner:spawn_fluid_random"
     }

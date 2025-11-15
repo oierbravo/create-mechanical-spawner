@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.oierbravo.create_mechanical_spawner.ModConstants;
 import com.oierbravo.mechanicals.foundation.recipe.IRecipeRequirement;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.createmod.catnip.codecs.stream.CatnipStreamCodecBuilders;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -16,6 +15,7 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
     public final StreamCodec<RegistryFriendlyByteBuf, SpawnerRecipe> STREAM_CODEC = StreamCodec.of(this::toNetwork, this::fromNetwork);
 
     private SpawnerRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-        FluidIngredient input = FluidIngredient.STREAM_CODEC.decode(buffer);
+        SizedFluidIngredient input = SizedFluidIngredient.STREAM_CODEC.decode(buffer);
         ResourceLocation output = ResourceLocation.STREAM_CODEC.decode(buffer);
         NonNullList<ProcessingOutput> customLoot = CatnipStreamCodecBuilders.nonNullList(ProcessingOutput.STREAM_CODEC).decode(buffer);
         int processingTime = ByteBufCodecs.VAR_INT.decode(buffer);
@@ -41,7 +41,7 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
     }
 
     private void toNetwork(RegistryFriendlyByteBuf buffer, SpawnerRecipe spawnerRecipe) {
-        FluidIngredient.STREAM_CODEC.encode(buffer, spawnerRecipe.getFluidIngredient());
+        SizedFluidIngredient.STREAM_CODEC.encode(buffer, spawnerRecipe.getFluidIngredient());
         ResourceLocation.STREAM_CODEC.encode(buffer, spawnerRecipe.getMobResourceLocation());
         CatnipStreamCodecBuilders.nonNullList(ProcessingOutput.STREAM_CODEC).encode(buffer, spawnerRecipe.getCustomLoot());
         ByteBufCodecs.VAR_INT.encode(buffer, spawnerRecipe.getProcessingTime());
@@ -51,7 +51,7 @@ public class SpawnerRecipeSerializer implements RecipeSerializer<SpawnerRecipe> 
     public static final MapCodec<SpawnerRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance
                     .group(
-                            FluidIngredient.CODEC.fieldOf("input").forGetter(SpawnerRecipe::getInput),
+                            SizedFluidIngredient.FLAT_CODEC.fieldOf("input").forGetter(SpawnerRecipe::getInput),
                             ResourceLocation.CODEC.optionalFieldOf("output", ModConstants.asResource("random")).forGetter(SpawnerRecipe::getMobResourceLocation),
                             NonNullList.codecOf(ProcessingOutput.CODEC_NEW).optionalFieldOf("customLoot", NonNullList.create()).forGetter(SpawnerRecipe::getCustomLoot),
                             ExtraCodecs.NON_NEGATIVE_INT.optionalFieldOf("processingTime", 0).forGetter(SpawnerRecipe::getProcessingTime),

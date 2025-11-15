@@ -25,6 +25,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -220,7 +222,7 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
             return;
 
         if( MConfigs.server().spawner.customLootPerSpawnRecipeEnabled.get() && !pSpawnerRecipe.getCustomLoot().isEmpty()){
-            fillCollectorWithCustomLoot(lootCollectorInventoryHandler,pSpawnerRecipe);
+            fillCollectorWithCustomLoot(lootCollectorInventoryHandler,pSpawnerRecipe, level.random);
         } else {
             fillCollectorWithMobLoot(lootCollectorInventoryHandler,pSpawnerRecipe,pSpawnPos,lootLevel);
         }
@@ -229,8 +231,8 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
 
 
     }
-    protected void fillCollectorWithCustomLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe ){
-            List<ItemStack> customLootStack = pSpawnerRecipe.rollCustomLoot();
+    protected void fillCollectorWithCustomLoot(IItemHandler pLootCollectorInventory, SpawnerRecipe pSpawnerRecipe, RandomSource random){
+            List<ItemStack> customLootStack = pSpawnerRecipe.rollCustomLoot(random);
             for (ItemStack itemStack : customLootStack) {
                 ItemHandlerHelper.insertItem(pLootCollectorInventory, itemStack,false);
             }
@@ -316,8 +318,6 @@ public class SpawnerBlockEntity extends KineticBlockEntity  implements DynamicCy
 
     @Override
     public boolean matchesIngredients(SpawnerRecipe spawnerRecipe) {
-        if(inputTank.getPrimaryHandler().getFluidAmount() < spawnerRecipe.getFluidAmount())
-            return false;
         return spawnerRecipe.getFluidIngredient().test(inputTank.getPrimaryHandler().getFluid());
     }
 

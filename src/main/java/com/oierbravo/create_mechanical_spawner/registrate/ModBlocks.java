@@ -8,7 +8,6 @@ import com.oierbravo.create_mechanical_spawner.content.components.collector.Loot
 import com.oierbravo.create_mechanical_spawner.content.components.collector.LootCollectorItem;
 import com.oierbravo.create_mechanical_spawner.infrastructure.config.ModStress;
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.api.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
@@ -72,8 +71,8 @@ public class ModBlocks {
                     MechanicalCraftingRecipeBuilder.shapedRecipe(blockSpawnerBlockDataGenContext.get())
                             .key('I', Ingredient.of(Blocks.IRON_BARS))
                             .key('E', Ingredient.of(Items.EMERALD))
-                            .key('B', Ingredient.of(AllTags.commonItemTag("ingots/brass")))
-                            .key('S', Ingredient.of(AllTags.commonItemTag("plates/brass")))
+                            .key('B', Ingredient.of(CreateMechanicalSpawner.commonItemTag("ingots/brass")))
+                            .key('S', Ingredient.of(CreateMechanicalSpawner.commonItemTag("plates/brass")))
                             .key('H', Ingredient.of(AllBlocks.SHAFT))
                             .patternLine(  "BSSSB")
                             .patternLine( "BIIIB")
@@ -103,8 +102,8 @@ public class ModBlocks {
                     MechanicalCraftingRecipeBuilder.shapedRecipe(blockLootCollectorBlockDataGenContext.get())
                             .key('I', Ingredient.of(Blocks.IRON_BARS))
                             .key('C', Ingredient.of(BARRELS_WOODEN))
-                            .key('B', Ingredient.of(AllTags.commonItemTag("ingots/brass")))
-                            .key('S', Ingredient.of(AllTags.commonItemTag("plates/brass")))
+                            .key('B', Ingredient.of(CreateMechanicalSpawner.commonItemTag("ingots/brass")))
+                            .key('S', Ingredient.of(CreateMechanicalSpawner.commonItemTag("plates/brass")))
                             .patternLine(  "BSSSB")
                             .patternLine( "BIIIB")
                             .patternLine( "BICIB")
