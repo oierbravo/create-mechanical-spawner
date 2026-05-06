@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "create_mechanical_spawner:spawner/pigling"
+        "recipe": "create_mechanical_spawner:spawner/piglin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "create_mechanical_spawner:spawner/pigling"
+      "create_mechanical_spawner:spawner/piglin"
     ]
   }
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-15T13:11:59.3399422	Mechanical Spawner recipes recipes.
+// 1.21.1	2026-05-05T21:48:00.488948373	Mechanical Spawner recipes recipes.
 8b5b37aef2bb465b8305a6424ddf0e21bd76b9ac data/create_mechanical_spawner/advancement/recipes/spawner/bat.json
 e86d94ca9a38a3365b1561464844c374a00545a7 data/create_mechanical_spawner/advancement/recipes/spawner/bee.json
 abe719ada7387e0efbc9f0ddd2d0f331c835f041 data/create_mechanical_spawner/advancement/recipes/spawner/blaze.json
@@ -15,7 +15,7 @@ c3f9306961197ed296a1f3fbdb7aa326913e8b03 data/create_mechanical_spawner/advancem
 b2c9d5d071bb2e47d8f50491c7c3253d7fc881ec data/create_mechanical_spawner/advancement/recipes/spawner/panda.json
 6a90aee18717ddc14468d4aab3cf331822c8007c data/create_mechanical_spawner/advancement/recipes/spawner/parrot.json
 869bede8265abcce2d64f65183655b13e28ad025 data/create_mechanical_spawner/advancement/recipes/spawner/pig.json
-4bfad129b975acc74eec2165606e9632964b7794 data/create_mechanical_spawner/advancement/recipes/spawner/pigling.json
+e921957295225a56f74393ae9f70672d8993e668 data/create_mechanical_spawner/advancement/recipes/spawner/piglin.json
 d34dbdcc0d7ed46ecefea3aaabf61661a8c1054d data/create_mechanical_spawner/advancement/recipes/spawner/rabbit.json
 8dd4c8ad824a1784f6ee8954b82ba4254c5475a0 data/create_mechanical_spawner/advancement/recipes/spawner/random.json
 4ea8896aa648d225cc55fefc29c13d49d373755c data/create_mechanical_spawner/advancement/recipes/spawner/skeleton.json
@@ -43,7 +43,7 @@ d99827b8b9d59392d3b7ec4a193a3da28b59d687 data/create_mechanical_spawner/recipe/s
 29f34ae8c4481b71cfaa102deade62abbd9efcb6 data/create_mechanical_spawner/recipe/spawner/panda.json
 ad4f17da49c453beb6a021fe42b730c1c3260015 data/create_mechanical_spawner/recipe/spawner/parrot.json
 c2fed94117f4db6a636e7d62cb9bdd4378ebfe09 data/create_mechanical_spawner/recipe/spawner/pig.json
-fb669814a6113cfe9863312c622564cb9146fbcc data/create_mechanical_spawner/recipe/spawner/pigling.json
+0aa778e4a3082476f393bbd4f05513f448c185d3 data/create_mechanical_spawner/recipe/spawner/piglin.json
 1b33eb36b4bb2deb59fbc808320caa05b85a191d data/create_mechanical_spawner/recipe/spawner/rabbit.json
 7acf9164750b1759eabdccccc9ed8c6f84520217 data/create_mechanical_spawner/recipe/spawner/random.json
 e54f94d52fb6535f2ef3e84e19ddd5ee91c9f475 data/create_mechanical_spawner/recipe/spawner/skeleton.json

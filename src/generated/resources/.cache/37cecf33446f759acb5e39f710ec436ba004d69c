@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-15T13:08:12.2413714	Mechanical Spawner's mixer recipes.
+// 1.21.1	2026-05-05T21:48:00.489483808	Mechanical Spawner's mixer recipes.
 b43c2b080e7e9307c5d88c3863048933415ca025 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_bat.json
 a29c5ce531dea45ea3f7691c5327ad71af4c4115 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_bee.json
 29135c592812b518a849646c8247d9c06fd6a39d data/create_mechanical_spawner/recipe/mixing/spawn_fluid_blaze.json
@@ -15,7 +15,7 @@ b4d5019c467eec3fdd0ccd65bbfcc0bd3b82cf92 data/create_mechanical_spawner/recipe/m
 f8f4fec9809541d8aa035065715ff7c6f015883e data/create_mechanical_spawner/recipe/mixing/spawn_fluid_panda.json
 198051e3a2be40b4a0a8ed71eb4af8675ea96fd5 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_parrot.json
 4d7b1428df381b1bfd790fb4d18fa342edc8895d data/create_mechanical_spawner/recipe/mixing/spawn_fluid_pig.json
-96cf781689cbd5b9617475a5033d27cd59e9ed3e data/create_mechanical_spawner/recipe/mixing/spawn_fluid_pigling.json
+145f8be9e258076fe62aabaee025d01dbc6db39f data/create_mechanical_spawner/recipe/mixing/spawn_fluid_piglin.json
 ade8d481b89f5738c9655dead509c20b49c52ce9 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_rabbit.json
 a4514d5d5e8919cb6e5911d044decae278c35588 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_random_legacy.json
 fba29ebc40733e9cd79f44fefab2cca33995c6f1 data/create_mechanical_spawner/recipe/mixing/spawn_fluid_skeleton.json

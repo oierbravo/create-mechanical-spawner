@@ -8,7 +8,7 @@
     "create_mechanical_spawner:spawn_fluid_evoker_bucket",
     "create_mechanical_spawner:spawn_fluid_ghast_bucket",
     "create_mechanical_spawner:spawn_fluid_magma_cube_bucket",
-    "create_mechanical_spawner:spawn_fluid_pigling_bucket",
+    "create_mechanical_spawner:spawn_fluid_piglin_bucket",
     "create_mechanical_spawner:spawn_fluid_skeleton_bucket",
     "create_mechanical_spawner:spawn_fluid_slime_bucket",
     "create_mechanical_spawner:spawn_fluid_spider_bucket",
