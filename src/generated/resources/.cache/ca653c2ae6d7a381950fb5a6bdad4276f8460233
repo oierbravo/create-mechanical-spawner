@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-05T21:48:00.487317913	Registrate Provider for create_mechanical_spawner [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-06-21T16:12:44.386357329	Registrate Provider for create_mechanical_spawner [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 d1b393a2597472961bcfc49add092e7e89a3df67 assets/create_mechanical_spawner/blockstates/framed_dark_glass.json
 bb6dd959a5c0f5fe2f8c1be03eceb3c29b08e3bb assets/create_mechanical_spawner/blockstates/horizontal_framed_dark_glass.json
 269fcd69dc0ec76f54d2b2aa57dc5af85f9dbf52 assets/create_mechanical_spawner/blockstates/loot_collector.json
