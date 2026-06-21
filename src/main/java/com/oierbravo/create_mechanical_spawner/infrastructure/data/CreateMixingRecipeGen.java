@@ -78,7 +78,7 @@ public class CreateMixingRecipeGen extends AbstractCreateRecipeGen {
                 .require(Items.MAGMA_CREAM)
                 .build(recipeOutput);
 
-        createSpawnFluid("pigling",ModFluids.PIGLING.get(),250)
+        createSpawnFluid("piglin",ModFluids.PIGLIN.get(),250)
                 .require(ModFluids.RANDOM.get(),100)
                 .require(INGOTS_GOLD)
                 .build(recipeOutput);

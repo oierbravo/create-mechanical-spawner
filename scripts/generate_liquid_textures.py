@@ -20,7 +20,7 @@ entities = {
     "evoker": "#868686",
     "ghast": "#dadada",
     "magma_cube": "#7d0000",
-    "pigling": "#ffa8e3",
+    "piglin": "#ffa8e3",
     "skeleton": "#555555",
     "slime": "#16ff00",
     "spider": "#220000",

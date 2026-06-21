@@ -60,9 +60,9 @@ Specific Mob example
   "input": {
     "type": "fluid_stack",
     "amount": 100,
-    "fluid": "create_mechanical_spawner:spawn_fluid_pigling"
+    "fluid": "create_mechanical_spawner:spawn_fluid_piglin"
   },
-  "output": "minecraft:pig",
+  "output": "minecraft:piglin",
   "processingTime": 2500
 }
 ```

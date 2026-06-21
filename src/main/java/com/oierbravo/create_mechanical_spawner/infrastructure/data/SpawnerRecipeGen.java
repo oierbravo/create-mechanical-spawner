@@ -82,9 +82,9 @@ public class SpawnerRecipeGen extends AbstractMechanicalRecipeGenerator<SpawnerR
                 .processingTime(2500)
                 .save(recipeOutput);
 
-        create("pigling")
-                .output(SpawnerRecipeOutput.of("minecraft:pigling"))
-                .require(ModFluids.PIGLING.get(),100)
+        create("piglin")
+                .output(SpawnerRecipeOutput.of("minecraft:piglin"))
+                .require(ModFluids.PIGLIN.get(),100)
                 .processingTime(2500)
                 .save(recipeOutput);
 

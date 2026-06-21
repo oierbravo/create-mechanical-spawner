@@ -20,7 +20,7 @@ public class ModFluids {
     public static final FluidEntry<BaseFlowingFluid.Flowing> EVOKER = createSpawnFluid("evoker",0x868686);
     public static final FluidEntry<BaseFlowingFluid.Flowing> GHAST = createSpawnFluid("ghast",0xdadada);
     public static final FluidEntry<BaseFlowingFluid.Flowing> MAGMA_CUBE = createSpawnFluid("magma_cube",0x7d0000);
-    public static final FluidEntry<BaseFlowingFluid.Flowing> PIGLING = createSpawnFluid("pigling",0xffa8e3);
+    public static final FluidEntry<BaseFlowingFluid.Flowing> PIGLIN = createSpawnFluid("piglin",0xffa8e3);
     public static final FluidEntry<BaseFlowingFluid.Flowing> SKELETON = createSpawnFluid("skeleton",0x555555);
     public static final FluidEntry<BaseFlowingFluid.Flowing> SLIME = createSpawnFluid("slime",0x16ff00);
     public static final FluidEntry<BaseFlowingFluid.Flowing> SPIDER = createSpawnFluid("spider",0x220000);
